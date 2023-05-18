@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onConstraintLayoutClickScan(View view) {
-        Intent intent = new Intent(this, ScanActivity.class);
+    public void onConstraintLayoutClickPengunjung(View view) {
+        Intent intent = new Intent(this, PengunjungActivity.class);
         startActivity(intent);
     }
 }

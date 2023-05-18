@@ -5,13 +5,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
-public class DosenActivity extends AppCompatActivity {
+public class AddDosen extends AppCompatActivity {
 
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dosen);
+        setContentView(R.layout.activity_add_dosen);
 
         toolbar = findViewById(R.id.toolbar);
 
