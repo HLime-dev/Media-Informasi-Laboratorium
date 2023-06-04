@@ -1,8 +1,21 @@
 package com.telematika.info.Adapter;
 
 public class GetData {
+    String nama="", nip="", jabatan="", email="", penelitian="", foto="", id="";
+
+    public GetData (String id, String nama, String jabatan, String email){
+        this.id=id;
+        this.nama=nama;
+        this.jabatan=jabatan;
+        this.email=email;
+    }
+
     public String getNama() {
         return nama;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public void setNama(String nama) {
@@ -49,5 +62,5 @@ public class GetData {
         this.foto = foto;
     }
 
-    String nama="", nip="", jabatan="", email="", penelitian="", foto="";
+
 }

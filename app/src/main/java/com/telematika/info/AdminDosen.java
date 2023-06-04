@@ -3,8 +3,14 @@ package com.telematika.info;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class DosenActivity extends AppCompatActivity {
+public class AdminDosen extends AppCompatActivity {
 
     Toolbar toolbar;
     ListView listView;
@@ -31,20 +37,41 @@ public class DosenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dosen);
+        setContentView(R.layout.activity_admin_dosen);
 
         listView=findViewById(R.id.list);
-        toolbar = findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         model = new ArrayList<>();
         adaptor = new Adaptor(getApplicationContext(), model);
         listView.setAdapter(adaptor);
 
         load_data();
+        toolbar = findViewById(R.id.toolbar);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final int i = position; // Declare and assign the position value to 'i'
+                PopupMenu popupMenu=new PopupMenu(getApplicationContext(), view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
+                popupMenu.show();
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId()==R.id.edit)
+                        {
+                            Intent intent=new Intent(getApplicationContext(), AddDosen.class);
+                            intent.putExtra("edit_data", model.get(i).getId());
+                            startActivity(intent);
+                        }
+                        else if (item.getItemId()==R.id.hapus)
+                        {
+                            Toast.makeText(AdminDosen.this, "Hapus", Toast.LENGTH_SHORT).show();
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
     }
 
     void load_data() {
@@ -57,6 +84,7 @@ public class DosenActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
+                    model.clear(); // Clear the existing data
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject getData = jsonArray.getJSONObject(i);
                         model.add(new GetData(
@@ -92,5 +120,11 @@ public class DosenActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onResume() {
+        load_data();
+        super.onResume();
     }
 }
