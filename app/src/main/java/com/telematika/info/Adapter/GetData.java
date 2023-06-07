@@ -14,12 +14,16 @@ public class GetData {
         return nama;
     }
 
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
     public String getId() {
         return id;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNip() {

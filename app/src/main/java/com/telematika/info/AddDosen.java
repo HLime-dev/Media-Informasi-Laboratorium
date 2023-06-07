@@ -48,7 +48,7 @@ public class AddDosen extends AppCompatActivity {
         foto=findViewById(R.id.foto);
         simpan_data=findViewById(R.id.simpan_data);
         label=findViewById(R.id.label);
-        if (getIntent().getExtras().containsKey("edit_data"))
+        if (getIntent().hasExtra("edit_data"))
         {
             label.setText("Edit Data");
             getData();
@@ -100,7 +100,7 @@ public class AddDosen extends AppCompatActivity {
                                         String status=jsonObject.getString("status");
                                         if (status.equals("data tersimpan"))
                                         {
-                                            Boolean cekintent=getIntent().getExtras().containsKey("edit_data");
+                                            Boolean cekintent=getIntent().hasExtra("edit_data");
                                             AlertDialog.Builder builder=new AlertDialog.Builder(AddDosen.this);
                                             builder.setTitle("Sukses");
                                             builder.setMessage(cekintent?"Data berhasil diupdate":"Data berhasil disimpan");
@@ -139,6 +139,10 @@ public class AddDosen extends AppCompatActivity {
                             form.put("email", email.getText().toString());
                             form.put("penelitian", penelitian.getText().toString());
                             form.put("foto", foto.getText().toString());
+                            if (getIntent().hasExtra("edit_data"))
+                            {
+                                form.put("id", getIntent().getStringExtra("edit_data"));
+                            }
                             return form;
                         }
                     };
@@ -192,10 +196,6 @@ public class AddDosen extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> form= new HashMap<String, String>();
                 form.put("id", getIntent().getStringExtra("edit_data"));
-                if (getIntent().getExtras().containsKey("edit_data"))
-                {
-                    form.put("id", getIntent().getStringExtra("edit_data"));
-                }
                 return form;
             }
         };
