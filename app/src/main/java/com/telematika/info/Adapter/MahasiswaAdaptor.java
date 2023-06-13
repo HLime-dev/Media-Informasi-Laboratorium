@@ -11,17 +11,18 @@ import com.telematika.info.R;
 
 import java.util.ArrayList;
 
-public class Adaptor extends BaseAdapter {
+public class MahasiswaAdaptor extends BaseAdapter {
 
     Context context;
     LayoutInflater inflater;
-    ArrayList<GetData> model;
+    ArrayList<GetDataMahasiswa> model;
 
-    public Adaptor(Context context, ArrayList<GetData> model){
-        inflater=LayoutInflater.from(context);
-        this.context=context;
-        this.model=model;
+    public MahasiswaAdaptor(Context context, ArrayList<GetDataMahasiswa> model) {
+        inflater = LayoutInflater.from(context);
+        this.context = context;
+        this.model = model;
     }
+
     @Override
     public int getCount() {
         return model.size();
@@ -39,16 +40,15 @@ public class Adaptor extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView nama, nip, jabatan, email, penelitian, foto;
-        View view1=inflater.inflate(R.layout.list_dosen, null);
-        if (view1!=null)
-        {
-            nama=view1.findViewById(R.id.nama);
-            jabatan=view1.findViewById(R.id.jabatan);
-            email=view1.findViewById(R.id.email);
+        TextView nama, nim, email;
+        View view1 = inflater.inflate(R.layout.list_mahasiswa, null);
+        if (view1 != null) {
+            nama = view1.findViewById(R.id.nama);
+            nim = view1.findViewById(R.id.nim);
+            email = view1.findViewById(R.id.email);
 
             nama.setText(model.get(position).getNama());
-            jabatan.setText(model.get(position).getJabatan());
+            nim.setText(model.get(position).getNim());
             email.setText(model.get(position).getEmail());
         }
         return view1;

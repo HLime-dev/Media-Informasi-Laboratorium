@@ -17,7 +17,10 @@
             android:text="Admin Data Dosen"
             android:textAlignment="center"
             android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginStart="68dp"
+            android:layout_marginEnd="120dp"/>
 
     </androidx.appcompat.widget.Toolbar>
 

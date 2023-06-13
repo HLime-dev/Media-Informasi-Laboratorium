@@ -31,7 +31,7 @@ public class ScanActivity extends AppCompatActivity {
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
-        // kembali = (LinearLayout) findViewById(R.id.kembali);
+        kembali = (LinearLayout) findViewById(R.id.kembali);
 
         // Mengecek apakah NFC tersedia di perangkat
         if (nfcAdapter == null) {
@@ -49,7 +49,7 @@ public class ScanActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        /*
+
         LinearLayout kembali = findViewById(R.id.kembali);
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
 
-         */
+
     }
 
     @Override

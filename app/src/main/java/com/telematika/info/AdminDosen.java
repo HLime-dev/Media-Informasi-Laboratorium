@@ -52,6 +52,11 @@ public class AdminDosen extends AppCompatActivity {
         model = new ArrayList<>();
         adaptor = new Adaptor(getApplicationContext(), model);
         listView.setAdapter(adaptor);
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         load_data();
         FloatingActionButton tambah=findViewById(R.id.tambah);

@@ -91,7 +91,7 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@drawable/button_background"
