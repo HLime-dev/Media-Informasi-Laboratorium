@@ -3,7 +3,10 @@ package com.telematika.info;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -47,6 +50,15 @@ public class MahasiswaActivity extends AppCompatActivity {
         listView.setAdapter(mahasiswaAdaptor);
 
         load_data();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), DetailMahasiswa.class);
+                intent.putExtra("detail_data", model.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     void load_data() {
