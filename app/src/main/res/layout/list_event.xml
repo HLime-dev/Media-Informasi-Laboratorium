@@ -42,10 +42,10 @@
             app:layout_constraintTop_toTopOf="@+id/foto" />
 
         <TextView
-            android:id="@+id/deskripsi"
+            android:id="@+id/lokasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deskripsi"
+            android:text="Lokasi"
             android:textColor="#26273a"
             android:textSize="16sp"
             android:layout_marginStart="8dp"
@@ -61,7 +61,7 @@
             android:textSize="16sp"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/foto"
-            app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
+            app:layout_constraintTop_toBottomOf="@+id/lokasi" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

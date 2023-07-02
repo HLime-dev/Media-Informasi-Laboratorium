@@ -3,7 +3,10 @@ package com.telematika.info;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -47,6 +50,15 @@ public class EventActivity extends AppCompatActivity {
         listView.setAdapter(eventAdaptor);
 
         load_data();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), DetailEvent.class);
+                intent.putExtra("detail_data", model.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     void load_data() {
@@ -64,7 +76,7 @@ public class EventActivity extends AppCompatActivity {
                         model.add(new GetDataEvent(
                                 getDataEvent.getString("id"),
                                 getDataEvent.getString("nama"),
-                                getDataEvent.getString("deskripsi"),
+                                getDataEvent.getString("lokasi"),
                                 getDataEvent.getString("tanggal")
                         ));
                     }

@@ -5,18 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.telematika.info.R;
 
 import java.util.ArrayList;
 
-public class EventAdaptor extends BaseAdapter {
+public class RuanganAdaptor extends BaseAdapter {
+
     Context context;
     LayoutInflater inflater;
-    ArrayList<GetDataEvent> model;
+    ArrayList<GetDataRuangan> model;
 
-    public EventAdaptor(Context context, ArrayList<GetDataEvent> model) {
+    public RuanganAdaptor(Context context, ArrayList<GetDataRuangan> model) {
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.model = model;
@@ -37,20 +39,16 @@ public class EventAdaptor extends BaseAdapter {
         return position;
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView nama, lokasi, tanggal;
-        View view1 = inflater.inflate(R.layout.list_event, null);
+        TextView nama, foto;
+        View view1 = inflater.inflate(R.layout.list_ruangan, null);
         if (view1 != null) {
             nama = view1.findViewById(R.id.nama);
-            lokasi = view1.findViewById(R.id.lokasi);
-            tanggal = view1.findViewById(R.id.tanggal);
-
+            foto = view1.findViewById(R.id.foto);
 
             nama.setText(model.get(position).getNama());
-            lokasi.setText(model.get(position).getLokasi());
-            tanggal.setText(model.get(position).getTanggal());
+            foto.setText(model.get(position).getFoto());
         }
         return view1;
     }

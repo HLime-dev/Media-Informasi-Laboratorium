@@ -2,12 +2,12 @@ package com.telematika.info.Adapter;
 
 public class GetDataEvent {
 
-    String nama="", deskripsi="", tanggal="", id="";
+    String nama="", lokasi="", tanggal="", id="";
 
-    public GetDataEvent(String id, String nama, String deskripsi, String tanggal){
+    public GetDataEvent(String id, String nama, String lokasi,String tanggal){
         this.id=id;
         this.nama=nama;
-        this.deskripsi=deskripsi;
+        this.lokasi=lokasi;
         this.tanggal=tanggal;
     }
 
@@ -15,8 +15,8 @@ public class GetDataEvent {
         return nama;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public String getLokasi() {
+        return lokasi;
     }
 
     public String getTanggal() {

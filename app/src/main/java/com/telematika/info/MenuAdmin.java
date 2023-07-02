@@ -47,7 +47,7 @@ public class MenuAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ruangan.setBackground(getDrawable(R.drawable.bg_item_selected));
-                Intent intent = new Intent(MenuAdmin.this, RuanganActivity.class);
+                Intent intent = new Intent(MenuAdmin.this, AdminRuangan.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +65,7 @@ public class MenuAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 event.setBackground(getDrawable(R.drawable.bg_item_selected));
-                Intent intent = new Intent(MenuAdmin.this, EventActivity.class);
+                Intent intent = new Intent(MenuAdmin.this, AdminEvent.class);
                 startActivity(intent);
             }
         });

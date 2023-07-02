@@ -25,7 +25,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.telematika.info.Adapter.Adaptor;
+import com.telematika.info.Adapter.EventAdaptor;
 import com.telematika.info.Adapter.GetData;
+import com.telematika.info.Adapter.GetDataEvent;
 import com.telematika.info.Adapter.GetDataMahasiswa;
 import com.telematika.info.Adapter.MahasiswaAdaptor;
 
@@ -37,38 +39,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminMahasiswa extends AppCompatActivity {
+public class AdminEvent extends AppCompatActivity {
 
     Toolbar toolbar;
     ListView listView;
-    ArrayList<GetDataMahasiswa> model;
-    MahasiswaAdaptor mahasiswaAdaptor;
+    ArrayList<GetDataEvent> model;
+    EventAdaptor eventAdaptor;
     FloatingActionButton tambah;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_mahasiswa);
+        setContentView(R.layout.activity_admin_event);
 
 
         listView=findViewById(R.id.list);
         model = new ArrayList<>();
-        mahasiswaAdaptor = new MahasiswaAdaptor(getApplicationContext(), model);
-        listView.setAdapter(mahasiswaAdaptor);
+        eventAdaptor = new EventAdaptor(getApplicationContext(), model);
+        listView.setAdapter(eventAdaptor);
         toolbar = findViewById(R.id.toolbar);
+        FloatingActionButton tambah=findViewById(R.id.tambah);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         load_data();
-        FloatingActionButton tambah=findViewById(R.id.tambah);
+
+
 
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddMahasiswa.class);
+                Intent intent = new Intent(getApplicationContext(), AddEvent.class);
                 startActivity(intent);
             }
         });
@@ -91,12 +95,12 @@ public class AdminMahasiswa extends AppCompatActivity {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 if (item.getItemId() == R.id.edit) {
-                                    Intent intent = new Intent(getApplicationContext(), AddMahasiswa.class);
+                                    Intent intent = new Intent(getApplicationContext(), AddEvent.class);
                                     intent.putExtra("edit_data", model.get(position).getId());
                                     startActivity(intent);
                                     return true;
                                 } else if (item.getItemId() == R.id.hapus) {
-                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminMahasiswa.this);
+                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminEvent.this);
                                     builder.setMessage("Apakah Anda ingin menghapus data ini?");
                                     builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                         @Override
@@ -128,7 +132,7 @@ public class AdminMahasiswa extends AppCompatActivity {
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_mhs.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_event.php";
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -139,15 +143,15 @@ public class AdminMahasiswa extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     model.clear(); // Clear the existing data
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getData = jsonArray.getJSONObject(i);
-                        model.add(new GetDataMahasiswa(
-                                getData.getString("id"),
-                                getData.getString("nama"),
-                                getData.getString("nim"),
-                                getData.getString("email")
+                        JSONObject getDataEvent = jsonArray.getJSONObject(i);
+                        model.add(new GetDataEvent(
+                                getDataEvent.getString("id"),
+                                getDataEvent.getString("nama"),
+                                getDataEvent.getString("lokasi"),
+                                getDataEvent.getString("tanggal")
                         ));
                     }
-                    mahasiswaAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                    eventAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -166,7 +170,7 @@ public class AdminMahasiswa extends AppCompatActivity {
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+"hapus_mhs.php";
+        String url=new Konfigurasi().baseUrl()+"hapus_event.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -177,7 +181,7 @@ public class AdminMahasiswa extends AppCompatActivity {
                             String status=jsonObject.getString("status");
                             if (status.equals("data_berhasil_dihapus"))
                             {
-                                Toast.makeText(AdminMahasiswa.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminEvent.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
                                 load_data();
                             }
                         } catch (JSONException e) {
