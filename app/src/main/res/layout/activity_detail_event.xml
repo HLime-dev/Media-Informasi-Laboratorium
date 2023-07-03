@@ -56,16 +56,16 @@
             android:text="Nama Kegiatan" />
 
         <TextView
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:layout_gravity="center"
             android:id="@+id/tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1 Juli 2023" />
+            android:text="Tanggal" />
 
         <TextView
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:layout_gravity="center"
             android:id="@+id/lokasi"
             android:layout_width="wrap_content"

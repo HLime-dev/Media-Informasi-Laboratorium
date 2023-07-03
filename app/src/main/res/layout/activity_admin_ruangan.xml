@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="18dp"
-            android:text="Admin Data Mahasiswa"
+            android:text="Admin Data Ruangan"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textStyle="bold"

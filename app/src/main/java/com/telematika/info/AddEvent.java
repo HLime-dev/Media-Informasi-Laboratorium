@@ -38,7 +38,7 @@ public class AddEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_mahasiswa);
+        setContentView(R.layout.activity_add_event);
 
         toolbar = findViewById(R.id.toolbar);
         nama=findViewById(R.id.nama);
@@ -130,7 +130,8 @@ public class AddEvent extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             HashMap<String,String> form=new HashMap<String,String>();
                             form.put("nama", nama.getText().toString());
-                            form.put("lokasi", deskripsi.getText().toString());
+                            form.put("deskripsi", deskripsi.getText().toString());
+                            form.put("lokasi", lokasi.getText().toString());
                             form.put("tanggal", tanggal.getText().toString());
                             form.put("foto", foto.getText().toString());
                             if (getIntent().hasExtra("edit_data"))

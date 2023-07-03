@@ -59,7 +59,7 @@ public class AdminEvent extends AppCompatActivity {
         eventAdaptor = new EventAdaptor(getApplicationContext(), model);
         listView.setAdapter(eventAdaptor);
         toolbar = findViewById(R.id.toolbar);
-        FloatingActionButton tambah=findViewById(R.id.tambah);
+        tambah=findViewById(R.id.tambah);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

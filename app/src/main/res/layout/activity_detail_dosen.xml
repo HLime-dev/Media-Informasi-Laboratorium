@@ -64,7 +64,7 @@
             android:layout_weight="1"
             android:text="Nama Dosen" />
         <TextView
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:layout_gravity="center"
             android:id="@+id/jabatan"
             android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
             android:layout_weight="1"
             android:text="Jabatan" />
             <TextView
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:layout_gravity="center"
             android:id="@+id/nip"
             android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
             android:layout_weight="1"
             android:text="NIP" />
             <TextView
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:layout_gravity="center"
             android:id="@+id/email"
             android:layout_width="wrap_content"
