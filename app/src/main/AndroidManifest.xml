@@ -113,14 +113,14 @@
         </activity>
         <activity
             android:name=".AdminDosen"
-            android:exported="true">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".AddDosen"
-            android:exported="true">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -170,26 +170,21 @@
         <activity
             android:name=".MenuActivity"
             android:exported="false">
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".ScanActivity"
             android:exported="false">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".LoginActivity"
             android:exported="false">
@@ -205,6 +200,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+
+            </intent-filter>
+
+            <meta-data
+
+                android:name="android.nfc.action.TECH_DISCOVERED"
+
+                android:resource="@xml/nfc_tech_filter" />
 
             <meta-data
                 android:name="android.app.lib_name"

@@ -51,7 +51,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -76,7 +76,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -91,11 +91,12 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@drawable/button_background"
             android:text="Login"
+            android:onClick="login"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#ffffff"

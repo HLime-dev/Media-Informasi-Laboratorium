@@ -1,6 +1,7 @@
 package com.telematika.info;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,8 @@ import android.widget.LinearLayout;
 
 public class MenuAdmin extends AppCompatActivity {
 
-    LinearLayout dosen, mahasiswa, ruangan, alat, event, pengunjung, kembali;
+    LinearLayout dosen, mahasiswa, ruangan, alat, event, pengunjung;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,12 @@ public class MenuAdmin extends AppCompatActivity {
         alat = findViewById(R.id.alat);
         event = findViewById(R.id.event);
         pengunjung = findViewById(R.id.pengunjung);
-        kembali = findViewById(R.id.kembali);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dosen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +86,6 @@ public class MenuAdmin extends AppCompatActivity {
             }
         });
 
-        kembali.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
