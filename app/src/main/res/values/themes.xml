@@ -14,13 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <!-- splashscreen -->
-    <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splashscreen</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:fitsSystemWindows">true</item>
-    </style>
 
     <style name="FullScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>

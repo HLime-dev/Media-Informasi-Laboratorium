@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Media Informasi Lab</string>
+    <string name="app_name">Info Telmat</string>
     <string name="title_activity_tes">TesActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
