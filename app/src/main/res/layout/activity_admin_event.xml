@@ -13,14 +13,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="18dp"
+            android:layout_marginEnd="?android:attr/actionBarSize"
             android:text="Admin Data Event"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="80dp"/>
+            android:gravity="center" />
 
     </androidx.appcompat.widget.Toolbar>
 

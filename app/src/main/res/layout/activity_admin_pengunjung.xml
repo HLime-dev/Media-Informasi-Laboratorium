@@ -14,16 +14,14 @@
         android:layout_height="wrap_content">
         <TextView
             android:textStyle="bold"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textAlignment="center"
             android:layout_gravity="center"
-            android:layout_marginRight="18dp"
+            android:layout_marginEnd="?android:attr/actionBarSize"
             android:text="Daftar Pengunjung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="100dp"/>
+            android:gravity="center" />
 
     </androidx.appcompat.widget.Toolbar>
     <RelativeLayout

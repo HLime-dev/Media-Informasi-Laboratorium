@@ -4,6 +4,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/logotelematika" />
+            android:src="@drawable/logosplashscreen" />
     </item>
+
 </layer-list>
