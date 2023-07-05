@@ -1,6 +1,7 @@
 package com.telematika.info;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
@@ -27,6 +28,8 @@ public class MenuAdmin extends AppCompatActivity {
         pengunjung = findViewById(R.id.pengunjung);
 
         toolbar = findViewById(R.id.toolbar);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

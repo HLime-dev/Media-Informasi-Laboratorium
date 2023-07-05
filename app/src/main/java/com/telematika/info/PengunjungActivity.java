@@ -7,8 +7,10 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,6 +43,9 @@ public class PengunjungActivity extends AppCompatActivity {
         identitas = findViewById(R.id.identitas);
         pekerjaan = findViewById(R.id.pekerjaan);
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
 
         btnlanjut.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.telematika.info;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
@@ -26,6 +27,8 @@ public class MenuActivity extends AppCompatActivity {
         event = (LinearLayout) findViewById(R.id.event);
 
         toolbar = findViewById(R.id.toolbar);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -86,16 +89,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout kembali = findViewById(R.id.kembali);
-        kembali.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
-        });
+        
     }
 
     @Override

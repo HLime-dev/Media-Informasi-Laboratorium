@@ -3,9 +3,11 @@ package com.telematika.info;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,13 +20,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etEmail, etPassword;
+    private EditText etEmail;
+    private TextInputEditText etPassword;
     private String email, password;
     private String URL = "https://medtele.000webhostapp.com/login.php";
     //Button login;
@@ -39,15 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
 
-       // login=findViewById(R.id.login);
-
-        //login.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-         //   public void onClick(View v) {
-         //       Intent intent = new Intent(LoginActivity.this, MenuAdmin.class);
-         //       startActivity(intent);
-         //   }
-        //});
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
 
 
     }

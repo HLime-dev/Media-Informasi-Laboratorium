@@ -33,6 +33,8 @@ public class ScanActivity extends AppCompatActivity {
 
         kembali = (LinearLayout) findViewById(R.id.kembali);
 
+        getWindow() .getDecorView(). setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         // Mengecek apakah NFC tersedia di perangkat
         if (nfcAdapter == null) {
             Toast.makeText(this, "Perangkat tidak mendukung NFC", Toast.LENGTH_SHORT).show();
