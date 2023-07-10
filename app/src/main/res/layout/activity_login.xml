@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Login Activity"
+        android:text="Login Admin"
         android:textColor="#ffffff"
         android:textSize="30sp"
         android:textStyle="bold"

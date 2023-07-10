@@ -100,16 +100,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:text="Foto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/foto"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Foto" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/foto"
+            android:text="Pilih Foto"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="#BFBFBF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"/>

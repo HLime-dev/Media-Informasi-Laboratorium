@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,18 +21,21 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.telematika.info.Adapter.Adaptor;
+import com.telematika.info.Adapter.GetData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddDosen extends AppCompatActivity {
 
     Toolbar toolbar;
-    TextInputEditText nama, nip, jabatan, email, penelitian, foto;
-    Button simpan_data;
+    TextInputEditText nama, nip, jabatan, email, penelitian;
+    Button simpan_data, foto;
     TextView label;
 
     @Override
@@ -45,9 +49,11 @@ public class AddDosen extends AppCompatActivity {
         jabatan=findViewById(R.id.jabatan);
         email=findViewById(R.id.email);
         penelitian=findViewById(R.id.penelitian);
-        foto=findViewById(R.id.foto);
         simpan_data=findViewById(R.id.simpan_data);
         label=findViewById(R.id.label);
+        foto = findViewById(R.id.foto);
+
+
         if (getIntent().hasExtra("edit_data"))
         {
             label.setText("Edit Data");
@@ -59,9 +65,24 @@ public class AddDosen extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nama.getText().toString().length()==0)
+                {
+                    nama.setError("Tidak boleh kosong");
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), UploadFoto.class);
+                    intent.putExtra("nama", nama.getText().toString());
+                    startActivity(intent);
+                }
+            }
+        });
+
         simpan_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (nama.getText().toString().length()==0)
                 {
                     nama.setError("Tidak boleh kosong");
@@ -82,10 +103,7 @@ public class AddDosen extends AppCompatActivity {
                 {
                     penelitian.setError("Tidak boleh kosong");
                 }
-                if (foto.getText().toString().length()==0)
-                {
-                    foto.setError("Tidak boleh kosong");
-                }
+
                 else
                 {
                     String url= new Konfigurasi().baseUrl()+"simpan.php";
@@ -95,6 +113,7 @@ public class AddDosen extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+
                                     try {
                                         JSONObject jsonObject= new JSONObject(response);
                                         String status=jsonObject.getString("status");
@@ -138,7 +157,6 @@ public class AddDosen extends AppCompatActivity {
                             form.put("jabatan", jabatan.getText().toString());
                             form.put("email", email.getText().toString());
                             form.put("penelitian", penelitian.getText().toString());
-                            form.put("foto", foto.getText().toString());
                             if (getIntent().hasExtra("edit_data"))
                             {
                                 form.put("id", getIntent().getStringExtra("edit_data"));
@@ -170,14 +188,14 @@ public class AddDosen extends AppCompatActivity {
                             String gjabatan=jsonObject.getString("jabatan");
                             String gemail=jsonObject.getString("email");
                             String gpenelitian=jsonObject.getString("penelitian");
-                            String gfoto=jsonObject.getString("foto");
+
 
                             nama.setText(gnama);
                             nip.setText(gnip);
                             jabatan.setText(gjabatan);
                             email.setText(gemail);
                             penelitian.setText(gpenelitian);
-                            foto.setText(gfoto);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

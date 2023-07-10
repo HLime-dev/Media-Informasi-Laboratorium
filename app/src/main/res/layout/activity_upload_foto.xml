@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:orientation="vertical"
+    tools:context=".UploadFoto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Upload Image using Volley"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/pilihFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Browse Image"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:padding="10dp"/>
+
+    <EditText
+        android:id="@+id/imgname"
+        android:hint="Nama Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/pb_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/card_background"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
+        android:layout_margin="20dp"/>
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="upload"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"/>
+</LinearLayout>

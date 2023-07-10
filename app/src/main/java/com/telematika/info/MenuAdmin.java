@@ -14,7 +14,7 @@ public class MenuAdmin extends AppCompatActivity {
 
     LinearLayout dosen, mahasiswa, ruangan, alat, event, pengunjung;
     Toolbar toolbar;
-
+    private LinearLayout selectedLinearLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,13 @@ public class MenuAdmin extends AppCompatActivity {
         dosen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedLinearLayout != null) {
+                    selectedLinearLayout.setBackground(null);
+                }
+
+                // Set latar belakang LinearLayout yang baru dipilih
                 dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
+                selectedLinearLayout = dosen;
                 Intent intent = new Intent(MenuAdmin.this, AdminDosen.class);
                 startActivity(intent);
             }
@@ -106,6 +112,17 @@ public class MenuAdmin extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (selectedLinearLayout != null) {
+            selectedLinearLayout.setBackground(null);
+            selectedLinearLayout = null;
+        }
+    }
+
 
 
 }
