@@ -45,9 +45,10 @@ public class DosenActivity extends AppCompatActivity {
 
         model = new ArrayList<>();
         adaptor = new Adaptor(getApplicationContext(), model);
-        listView.setAdapter(adaptor);
+       // listView.setAdapter(adaptor);
 
         load_data();
+        load_image();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,6 +58,10 @@ public class DosenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void load_image() {
+
     }
 
     void load_data() {
@@ -75,7 +80,8 @@ public class DosenActivity extends AppCompatActivity {
                                 getData.getString("id"),
                                 getData.getString("nama"),
                                 getData.getString("jabatan"),
-                                getData.getString("email")
+                                getData.getString("email"),
+                                getData.getString("image")
                         ));
                     }
                     adaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed

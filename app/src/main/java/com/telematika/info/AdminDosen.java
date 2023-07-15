@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,13 +35,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AdminDosen extends AppCompatActivity {
 
     Toolbar toolbar;
-    ListView listView;
-    ArrayList<GetData> model;
+    RecyclerView recyclerView;
+    String url = "https://medtele.000webhostapp.com/get_data_dosen.php";
+    List<GetData> imagelist;
+    GetData getData;
+    LinearLayoutManager linearLayoutManager;
     Adaptor adaptor;
     FloatingActionButton tambah;
 
@@ -48,19 +54,21 @@ public class AdminDosen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dosen);
 
-        listView=findViewById(R.id.list);
-        model = new ArrayList<>();
-        adaptor = new Adaptor(getApplicationContext(), model);
-        listView.setAdapter(adaptor);
+        recyclerView = findViewById(R.id.rv);
+        linearLayoutManager =new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        imagelist = new ArrayList<>();
+        adaptor = new Adaptor(this, imagelist);
+        recyclerView.setAdapter(adaptor);
+
         toolbar = findViewById(R.id.toolbar);
+        tambah=findViewById(R.id.tambah);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         load_data();
-        FloatingActionButton tambah=findViewById(R.id.tambah);
-        toolbar = findViewById(R.id.toolbar);
 
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +78,7 @@ public class AdminDosen extends AppCompatActivity {
             }
         });
 
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -123,29 +132,55 @@ public class AdminDosen extends AppCompatActivity {
             }
         });
 
+         */
+
     }
 
-    void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data.php";
+    private void load_data() {
+        //String url = new Konfigurasi().baseUrl() + "tampil_data.php";
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                //model.clear(); // Clear the existing data
+                imagelist.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    model.clear(); // Clear the existing data
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getData = jsonArray.getJSONObject(i);
-                        model.add(new GetData(
-                                getData.getString("id"),
-                                getData.getString("nama"),
-                                getData.getString("jabatan"),
-                                getData.getString("email")
-                        ));
+
+                    if (success.equals("1")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            /*
+                            model.add(new GetData(
+
+                                    getData.getString("id"),
+                                    getData.getString("name"),
+                                    getData.getString("jabatan"),
+                                    getData.getString("email"),
+                                    getData.getString("image")
+                            ));
+
+                             */
+
+                            String id = object.getString("id");
+                            String name = object.getString("name");
+                            String jabatan = object.getString("jabatan");
+                            String email = object.getString("email");
+                            String url2 = object.getString("image");
+
+                            String urlimage = "https://medtele.000webhostapp.com/images/"+url2;
+
+                            getData = new GetData(id, name, jabatan, email, urlimage);
+                            imagelist.add(getData);
+                            adaptor.notifyDataSetChanged();
+
+                        }
+
                     }
-                    adaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -155,10 +190,11 @@ public class AdminDosen extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Handle error response
+                        Toast.makeText(AdminDosen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(AdminDosen.this);
         requestQueue.add(request);
     }
 

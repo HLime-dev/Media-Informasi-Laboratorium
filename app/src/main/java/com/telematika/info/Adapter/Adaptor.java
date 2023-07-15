@@ -5,52 +5,65 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.telematika.info.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.List;
 
-public class Adaptor extends BaseAdapter {
+public class Adaptor extends RecyclerView.Adapter<ImageViewHolder>{
 
-    Context context;
-    LayoutInflater inflater;
-    ArrayList<GetData> model;
+    private Context context;
+    private List<GetData> imagelist;
 
-    public Adaptor(Context context, ArrayList<GetData> model){
-        inflater=LayoutInflater.from(context);
-        this.context=context;
-        this.model=model;
-    }
-    @Override
-    public int getCount() {
-        return model.size();
+    public Adaptor(Context context, List<GetData> imagelist) {
+        this.context = context;
+        this.imagelist = imagelist;
     }
 
+    @NonNull
     @Override
-    public Object getItem(int position) {
-        return model.get(position);
-    }
+    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-    @Override
-    public long getItemId(int position) {
-        return position;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_dosen,parent,false);
+        return new ImageViewHolder(view);
+
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        TextView nama, nip, jabatan, email, penelitian, foto;
-        View view1=inflater.inflate(R.layout.list_dosen, null);
-        if (view1!=null)
-        {
-            nama=view1.findViewById(R.id.nama);
-            jabatan=view1.findViewById(R.id.jabatan);
-            email=view1.findViewById(R.id.email);
+    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
 
-            nama.setText(model.get(position).getNama());
-            jabatan.setText(model.get(position).getJabatan());
-            email.setText(model.get(position).getEmail());
-        }
-        return view1;
+        Glide.with(context).load(imagelist.get(position).getImage()).into(holder.imageView);
+        holder.nametvimg.setText(imagelist.get(position).getName());
+        holder.jabatantvimg.setText(imagelist.get(position).getJabatan());
+        holder.emailtvimg.setText(imagelist.get(position).getEmail());
+    }
+
+    @Override
+    public int getItemCount() {
+        return imagelist.size();
+    }
+}
+
+class ImageViewHolder extends RecyclerView.ViewHolder{
+
+    TextView nametvimg, jabatantvimg, emailtvimg;
+    ImageView imageView;
+
+    public ImageViewHolder(@NonNull View itemView) {
+        super(itemView);
+
+        imageView = itemView.findViewById(R.id.iv_retrieve);
+        nametvimg = itemView.findViewById(R.id.nametvimg);
+        jabatantvimg = itemView.findViewById(R.id.jabatantvimg);
+        emailtvimg = itemView.findViewById(R.id.emailtvimg);
     }
 }

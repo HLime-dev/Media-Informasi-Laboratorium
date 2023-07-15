@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.NFC" /> <!-- register that nfc is used AND mandatory in the play store -->
     <uses-feature
@@ -205,11 +203,14 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/FullScreen"></activity>
+            android:theme="@style/FullScreen">
+
+        </activity>
         <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/FullScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

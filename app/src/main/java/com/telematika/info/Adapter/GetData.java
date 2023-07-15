@@ -1,21 +1,19 @@
 package com.telematika.info.Adapter;
 
 public class GetData {
-    String nama="", nip="", jabatan="", email="", penelitian="", foto="", id="";
 
-    public GetData (String id, String nama, String jabatan, String email){
-        this.id=id;
-        this.nama=nama;
-        this.jabatan=jabatan;
-        this.email=email;
+    private String id, name, jabatan, email, image;
+
+    public GetData(){
+
     }
 
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
+    public GetData(String id, String name, String jabatan, String email, String image) {
+        this.id = id;
+        this.name = name;
+        this.jabatan = jabatan;
+        this.email = email;
+        this.image = image;
     }
 
     public String getId() {
@@ -26,12 +24,12 @@ public class GetData {
         this.id = id;
     }
 
-    public String getNip() {
-        return nip;
+    public String getName() {
+        return name;
     }
 
-    public void setNip(String nip) {
-        this.nip = nip;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getJabatan() {
@@ -50,21 +48,12 @@ public class GetData {
         this.email = email;
     }
 
-    public String getPenelitian() {
-        return penelitian;
+    public String getImage() {
+        return image;
     }
 
-    public void setPenelitian(String penelitian) {
-        this.penelitian = penelitian;
+    public void setImage(String image) {
+        this.image = image;
     }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
 
 }
