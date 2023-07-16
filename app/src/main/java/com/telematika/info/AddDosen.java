@@ -26,6 +26,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.textfield.TextInputEditText;
 import com.telematika.info.Adapter.Adaptor;
 import com.telematika.info.Adapter.GetData;
@@ -46,7 +48,7 @@ public class AddDosen extends AppCompatActivity {
     Bitmap bitmap;
     String encodeImage;
     Toolbar toolbar;
-    TextInputEditText nama, nip, jabatan, email, penelitian;
+    TextInputEditText name, nip, jabatan, email, penelitian;
     Button simpan_data, pilihfoto;
     TextView label;
     ImageView fotoiv;
@@ -58,7 +60,7 @@ public class AddDosen extends AppCompatActivity {
         setContentView(R.layout.activity_add_dosen);
 
         toolbar = findViewById(R.id.toolbar);
-        nama=findViewById(R.id.nama);
+        name=findViewById(R.id.nama);
         nip=findViewById(R.id.nip);
         jabatan=findViewById(R.id.jabatan);
         email=findViewById(R.id.email);
@@ -72,7 +74,7 @@ public class AddDosen extends AppCompatActivity {
         if (getIntent().hasExtra("edit_data"))
         {
             label.setText("Edit Data");
-            //getData();
+            getData();
             simpan_data.setText("Update Data");
         }
 
@@ -102,9 +104,9 @@ public class AddDosen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (nama.getText().toString().length()==0)
+                if (name.getText().toString().length()==0)
                 {
-                    nama.setError("Tidak boleh kosong");
+                    name.setError("Tidak boleh kosong");
                 }
                 if (nip.getText().toString().length()==0)
                 {
@@ -163,7 +165,7 @@ public class AddDosen extends AppCompatActivity {
                             , new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(AddDosen.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddDosen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                     ){
@@ -172,7 +174,7 @@ public class AddDosen extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String,String> form=new HashMap<String,String>();
 
-                            form.put("name", nama.getText().toString());
+                            form.put("name", name.getText().toString());
                             form.put("nip", nip.getText().toString());
                             form.put("jabatan", jabatan.getText().toString());
                             form.put("email", email.getText().toString());
@@ -228,7 +230,7 @@ public class AddDosen extends AppCompatActivity {
         encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);
     }
 
-/*
+
     void getData()
     {
         String url=new Konfigurasi().baseUrl()+"get_data.php";
@@ -240,18 +242,17 @@ public class AddDosen extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject= new JSONObject(response).getJSONObject("data");
-                            String gnama=jsonObject.getString("nama");
+                            String gnama=jsonObject.getString("name");
                             String gnip=jsonObject.getString("nip");
                             String gjabatan=jsonObject.getString("jabatan");
                             String gemail=jsonObject.getString("email");
                             String gpenelitian=jsonObject.getString("penelitian");
 
-                            nama.setText(gnama);
+                            name.setText(gnama);
                             nip.setText(gnip);
                             jabatan.setText(gjabatan);
                             email.setText(gemail);
                             penelitian.setText(gpenelitian);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -276,7 +277,7 @@ public class AddDosen extends AppCompatActivity {
         requestQueue.add(request);
     }
 
- */
+
 
     @Override
     public void onBackPressed() {

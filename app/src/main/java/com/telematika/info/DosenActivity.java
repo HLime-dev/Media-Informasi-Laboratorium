@@ -44,7 +44,7 @@ public class DosenActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         model = new ArrayList<>();
-        adaptor = new Adaptor(getApplicationContext(), model);
+        //adaptor = new Adaptor(this, imagelist, this, this);
        // listView.setAdapter(adaptor);
 
         load_data();

@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdminDosen extends AppCompatActivity {
+public class AdminDosen extends AppCompatActivity implements SelectListener{
 
     Toolbar toolbar;
     RecyclerView recyclerView;
@@ -58,7 +58,7 @@ public class AdminDosen extends AppCompatActivity {
         linearLayoutManager =new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         imagelist = new ArrayList<>();
-        adaptor = new Adaptor(this, imagelist);
+        adaptor = new Adaptor(this, imagelist, this, this);
         recyclerView.setAdapter(adaptor);
 
         toolbar = findViewById(R.id.toolbar);
@@ -77,62 +77,6 @@ public class AdminDosen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        /*
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PopupMenu popupMenu=new PopupMenu(getApplicationContext(), view);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
-                popupMenu.show();
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                        popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
-                        popupMenu.show();
-
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                if (item.getItemId() == R.id.edit) {
-                                    Intent intent = new Intent(getApplicationContext(), AddDosen.class);
-                                    intent.putExtra("edit_data", model.get(position).getId());
-                                    startActivity(intent);
-                                    return true;
-                                } else if (item.getItemId() == R.id.hapus) {
-                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminDosen.this);
-                                    builder.setMessage("Apakah Anda ingin menghapus data ini?");
-                                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            _hapus(model.get(position).getId());
-                                        }
-                                    });
-                                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                                    AlertDialog alertDialog=builder.create();
-                                    alertDialog.show();
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            }
-                        });
-                    }
-                });
-
-
-            }
-        });
-
-         */
 
     }
 
@@ -198,7 +142,7 @@ public class AdminDosen extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-    void _hapus(String id)
+    public void _hapus(String id)
     {
         String url=new Konfigurasi().baseUrl()+"hapus.php";
         StringRequest request=new StringRequest(
@@ -253,5 +197,10 @@ public class AdminDosen extends AppCompatActivity {
     protected void onResume() {
         load_data();
         super.onResume();
+    }
+
+    @Override
+    public void onItemClicked(GetData getData) {
+
     }
 }
