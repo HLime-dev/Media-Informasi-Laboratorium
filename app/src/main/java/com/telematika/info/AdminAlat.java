@@ -41,15 +41,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdminAlat extends AppCompatActivity implements SelectListener{
+public class AdminAlat extends AppCompatActivity{
 
     Toolbar toolbar;
-    RecyclerView recyclerView;
-    String url = "https://medtele.000webhostapp.com/tampil_data_alat.php";
-    List<GetDataAlat> alatimagelist;
-    GetDataAlat getDataAlat;
-    LinearLayoutManager linearLayoutManager;
+    ListView listView;
+    ArrayList<GetDataAlat> model;
     AlatAdaptor alatAdaptor;
+    GetDataAlat getDataAlat;
     FloatingActionButton tambah;
 
 
@@ -59,22 +57,18 @@ public class AdminAlat extends AppCompatActivity implements SelectListener{
         setContentView(R.layout.activity_admin_alat);
 
 
-        recyclerView = findViewById(R.id.rv);
-        linearLayoutManager =new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        alatimagelist = new ArrayList<>();
-        alatAdaptor = new AlatAdaptor(this, alatimagelist, this, this);
-        recyclerView.setAdapter(alatAdaptor);
-
+        listView=findViewById(R.id.list);
+        model = new ArrayList<>();
+        alatAdaptor = new AlatAdaptor(getApplicationContext(), model);
+        listView.setAdapter(alatAdaptor);
         toolbar = findViewById(R.id.toolbar);
-        tambah=findViewById(R.id.tambah);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         load_data();
-
+        tambah=findViewById(R.id.tambah);
 
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,41 +78,88 @@ public class AdminAlat extends AppCompatActivity implements SelectListener{
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PopupMenu popupMenu=new PopupMenu(getApplicationContext(), view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
+                popupMenu.show();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+                        popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
+                        popupMenu.show();
+
+                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                if (item.getItemId() == R.id.edit) {
+                                    Intent intent = new Intent(getApplicationContext(), AddAlat.class);
+                                    intent.putExtra("edit_data", model.get(position).getId());
+                                    startActivity(intent);
+                                    return true;
+                                } else if (item.getItemId() == R.id.hapus) {
+                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminAlat.this);
+                                    builder.setMessage("Apakah Anda ingin menghapus data ini?");
+                                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            _hapus(model.get(position).getId());
+                                        }
+                                    });
+                                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                                    AlertDialog alertDialog=builder.create();
+                                    alertDialog.show();
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+            }
+        });
     }
 
     void load_data() {
-        //String url = new Konfigurasi().baseUrl() + "tampil_data_alat.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_alat.php";
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                alatimagelist.clear();
+                model.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-
                     if (success.equals("1")) {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-
                             String id = object.getString("id");
-                            String name = object.getString("name");
+                            String nama = object.getString("nama");
                             String kategori = object.getString("kategori");
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");
 
-                            String urlimage = "https://medtele.000webhostapp.com/images/"+url2;
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
 
-                            getDataAlat = new GetDataAlat(id, name, kategori, jumlah, urlimage);
-                            alatimagelist.add(getDataAlat);
-                            alatAdaptor.notifyDataSetChanged();
-
+                            getDataAlat = new GetDataAlat(id, nama, kategori, jumlah, urlimage);
+                            model.add(getDataAlat);
+                            alatAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                         }
-
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -128,15 +169,14 @@ public class AdminAlat extends AppCompatActivity implements SelectListener{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Handle error response
-                        Toast.makeText(AdminAlat.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
-        RequestQueue requestQueue = Volley.newRequestQueue(AdminAlat.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
 
-    public void _hapus(String id)
+    void _hapus(String id)
     {
         String url=new Konfigurasi().baseUrl()+"hapus_alat.php";
         StringRequest request=new StringRequest(
@@ -193,13 +233,4 @@ public class AdminAlat extends AppCompatActivity implements SelectListener{
         super.onResume();
     }
 
-    @Override
-    public void onItemClicked(GetData getData) {
-
-    }
-
-    @Override
-    public void onItemClicked(GetDataAlat getDataAlat) {
-
-    }
 }
