@@ -16,6 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,13 +68,22 @@ public class DetailEvent extends AppCompatActivity {
                             String gtanggal=jsonObject.getString("tanggal");
                             String glokasi=jsonObject.getString("lokasi");
                             String gdeskripsi=jsonObject.getString("deskripsi");
-                            String gfoto=jsonObject.getString("foto");
+                            String url2=jsonObject.getString("foto");
+
+                            String urlimage="https://medtele.000webhostapp.com/images/" + url2;
 
                             nama.setText(gnama);
                             tanggal.setText(gtanggal);
                             lokasi.setText(glokasi);
                             deskripsi.setText(gdeskripsi);
-                            foto.setImageURI(Uri.parse(gfoto));
+
+                            RequestOptions requestOptions = new RequestOptions()
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL);
+
+                            Glide.with(DetailEvent.this)
+                                    .load(urlimage)
+                                    .apply(requestOptions)
+                                    .into(foto);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

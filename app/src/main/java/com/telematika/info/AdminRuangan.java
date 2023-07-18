@@ -39,6 +39,7 @@ public class AdminRuangan extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView;
     ArrayList<GetDataRuangan> model;
+    GetDataRuangan getDataRuangan;
     RuanganAdaptor ruanganAdaptor;
     FloatingActionButton tambah;
 
@@ -60,7 +61,7 @@ public class AdminRuangan extends AppCompatActivity {
 
         load_data();
 
-        FloatingActionButton tambah=findViewById(R.id.tambah);
+        tambah=findViewById(R.id.tambah);
 
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,19 +132,25 @@ public class AdminRuangan extends AppCompatActivity {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                model.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    model.clear(); // Clear the existing data
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getDataRuangan = jsonArray.getJSONObject(i);
-                        model.add(new GetDataRuangan(
-                                getDataRuangan.getString("id"),
-                                getDataRuangan.getString("nama"),
-                                getDataRuangan.getString("foto")
-                        ));
+                    if (success.equals("1")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            String id = object.getString("id");
+                            String nama = object.getString("nama");
+                            String url2 = object.getString("image");
+
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+
+                            getDataRuangan = new GetDataRuangan(id, nama, urlimage);
+                            model.add(getDataRuangan);
+                            ruanganAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        }
                     }
-                    ruanganAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

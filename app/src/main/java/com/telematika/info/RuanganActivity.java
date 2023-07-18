@@ -28,6 +28,7 @@ public class RuanganActivity extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView;
     ArrayList<GetDataRuangan> model;
+    GetDataRuangan getDataRuangan;
     RuanganAdaptor ruanganAdaptor;
 
     @Override
@@ -36,15 +37,14 @@ public class RuanganActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ruangan);
 
         listView=findViewById(R.id.list);
+        model = new ArrayList<>();
+        ruanganAdaptor = new RuanganAdaptor(getApplicationContext(), model);
+        listView.setAdapter(ruanganAdaptor);
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        model = new ArrayList<>();
-        ruanganAdaptor = new RuanganAdaptor(getApplicationContext(), model);
-        listView.setAdapter(ruanganAdaptor);
 
         load_data();
     }
@@ -58,16 +58,22 @@ public class RuanganActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getDataRuangan = jsonArray.getJSONObject(i);
-                        model.add(new GetDataRuangan(
-                                getDataRuangan.getString("id"),
-                                getDataRuangan.getString("nama"),
-                                getDataRuangan.getString("foto")
-                        ));
+                    if (success.equals("1")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            String id = object.getString("id");
+                            String nama = object.getString("nama");
+                            String url2 = object.getString("image");
+
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+
+                            getDataRuangan = new GetDataRuangan(id, nama, urlimage);
+                            model.add(getDataRuangan);
+                            ruanganAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        }
                     }
-                    ruanganAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

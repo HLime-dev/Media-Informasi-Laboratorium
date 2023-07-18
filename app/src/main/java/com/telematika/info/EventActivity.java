@@ -31,6 +31,7 @@ public class EventActivity extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView;
     ArrayList<GetDataEvent> model;
+    GetDataEvent getDataEvent;
     EventAdaptor eventAdaptor;
 
     @Override
@@ -70,17 +71,24 @@ public class EventActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getDataEvent = jsonArray.getJSONObject(i);
-                        model.add(new GetDataEvent(
-                                getDataEvent.getString("id"),
-                                getDataEvent.getString("nama"),
-                                getDataEvent.getString("lokasi"),
-                                getDataEvent.getString("tanggal")
-                        ));
+                    if (success.equals("1")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            String id = object.getString("id");
+                            String name = object.getString("nama");
+                            String lokasi = object.getString("lokasi");
+                            String tanggal = object.getString("tanggal");
+                            String url2 = object.getString("foto");
+
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+
+                            getDataEvent = new GetDataEvent(id, name, lokasi, tanggal, urlimage);
+                            model.add(getDataEvent);
+                            eventAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        }
                     }
-                    eventAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

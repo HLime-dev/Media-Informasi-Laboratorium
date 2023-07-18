@@ -40,15 +40,14 @@ public class MahasiswaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mahasiswa);
 
         listView=findViewById(R.id.list);
+        model = new ArrayList<>();
+        mahasiswaAdaptor = new MahasiswaAdaptor(getApplicationContext(), model);
+        listView.setAdapter(mahasiswaAdaptor);
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        model = new ArrayList<>();
-        mahasiswaAdaptor = new MahasiswaAdaptor(getApplicationContext(), model);
-        listView.setAdapter(mahasiswaAdaptor);
 
         load_data();
 

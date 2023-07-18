@@ -89,16 +89,38 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:text="Foto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/foto"
-                android:background="@color/white"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/pilihfoto"
+            android:text="Pilih Foto"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="#BFBFBF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/fotoiv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+            <ProgressBar
+                android:layout_gravity="center"
+                android:id="@+id/pb_img"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Foto" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:visibility="invisible"/>
+        </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"/>

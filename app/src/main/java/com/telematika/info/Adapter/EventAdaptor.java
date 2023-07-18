@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.telematika.info.R;
 
 import java.util.ArrayList;
@@ -41,16 +43,21 @@ public class EventAdaptor extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView nama, lokasi, tanggal;
+        ImageView foto;
         View view1 = inflater.inflate(R.layout.list_event, null);
         if (view1 != null) {
             nama = view1.findViewById(R.id.nama);
             lokasi = view1.findViewById(R.id.lokasi);
             tanggal = view1.findViewById(R.id.tanggal);
-
+            foto = view1.findViewById(R.id.foto);
 
             nama.setText(model.get(position).getNama());
             lokasi.setText(model.get(position).getLokasi());
             tanggal.setText(model.get(position).getTanggal());
+
+            Glide.with(context)
+                    .load(model.get(position).getImage())
+                    .into(foto);
         }
         return view1;
     }

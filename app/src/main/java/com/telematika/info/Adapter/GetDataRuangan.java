@@ -2,20 +2,20 @@ package com.telematika.info.Adapter;
 
 public class GetDataRuangan {
 
-    String nama, foto, id;
+    String nama, image, id;
 
-    public GetDataRuangan(String id, String nama, String foto){
+    public GetDataRuangan(String id, String nama, String image){
         this.id=id;
         this.nama=nama;
-        this.foto=foto;
+        this.image=image;
     }
 
     public String getNama() {
         return nama;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getImage() {
+        return image;
     }
 
     public String getId() {

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.telematika.info.R;
 
 import java.util.ArrayList;
@@ -41,14 +42,17 @@ public class RuanganAdaptor extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView nama, foto;
+        TextView nama;
+        ImageView foto;
         View view1 = inflater.inflate(R.layout.list_ruangan, null);
         if (view1 != null) {
             nama = view1.findViewById(R.id.nama);
             foto = view1.findViewById(R.id.foto);
 
             nama.setText(model.get(position).getNama());
-            foto.setText(model.get(position).getFoto());
+            Glide.with(context)
+                    .load(model.get(position).getImage())
+                    .into(foto);
         }
         return view1;
     }

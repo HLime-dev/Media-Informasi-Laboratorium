@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/card"
-    app:cardBackgroundColor="#ECF8F9"
-    android:layout_marginBottom="10dp"
-    app:cardCornerRadius="10dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:padding="10dp"
         android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/card_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <TextView
-            android:id="@+id/nametvimg"
-            android:hint="Name"
+            android:id="@+id/nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textColor="#26273a"
             android:textSize="20sp"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="12dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toEndOf="@+id/foto"
+            app:layout_constraintTop_toTopOf="@+id/foto" />
 
         <ImageView
-            android:id="@+id/iv_retrieve"
-            android:layout_margin="15dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
+            android:id="@+id/foto"
             android:layout_width="250dp"
-            android:layout_height="250dp"/>
-
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>
