@@ -4,16 +4,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -28,6 +26,8 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.telematika.info.Adapter.Adaptor;
 import com.telematika.info.Adapter.GetData;
+import com.telematika.info.Adapter.GetDataMahasiswa;
+import com.telematika.info.Adapter.MahasiswaAdaptor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,40 +35,36 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class AdminDosen extends AppCompatActivity implements SelectListener{
+public class AdminDosen extends AppCompatActivity {
 
     Toolbar toolbar;
-    RecyclerView recyclerView;
-    String url = "https://medtele.000webhostapp.com/get_data_dosen.php";
-    List<GetData> imagelist;
-    GetData getData;
-    LinearLayoutManager linearLayoutManager;
+    ListView listView;
+    ArrayList<GetData> model;
     Adaptor adaptor;
+    GetData getData;
     FloatingActionButton tambah;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dosen);
 
-        recyclerView = findViewById(R.id.rv);
-        linearLayoutManager =new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        imagelist = new ArrayList<>();
-        adaptor = new Adaptor(this, imagelist, this, this);
-        recyclerView.setAdapter(adaptor);
 
+        listView=findViewById(R.id.list);
+        model = new ArrayList<>();
+        adaptor = new Adaptor(getApplicationContext(), model);
+        listView.setAdapter(adaptor);
         toolbar = findViewById(R.id.toolbar);
-        tambah=findViewById(R.id.tambah);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         load_data();
+        tambah=findViewById(R.id.tambah);
 
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,53 +74,88 @@ public class AdminDosen extends AppCompatActivity implements SelectListener{
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PopupMenu popupMenu=new PopupMenu(getApplicationContext(), view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
+                popupMenu.show();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+                        popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
+                        popupMenu.show();
+
+                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                if (item.getItemId() == R.id.edit) {
+                                    Intent intent = new Intent(getApplicationContext(), AddDosen.class);
+                                    intent.putExtra("edit_data", model.get(position).getId());
+                                    startActivity(intent);
+                                    return true;
+                                } else if (item.getItemId() == R.id.hapus) {
+                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminDosen.this);
+                                    builder.setMessage("Apakah Anda ingin menghapus data ini?");
+                                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            _hapus(model.get(position).getId());
+                                        }
+                                    });
+                                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                                    AlertDialog alertDialog=builder.create();
+                                    alertDialog.show();
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+            }
+        });
     }
 
-    private void load_data() {
-        //String url = new Konfigurasi().baseUrl() + "tampil_data.php";
+    void load_data() {
+        String url = new Konfigurasi().baseUrl() + "tampil_data.php";
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //model.clear(); // Clear the existing data
-                imagelist.clear();
+                model.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-
                     if (success.equals("1")) {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-                            /*
-                            model.add(new GetData(
-
-                                    getData.getString("id"),
-                                    getData.getString("name"),
-                                    getData.getString("jabatan"),
-                                    getData.getString("email"),
-                                    getData.getString("image")
-                            ));
-
-                             */
-
                             String id = object.getString("id");
                             String name = object.getString("name");
                             String jabatan = object.getString("jabatan");
                             String email = object.getString("email");
                             String url2 = object.getString("image");
 
-                            String urlimage = "https://medtele.000webhostapp.com/images/"+url2;
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
 
                             getData = new GetData(id, name, jabatan, email, urlimage);
-                            imagelist.add(getData);
-                            adaptor.notifyDataSetChanged();
-
+                            model.add(getData);
+                            adaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                         }
-
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -134,15 +165,14 @@ public class AdminDosen extends AppCompatActivity implements SelectListener{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Handle error response
-                        Toast.makeText(AdminDosen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
-        RequestQueue requestQueue = Volley.newRequestQueue(AdminDosen.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
 
-    public void _hapus(String id)
+    void _hapus(String id)
     {
         String url=new Konfigurasi().baseUrl()+"hapus.php";
         StringRequest request=new StringRequest(
@@ -178,7 +208,7 @@ public class AdminDosen extends AppCompatActivity implements SelectListener{
                 return form;
             }
         };
-        RequestQueue requestQueue=Volley.newRequestQueue(this);
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
 
@@ -197,10 +227,5 @@ public class AdminDosen extends AppCompatActivity implements SelectListener{
     protected void onResume() {
         load_data();
         super.onResume();
-    }
-
-    @Override
-    public void onItemClicked(GetData getData) {
-
     }
 }

@@ -16,6 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,13 +69,22 @@ public class DetailMahasiswa extends AppCompatActivity {
                             String gnim=jsonObject.getString("nim");
                             String gemail=jsonObject.getString("email");
                             String gpenelitian=jsonObject.getString("penelitian");
-                            String gfoto=jsonObject.getString("foto");
+                            String url2=jsonObject.getString("foto");
+
+                            String urlimage="https://medtele.000webhostapp.com/images/" + url2;
 
                             nama.setText(gnama);
                             nim.setText(gnim);
                             email.setText(gemail);
                             penelitian.setText(gpenelitian);
-                            foto.setImageURI(Uri.parse(gfoto));
+
+                            RequestOptions requestOptions = new RequestOptions()
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL);
+
+                            Glide.with(DetailMahasiswa.this)
+                                    .load(urlimage)
+                                    .apply(requestOptions)
+                                    .into(foto);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

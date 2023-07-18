@@ -43,6 +43,7 @@ public class AdminMahasiswa extends AppCompatActivity {
     ListView listView;
     ArrayList<GetDataMahasiswa> model;
     MahasiswaAdaptor mahasiswaAdaptor;
+    GetDataMahasiswa getDataMahasiswa;
     FloatingActionButton tambah;
 
 
@@ -63,7 +64,7 @@ public class AdminMahasiswa extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         load_data();
-        FloatingActionButton tambah=findViewById(R.id.tambah);
+        tambah=findViewById(R.id.tambah);
 
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,20 +135,27 @@ public class AdminMahasiswa extends AppCompatActivity {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                model.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    model.clear(); // Clear the existing data
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getData = jsonArray.getJSONObject(i);
-                        model.add(new GetDataMahasiswa(
-                                getData.getString("id"),
-                                getData.getString("nama"),
-                                getData.getString("nim"),
-                                getData.getString("email")
-                        ));
+                    if (success.equals("1")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            String id = object.getString("id");
+                            String nama = object.getString("nama");
+                            String nim = object.getString("nim");
+                            String email = object.getString("email");
+                            String url2 = object.getString("image");
+
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+
+                            getDataMahasiswa = new GetDataMahasiswa(id, nama, nim, email, urlimage);
+                            model.add(getDataMahasiswa);
+                            mahasiswaAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        }
                     }
-                    mahasiswaAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -1,46 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:id="@+id/card"
+    app:cardBackgroundColor="#ECF8F9"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
-        android:background="@drawable/card_background"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:padding="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/nama"
-            android:gravity="center"
-            android:text="Ruangan Meeting"
-            android:textSize="16dp"
+            android:id="@+id/nametvimg"
+            android:hint="Name"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
             android:textStyle="bold"
-            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <ImageView
-            android:id="@+id/foto1"
+            android:id="@+id/iv_retrieve"
+            android:layout_margin="15dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_weight="1"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:scaleType="centerCrop"
+            android:layout_width="250dp"
+            android:layout_height="250dp"/>
 
-        <TextView
-            android:id="@+id/foto"
-            android:text="Foto Ruangan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
-</LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

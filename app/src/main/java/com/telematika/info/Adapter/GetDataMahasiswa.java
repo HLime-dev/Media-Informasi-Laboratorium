@@ -2,13 +2,17 @@ package com.telematika.info.Adapter;
 
 public class GetDataMahasiswa {
 
-    String nama="", nim="", email="", id="";
+    String nama, nim, email, id, image;
 
-    public GetDataMahasiswa(String id, String nama, String nim, String email){
+    public GetDataMahasiswa(){
+
+    }
+    public GetDataMahasiswa(String id, String nama, String nim, String email, String image){
         this.id=id;
         this.nama=nama;
         this.nim=nim;
         this.email=email;
+        this.image=image;
     }
 
     public String getId() {
@@ -41,5 +45,13 @@ public class GetDataMahasiswa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

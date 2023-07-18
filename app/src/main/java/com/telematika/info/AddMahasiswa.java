@@ -7,9 +7,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,14 +33,23 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddMahasiswa extends AppCompatActivity {
 
+    Uri selecteduri;
+    Bitmap bitmap;
+    String encodeImage;
+    ProgressBar progressBar;
+    ImageView fotoiv;
+    String url="https://medtele.000webhostapp.com/simpan_mhs.php";
     Toolbar toolbar;
-    TextInputEditText nama, nim, email, penelitian, foto;
-    Button simpan_data;
+    TextInputEditText nama, nim, email, penelitian;
+    Button simpan_data, pilihfoto;
     TextView label;
 
 
@@ -46,8 +63,10 @@ public class AddMahasiswa extends AppCompatActivity {
         nim=findViewById(R.id.nim);
         email=findViewById(R.id.email);
         penelitian=findViewById(R.id.penelitian);
-        foto=findViewById(R.id.foto);
+        fotoiv=findViewById(R.id.fotoiv);
         simpan_data=findViewById(R.id.simpan_data);
+        pilihfoto=findViewById(R.id.pilihfoto);
+        progressBar =findViewById(R.id.pb_img);
         label=findViewById(R.id.label);
         if (getIntent().hasExtra("edit_data"))
         {
@@ -59,6 +78,14 @@ public class AddMahasiswa extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        pilihfoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                chooseImage();
+            }
+        });
 
         simpan_data.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +106,8 @@ public class AddMahasiswa extends AppCompatActivity {
                 {
                     penelitian.setError("Tidak boleh kosong");
                 }
-                if (foto.getText().toString().length()==0)
-                {
-                    foto.setError("Tidak boleh kosong");
-                }
                 else
                 {
-                    String url= new Konfigurasi().baseUrl()+"simpan_mhs.php";
-
                     StringRequest stringRequest=new StringRequest(
                             1, url,
                             new Response.Listener<String>() {
@@ -134,7 +155,7 @@ public class AddMahasiswa extends AppCompatActivity {
                             form.put("nim", nim.getText().toString());
                             form.put("email", email.getText().toString());
                             form.put("penelitian", penelitian.getText().toString());
-                            form.put("foto", foto.getText().toString());
+                            form.put("image", encodeImage);
                             if (getIntent().hasExtra("edit_data"))
                             {
                                 form.put("id", getIntent().getStringExtra("edit_data"));
@@ -142,12 +163,47 @@ public class AddMahasiswa extends AppCompatActivity {
                             return form;
                         }
                     };
-                    RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
+                    RequestQueue requestQueue= Volley.newRequestQueue(AddMahasiswa.this);
                     requestQueue.add(stringRequest);
                 }
             }
         });
 
+    }
+
+    private void chooseImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 || requestCode == RESULT_OK || data != null || data.getData() != null) {
+
+            selecteduri = data.getData();
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(selecteduri);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                fotoiv.setImageBitmap(bitmap);
+                imageStore(bitmap);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void imageStore(Bitmap bitmap) {
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+
+        byte[] imagebyte = stream.toByteArray();
+        encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);
     }
 
     void getData()
@@ -165,13 +221,11 @@ public class AddMahasiswa extends AppCompatActivity {
                             String gnim=jsonObject.getString("nim");
                             String gemail=jsonObject.getString("email");
                             String gpenelitian=jsonObject.getString("penelitian");
-                            String gfoto=jsonObject.getString("foto");
 
                             nama.setText(gnama);
                             nim.setText(gnim);
                             email.setText(gemail);
                             penelitian.setText(gpenelitian);
-                            foto.setText(gfoto);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -193,7 +247,7 @@ public class AddMahasiswa extends AppCompatActivity {
                 return form;
             }
         };
-        RequestQueue requestQueue=Volley.newRequestQueue(this);
+        RequestQueue requestQueue=Volley.newRequestQueue(AddMahasiswa.this);
         requestQueue.add(request);
     }
 

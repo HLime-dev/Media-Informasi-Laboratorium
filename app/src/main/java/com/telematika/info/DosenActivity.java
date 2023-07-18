@@ -1,28 +1,41 @@
 package com.telematika.info;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.telematika.info.Adapter.Adaptor;
 import com.telematika.info.Adapter.GetData;
+import com.telematika.info.Adapter.GetDataMahasiswa;
+import com.telematika.info.Adapter.MahasiswaAdaptor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DosenActivity extends AppCompatActivity {
 
@@ -30,6 +43,7 @@ public class DosenActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<GetData> model;
     Adaptor adaptor;
+    GetData getData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +51,16 @@ public class DosenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dosen);
 
         listView=findViewById(R.id.list);
+        model = new ArrayList<>();
+        adaptor = new Adaptor(getApplicationContext(), model);
+        listView.setAdapter(adaptor);
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        model = new ArrayList<>();
-        //adaptor = new Adaptor(this, imagelist, this, this);
-       // listView.setAdapter(adaptor);
-
         load_data();
-        load_image();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,10 +72,6 @@ public class DosenActivity extends AppCompatActivity {
         });
     }
 
-    private void load_image() {
-
-    }
-
     void load_data() {
         String url = new Konfigurasi().baseUrl() + "tampil_data.php";
 
@@ -71,20 +79,27 @@ public class DosenActivity extends AppCompatActivity {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                model.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getData = jsonArray.getJSONObject(i);
-                        model.add(new GetData(
-                                getData.getString("id"),
-                                getData.getString("nama"),
-                                getData.getString("jabatan"),
-                                getData.getString("email"),
-                                getData.getString("image")
-                        ));
+                    if (success.equals("1")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            String id = object.getString("id");
+                            String name = object.getString("name");
+                            String jabatan = object.getString("jabatan");
+                            String email = object.getString("email");
+                            String url2 = object.getString("image");
+
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+
+                            getData = new GetData(id, name, jabatan, email, urlimage);
+                            model.add(getData);
+                            adaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        }
                     }
-                    adaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -101,6 +116,7 @@ public class DosenActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -110,5 +126,11 @@ public class DosenActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onResume() {
+        load_data();
+        super.onResume();
     }
 }

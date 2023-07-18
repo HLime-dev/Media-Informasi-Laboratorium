@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onConstraintLayoutClickAdmin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, MenuAdmin.class);
         startActivity(intent);
     }
 
     public void onConstraintLayoutClickPengunjung(View view) {
-        Intent intent = new Intent(this, PengunjungActivity.class);
+        Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 

@@ -6,9 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,15 +32,24 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddAlat extends AppCompatActivity {
 
+    Uri selecteduri;
+    Bitmap bitmap;
+    String encodeImage;
     Toolbar toolbar;
-    TextInputEditText nama, deskripsi, jumlah, foto;
-    Button simpan_data;
+    TextInputEditText name, kategori, jumlah;
+    Button simpan_data, pilihfoto;
+    ProgressBar progressBar;
     TextView label;
+    ImageView fotoiv;
+    String url="https://medtele.000webhostapp.com/simpan_alat.php";
 
 
     @Override
@@ -41,11 +58,13 @@ public class AddAlat extends AppCompatActivity {
         setContentView(R.layout.activity_add_alat);
 
         toolbar = findViewById(R.id.toolbar);
-        nama=findViewById(R.id.nama);
-        deskripsi=findViewById(R.id.deskripsi);
+        name=findViewById(R.id.nama);
+        kategori=findViewById(R.id.kategori);
         jumlah=findViewById(R.id.jumlah);
-        foto=findViewById(R.id.foto);
+        fotoiv=findViewById(R.id.fotoiv);
         simpan_data=findViewById(R.id.simpan_data);
+        pilihfoto=findViewById(R.id.foto);
+        progressBar = findViewById(R.id.pb_img);
         label=findViewById(R.id.label);
         if (getIntent().hasExtra("edit_data"))
         {
@@ -58,34 +77,50 @@ public class AddAlat extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        simpan_data.setOnClickListener(new View.OnClickListener() {
+        pilihfoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 if (nama.getText().toString().length()==0)
                 {
                     nama.setError("Tidak boleh kosong");
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), UploadFoto.class);
+                    intent.putExtra("nama", nama.getText().toString());
+                    startActivity(intent);
                 }
-                if (deskripsi.getText().toString().length()==0)
+                 */
+
+                chooseImage();
+            }
+        });
+
+        simpan_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (name.getText().toString().length()==0)
                 {
-                    deskripsi.setError("Tidak boleh kosong");
+                    name.setError("Tidak boleh kosong");
+                }
+                if (kategori.getText().toString().length()==0)
+                {
+                    kategori.setError("Tidak boleh kosong");
                 }
                 if (jumlah.getText().toString().length()==0)
                 {
                     jumlah.setError("Tidak boleh kosong");
                 }
-                if (foto.getText().toString().length()==0)
-                {
-                    foto.setError("Tidak boleh kosong");
-                }
                 else
                 {
-                    String url= new Konfigurasi().baseUrl()+"simpan_alat.php";
+                    //String url= new Konfigurasi().baseUrl()+"simpan_alat.php";
 
+                    progressBar.setVisibility(View.VISIBLE);
                     StringRequest stringRequest=new StringRequest(
                             1, url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     try {
                                         JSONObject jsonObject= new JSONObject(response);
                                         String status=jsonObject.getString("status");
@@ -116,6 +151,7 @@ public class AddAlat extends AppCompatActivity {
                             , new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(AddAlat.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -124,10 +160,10 @@ public class AddAlat extends AppCompatActivity {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             HashMap<String,String> form=new HashMap<String,String>();
-                            form.put("nama", nama.getText().toString());
-                            form.put("deskripsi", deskripsi.getText().toString());
+                            form.put("name", name.getText().toString());
+                            form.put("kategori", kategori.getText().toString());
                             form.put("jumlah", jumlah.getText().toString());
-                            form.put("foto", foto.getText().toString());
+                            form.put("image", encodeImage);
                             if (getIntent().hasExtra("edit_data"))
                             {
                                 form.put("id", getIntent().getStringExtra("edit_data"));
@@ -135,12 +171,47 @@ public class AddAlat extends AppCompatActivity {
                             return form;
                         }
                     };
-                    RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
+                    RequestQueue requestQueue= Volley.newRequestQueue(AddAlat.this);
                     requestQueue.add(stringRequest);
                 }
             }
         });
 
+    }
+
+    private void chooseImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 || requestCode == RESULT_OK || data != null || data.getData() != null) {
+
+            selecteduri = data.getData();
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(selecteduri);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                fotoiv.setImageBitmap(bitmap);
+                imageStore(bitmap);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void imageStore(Bitmap bitmap) {
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+
+        byte[] imagebyte = stream.toByteArray();
+        encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);
     }
 
     void getData()
@@ -154,15 +225,14 @@ public class AddAlat extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject= new JSONObject(response).getJSONObject("data");
-                            String gnama=jsonObject.getString("nama");
-                            String gdeskripsi=jsonObject.getString("deskripsi");
+                            String gname=jsonObject.getString("name");
+                            String gkategori=jsonObject.getString("kategori");
                             String gjumlah=jsonObject.getString("jumlah");
-                            String gfoto=jsonObject.getString("foto");
 
-                            nama.setText(gnama);
-                            deskripsi.setText(gdeskripsi);
+
+                            name.setText(gname);
+                            kategori.setText(gkategori);
                             jumlah.setText(gjumlah);
-                            foto.setText(gfoto);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -31,6 +31,7 @@ public class MahasiswaActivity extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView;
     ArrayList<GetDataMahasiswa> model;
+    GetDataMahasiswa getDataMahasiswa;
     MahasiswaAdaptor mahasiswaAdaptor;
 
     @Override
@@ -70,17 +71,25 @@ public class MahasiswaActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject getDataMahasiswa = jsonArray.getJSONObject(i);
-                        model.add(new GetDataMahasiswa(
-                                getDataMahasiswa.getString("id"),
-                                getDataMahasiswa.getString("nama"),
-                                getDataMahasiswa.getString("nim"),
-                                getDataMahasiswa.getString("email")
-                        ));
+                    if (success.equals("1")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            String id = object.getString("id");
+                            String nama = object.getString("nama");
+                            String nim = object.getString("nim");
+                            String email = object.getString("email");
+                            String url2 = object.getString("image");
+
+                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+
+                            getDataMahasiswa = new GetDataMahasiswa(id, nama, nim, email, urlimage);
+                            model.add(getDataMahasiswa);
+                            mahasiswaAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        }
                     }
-                    mahasiswaAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

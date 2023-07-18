@@ -60,7 +60,7 @@ public class UploadFoto extends AppCompatActivity {
         setContentView(R.layout.activity_upload_foto);
 
         nameEt=findViewById(R.id.imgname);
-        pilihFoto=findViewById(R.id.pilihFoto);
+        pilihFoto=findViewById(R.id.fff);
         foto = findViewById(R.id.foto);
         upload = findViewById(R.id.upload);
         progressBar = findViewById(R.id.pb_img);

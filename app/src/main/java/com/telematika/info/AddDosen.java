@@ -16,6 +16,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class AddDosen extends AppCompatActivity {
     Toolbar toolbar;
     TextInputEditText name, nip, jabatan, email, penelitian;
     Button simpan_data, pilihfoto;
+    ProgressBar progressBar;
     TextView label;
     ImageView fotoiv;
     String url="https://medtele.000webhostapp.com/simpan_dosen.php";
@@ -66,6 +68,7 @@ public class AddDosen extends AppCompatActivity {
         email=findViewById(R.id.email);
         penelitian=findViewById(R.id.penelitian);
         simpan_data=findViewById(R.id.simpan_data);
+        progressBar = findViewById(R.id.pb_img);
         label=findViewById(R.id.label);
         pilihfoto = findViewById(R.id.foto);
         fotoiv = findViewById(R.id.fotoiv);
@@ -128,12 +131,14 @@ public class AddDosen extends AppCompatActivity {
                 else
                 {
                     //String url= new Konfigurasi().baseUrl()+"simpan.php";
+                    progressBar.setVisibility(View.VISIBLE);
 
                     StringRequest stringRequest=new StringRequest(
                             1, url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    progressBar.setVisibility(View.INVISIBLE);
 
                                     try {
                                         JSONObject jsonObject= new JSONObject(response);
@@ -165,6 +170,7 @@ public class AddDosen extends AppCompatActivity {
                             , new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(AddDosen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }

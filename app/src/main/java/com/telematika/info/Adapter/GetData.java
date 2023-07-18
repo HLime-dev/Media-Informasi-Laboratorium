@@ -2,18 +2,17 @@ package com.telematika.info.Adapter;
 
 public class GetData {
 
-    private String id, name, jabatan, email, image;
+    String id, name, jabatan, email, image;
 
     public GetData(){
 
     }
-
-    public GetData(String id, String name, String jabatan, String email, String image) {
-        this.id = id;
-        this.name = name;
-        this.jabatan = jabatan;
-        this.email = email;
-        this.image = image;
+    public GetData(String id, String name, String jabatan, String email, String image){
+        this.id=id;
+        this.name=name;
+        this.jabatan=jabatan;
+        this.email=email;
+        this.image=image;
     }
 
     public String getId() {
@@ -55,5 +54,4 @@ public class GetData {
     public void setImage(String image) {
         this.image = image;
     }
-
 }

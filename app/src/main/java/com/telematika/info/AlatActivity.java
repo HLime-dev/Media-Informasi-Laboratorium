@@ -45,12 +45,13 @@ public class AlatActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         model = new ArrayList<>();
-        alatAdaptor = new AlatAdaptor(getApplicationContext(), model);
-        listView.setAdapter(alatAdaptor);
+        //alatAdaptor = new AlatAdaptor(getApplicationContext(), model);
+        //listView.setAdapter(alatAdaptor);
 
-        load_data();
+       // load_data();
     }
 
+    /*
     void load_data() {
         String url = new Konfigurasi().baseUrl() + "tampil_data_alat.php";
 
@@ -86,6 +87,8 @@ public class AlatActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
+
+     */
 
     @Override
     public void onBackPressed() {
