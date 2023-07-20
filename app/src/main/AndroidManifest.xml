@@ -9,8 +9,6 @@
         android:name="android.hardware.nfc"
         android:required="true" />
 
-
-
     <application
         android:allowBackup="true"
         android:allowClearUserData="true"
@@ -182,6 +180,7 @@
         <activity
             android:name=".MenuActivity"
             android:exported="false">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -189,6 +188,13 @@
         <activity
             android:name=".ScanActivity"
             android:exported="false">
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -217,13 +223,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/nfc_tech_filter" />
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
