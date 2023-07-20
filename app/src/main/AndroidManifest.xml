@@ -22,6 +22,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".LabLain"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".UploadFoto"
             android:exported="false">
             <meta-data
@@ -115,7 +122,6 @@
         <activity
             android:name=".MenuAdmin"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -180,7 +186,6 @@
         <activity
             android:name=".MenuActivity"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -191,10 +196,10 @@
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -210,19 +215,17 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/FullScreen">
-
-        </activity>
+            android:theme="@style/FullScreen"></activity>
         <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/FullScreen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

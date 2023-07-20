@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -24,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onConstraintLayoutClickAdmin(View view) {
-        Intent intent = new Intent(this, MenuAdmin.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
     public void onConstraintLayoutClickPengunjung(View view) {
-        Intent intent = new Intent(this, ScanActivity.class);
+        Intent intent = new Intent(this, PengunjungActivity.class);
         startActivity(intent);
     }
 

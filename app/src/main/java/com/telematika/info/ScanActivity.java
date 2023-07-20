@@ -114,7 +114,7 @@ public class ScanActivity extends AppCompatActivity {
                         Intent newActivityIntent = new Intent(ScanActivity.this, MenuActivity.class);
                         startActivity(newActivityIntent);
                     } else if (Arrays.equals(expectedTagId1, id)) {
-                        Intent newActivityIntent = new Intent(ScanActivity.this, DosenActivity.class);
+                        Intent newActivityIntent = new Intent(ScanActivity.this, LabLain.class);
                         startActivity(newActivityIntent);
                     } else {
                         // ID tag berbeda, tampilkan Toast

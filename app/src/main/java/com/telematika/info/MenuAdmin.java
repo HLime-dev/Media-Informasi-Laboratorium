@@ -38,13 +38,9 @@ public class MenuAdmin extends AppCompatActivity {
         dosen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedLinearLayout != null) {
-                    selectedLinearLayout.setBackground(null);
-                }
 
                 // Set latar belakang LinearLayout yang baru dipilih
                 dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
-                selectedLinearLayout = dosen;
                 Intent intent = new Intent(MenuAdmin.this, AdminDosen.class);
                 startActivity(intent);
             }
@@ -117,10 +113,6 @@ public class MenuAdmin extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (selectedLinearLayout != null) {
-            selectedLinearLayout.setBackground(null);
-            selectedLinearLayout = null;
-        }
     }
 
 
