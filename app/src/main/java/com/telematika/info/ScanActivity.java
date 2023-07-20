@@ -108,9 +108,13 @@ public class ScanActivity extends AppCompatActivity {
 
                     // Periksa apakah ID tag sesuai dengan ID yang diharapkan
                     byte[] expectedTagId = new byte[]{(byte) 0x53, (byte) 0x44, (byte) 0x77, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId1 = new byte[]{(byte) 0x53, (byte) 0x35, (byte) 0x73, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
                     if (Arrays.equals(expectedTagId, id)) {
                         // ID tag sesuai, pindah ke MenuActivity
                         Intent newActivityIntent = new Intent(ScanActivity.this, MenuActivity.class);
+                        startActivity(newActivityIntent);
+                    } else if (Arrays.equals(expectedTagId1, id)) {
+                        Intent newActivityIntent = new Intent(ScanActivity.this, DosenActivity.class);
                         startActivity(newActivityIntent);
                     } else {
                         // ID tag berbeda, tampilkan Toast
