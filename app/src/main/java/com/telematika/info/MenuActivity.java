@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 public class MenuActivity extends AppCompatActivity {
 
-    LinearLayout dosen, mahasiswa, ruangan, alat, event;
+    LinearLayout umum, dosen, mahasiswa, ruangan, alat, event;
     Toolbar toolbar;
 
     @Override
@@ -21,6 +21,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         dosen = (LinearLayout) findViewById(R.id.dosen);
+        umum = (LinearLayout) findViewById(R.id.umum);
         mahasiswa = (LinearLayout) findViewById(R.id.mahasiswa);
         ruangan = (LinearLayout) findViewById(R.id.ruangan);
         alat = (LinearLayout) findViewById(R.id.alat);
@@ -34,10 +35,21 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        umum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // umum.setBackground(getDrawable(R.drawable.bg_item_selected));
+                // Buat Intent untuk activity tujuan
+                Intent intent = new Intent(MenuActivity.this, InfoUmum.class);
+                // Mulai activity tujuan
+                startActivity(intent);
+            }
+        });
+
         dosen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
+                //dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
                 // Buat Intent untuk activity tujuan
                 Intent intent = new Intent(MenuActivity.this, DosenActivity.class);
                 // Mulai activity tujuan
@@ -48,7 +60,7 @@ public class MenuActivity extends AppCompatActivity {
         mahasiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mahasiswa.setBackground(getDrawable(R.drawable.bg_item_selected));
+               // mahasiswa.setBackground(getDrawable(R.drawable.bg_item_selected));
                 // Buat Intent untuk activity tujuan
                 Intent intent = new Intent(MenuActivity.this, MahasiswaActivity.class);
                 // Mulai activity tujuan
@@ -59,7 +71,7 @@ public class MenuActivity extends AppCompatActivity {
         ruangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ruangan.setBackground(getDrawable(R.drawable.bg_item_selected));
+               // ruangan.setBackground(getDrawable(R.drawable.bg_item_selected));
                 // Buat Intent untuk activity tujuan
                 Intent intent = new Intent(MenuActivity.this, RuanganActivity.class);
                 // Mulai activity tujuan
@@ -70,7 +82,7 @@ public class MenuActivity extends AppCompatActivity {
         alat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alat.setBackground(getDrawable(R.drawable.bg_item_selected));
+               // alat.setBackground(getDrawable(R.drawable.bg_item_selected));
                 // Buat Intent untuk activity tujuan
                 Intent intent = new Intent(MenuActivity.this, AlatActivity.class);
                 // Mulai activity tujuan
@@ -81,7 +93,7 @@ public class MenuActivity extends AppCompatActivity {
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                event.setBackground(getDrawable(R.drawable.bg_item_selected));
+                //event.setBackground(getDrawable(R.drawable.bg_item_selected));
                 // Buat Intent untuk activity tujuan
                 Intent intent = new Intent(MenuActivity.this, EventActivity.class);
                 // Mulai activity tujuan

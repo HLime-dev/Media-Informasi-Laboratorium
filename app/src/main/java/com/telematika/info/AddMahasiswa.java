@@ -28,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -108,11 +109,13 @@ public class AddMahasiswa extends AppCompatActivity {
                 }
                 else
                 {
+                    progressBar.setVisibility(View.VISIBLE);
                     StringRequest stringRequest=new StringRequest(
                             1, url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     try {
                                         JSONObject jsonObject= new JSONObject(response);
                                         String status=jsonObject.getString("status");
@@ -143,6 +146,7 @@ public class AddMahasiswa extends AppCompatActivity {
                             , new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(AddMahasiswa.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -221,11 +225,17 @@ public class AddMahasiswa extends AppCompatActivity {
                             String gnim=jsonObject.getString("nim");
                             String gemail=jsonObject.getString("email");
                             String gpenelitian=jsonObject.getString("penelitian");
+                            //String url2= jsonObject.getString("foto");
+
+                            //String urlimage="https://medtele.000webhostapp.com/images/" + url2;
 
                             nama.setText(gnama);
                             nim.setText(gnim);
                             email.setText(gemail);
                             penelitian.setText(gpenelitian);
+                            //Glide.with(AddMahasiswa.this)
+                            //        .load(urlimage)
+                            //        .into(fotoiv);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

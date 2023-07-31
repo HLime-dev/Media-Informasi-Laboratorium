@@ -2,7 +2,9 @@ package com.telematika.info;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.Settings;
 import android.view.View;
@@ -70,6 +73,32 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
 
+        int finishTime = 60; // 10 detik
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // Buat dialog pop-up dengan pesan
+                AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
+                builder.setMessage("Tidak ada tag yang terdeteksi");
+                builder.setCancelable(false);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Ketika tombol OK ditekan, buat Intent untuk memulai MainActivity
+                        Intent intent = new Intent(ScanActivity.this, MainActivity.class);
+                        startActivity(intent);
+
+                        // Tutup Activity saat ini
+                        finish();
+                    }
+                });
+
+                // Tampilkan dialog
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        }, finishTime * 1000);
+
     }
 
     @Override
@@ -88,7 +117,7 @@ public class ScanActivity extends AppCompatActivity {
                 startActivity(newActivityIntent);
             } else {
                 // ID tag berbeda, tampilkan Toast
-                Toast.makeText(this, "Tag NFC dengan ID berbeda terdeteksi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Tag NFC tidak dikenali", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -108,20 +137,22 @@ public class ScanActivity extends AppCompatActivity {
 
                     // Periksa apakah ID tag sesuai dengan ID yang diharapkan
                     byte[] expectedTagId = new byte[]{(byte) 0x53, (byte) 0x44, (byte) 0x77, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId1 = new byte[]{(byte) 0x53, (byte) 0x35, (byte) 0x73, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId3 = new byte[]{(byte) 0x53, (byte) 0x38, (byte) 0x77, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    //byte[] expectedTagId1 = new byte[]{(byte) 0x04, (byte) 0x3C, (byte) 0x6E, (byte) 0xCA, (byte) 0x37, (byte) 0x58, (byte) 0x80};
+                    //byte[] expectedTagId2 = new byte[]{(byte) 0x04, (byte) 0x3B, (byte) 0x7A, (byte) 0xCA, (byte) 0x2D, (byte) 0x2A, (byte) 0x80};
                     if (Arrays.equals(expectedTagId, id)) {
                         // ID tag sesuai, pindah ke MenuActivity
                         Intent newActivityIntent = new Intent(ScanActivity.this, MenuActivity.class);
                         startActivity(newActivityIntent);
-                    } else if (Arrays.equals(expectedTagId1, id)) {
-                        Intent newActivityIntent = new Intent(ScanActivity.this, LabLain.class);
+                    } else if (Arrays.equals(expectedTagId3, id)) {
+                        Intent newActivityIntent = new Intent(ScanActivity.this, DosenActivity.class);
                         startActivity(newActivityIntent);
                     } else {
                         // ID tag berbeda, tampilkan Toast
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(ScanActivity.this, "Tag NFC dengan ID berbeda terdeteksi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScanActivity.this, "Tag NFC tidak dikenali", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

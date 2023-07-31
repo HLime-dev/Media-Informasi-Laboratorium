@@ -40,7 +40,7 @@ public class MenuAdmin extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Set latar belakang LinearLayout yang baru dipilih
-                dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
+                //dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminDosen.class);
                 startActivity(intent);
             }
@@ -49,7 +49,7 @@ public class MenuAdmin extends AppCompatActivity {
         mahasiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mahasiswa.setBackground(getDrawable(R.drawable.bg_item_selected));
+              //  mahasiswa.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminMahasiswa.class);
                 startActivity(intent);
             }
@@ -58,7 +58,7 @@ public class MenuAdmin extends AppCompatActivity {
         ruangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ruangan.setBackground(getDrawable(R.drawable.bg_item_selected));
+               // ruangan.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminRuangan.class);
                 startActivity(intent);
             }
@@ -67,7 +67,7 @@ public class MenuAdmin extends AppCompatActivity {
         alat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alat.setBackground(getDrawable(R.drawable.bg_item_selected));
+                //alat.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminAlat.class);
                 startActivity(intent);
             }
@@ -76,7 +76,7 @@ public class MenuAdmin extends AppCompatActivity {
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                event.setBackground(getDrawable(R.drawable.bg_item_selected));
+                //event.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminEvent.class);
                 startActivity(intent);
             }
@@ -85,7 +85,7 @@ public class MenuAdmin extends AppCompatActivity {
         pengunjung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pengunjung.setBackground(getDrawable(R.drawable.bg_item_selected));
+               // pengunjung.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminPengunjung.class);
                 startActivity(intent);
             }

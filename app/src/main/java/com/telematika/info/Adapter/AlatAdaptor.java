@@ -53,7 +53,7 @@ public class AlatAdaptor extends BaseAdapter {
 
             nama.setText(model.get(position).getName());
             kategori.setText(model.get(position).getKategori());
-            jumlah.setText(model.get(position).getJumlah());
+            jumlah.setText("Jumlah: " + model.get(position).getJumlah());
             Glide.with(context)
                     .load(model.get(position).getImage())
                     .into(foto);

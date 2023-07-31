@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InfoUmum">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/label"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginEnd="?android:attr/actionBarSize"
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="@drawable/card_background"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Laboratorium Telematika, Radar dan Satelit"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/putihtele4"
+            android:layout_marginStart="23dp"
+            android:layout_marginEnd="25dp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:text="         Laboratorium Telematika, Radar dan Satelit adalah salah satu Laboratoirum Teknik Elektro dengan fokus penelitian dan fasilitas laboratorium, yaitu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:text="jaringan sensor network, jaringan seluler, pengembangan penggunaan daya pada hardware komputer, jaringan smart intelegent, dan IoT."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:layout_marginTop="8dp"
+                android:text="        Dengan kerjasama penelitian dalam 5 tahun terakhir, yaitu Saksi ahli pengadaan komputer (Kejaksaan, 2016), saksi ahli pengadaan alat perangkat telekomunikasi (Kejaksaan, 2017), dan Penelitian thesis (STMIK Handayani, 2017-"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="2019)."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:layout_marginTop="8dp"
+                android:text="         Riset yang sedang berjalan, yaitu Penggunaan daya pada hardware komputer, Implementasi instalasi smarthome berbasis manajemen energi, dan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Microwave Imaging."
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

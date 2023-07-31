@@ -102,7 +102,7 @@
                 android:text="Penelitian"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <TextView
+            <me.biubiubiu.justifytext.library.JustifyTextView
                 android:id="@+id/penelitian"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="32dp"

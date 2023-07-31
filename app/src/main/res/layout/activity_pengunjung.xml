@@ -32,8 +32,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_width="388dp"
+        android:layout_height="620dp"
         android:background="@drawable/background_bottom"
         android:orientation="vertical"
         android:padding="32dp"
@@ -115,15 +115,15 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnlanjut"
+            style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_marginTop="150dp"
             android:background="@drawable/button_background"
             android:text="Lanjut"
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:textColor="#ffffff"
-            style="@android:style/Widget.Button"
-            android:layout_marginTop="150dp"/>
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
