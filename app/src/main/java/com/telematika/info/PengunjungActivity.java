@@ -50,20 +50,26 @@ public class PengunjungActivity extends AppCompatActivity {
         btnlanjut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nama.getText().toString().length()==0)
-                {
+                boolean isValid = true;
+
+                if (nama.getText().toString().length() == 0) {
                     nama.setError("Tidak boleh kosong");
+                    Toast.makeText(PengunjungActivity.this, "Nama tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    isValid = false;
                 }
-                if (identitas.getText().toString().length()==0)
-                {
+                if (identitas.getText().toString().length() == 0) {
                     identitas.setError("Tidak boleh kosong");
+                    Toast.makeText(PengunjungActivity.this, "No. Identitas tidak boleh kosong", Toast.LENGTH_SHORT).show();;
+                    isValid = false;
                 }
-                if (pekerjaan.getText().toString().length()==0)
-                {
+                if (pekerjaan.getText().toString().length() == 0) {
                     pekerjaan.setError("Tidak boleh kosong");
+                    Toast.makeText(PengunjungActivity.this, "Pekerjaan tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    isValid = false;
                 }
-                else
-                {
+
+                if (isValid) {
+
                     String url= new Konfigurasi().baseUrl()+"simpan_pengunjung.php";
 
                     StringRequest stringRequest=new StringRequest(

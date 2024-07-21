@@ -107,7 +107,12 @@ public class MahasiswaActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         super.onBackPressed();
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Menghapus stack aktivitas sebelumnya
+        startActivity(intent);
+        finish(); // Menutup aktivitas saat ini
     }
 
     @Override

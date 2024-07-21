@@ -76,7 +76,7 @@ public class AddDosen extends AppCompatActivity {
 
         if (getIntent().hasExtra("edit_data"))
         {
-            label.setText("Edit Data");
+            label.setText("Edit Data Dosen");
             getData();
             simpan_data.setText("Update Data");
         }
@@ -107,29 +107,30 @@ public class AddDosen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (name.getText().toString().length()==0)
-                {
+                boolean isValid = true;
+
+                if (name.getText().toString().length() == 0) {
                     name.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (nip.getText().toString().length()==0)
-                {
+                if (nip.getText().toString().length() == 0) {
                     nip.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (jabatan.getText().toString().length()==0)
-                {
+                if (jabatan.getText().toString().length() == 0) {
                     jabatan.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (email.getText().toString().length()==0)
-                {
+                if (email.getText().toString().length() == 0) {
                     email.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (penelitian.getText().toString().length()==0)
-                {
+                if (penelitian.getText().toString().length() == 0) {
                     penelitian.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
 
-                else
-                {
+                if (isValid) {
                     //String url= new Konfigurasi().baseUrl()+"simpan.php";
                     progressBar.setVisibility(View.VISIBLE);
 
@@ -171,7 +172,7 @@ public class AddDosen extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(AddDosen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddDosen.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
                         }
                     }
                     ){
@@ -235,7 +236,6 @@ public class AddDosen extends AppCompatActivity {
         byte[] imagebyte = stream.toByteArray();
         encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);
     }
-
 
     void getData()
     {

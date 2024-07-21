@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if (response.equals("failure")) {
-                        Toast.makeText(LoginActivity.this, "Invalid Login Id/Password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Username/Password salah", Toast.LENGTH_SHORT).show();
                     }
                 }
             }, new Response.ErrorListener() {
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
             requestQueue.add(stringRequest);
         }else{
-            Toast.makeText(this, "Fields can not be empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Username/Password tidak boleh kosong!", Toast.LENGTH_SHORT).show();
         }
     }
 

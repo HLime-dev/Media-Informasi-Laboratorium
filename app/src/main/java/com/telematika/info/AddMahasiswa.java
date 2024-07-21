@@ -71,7 +71,7 @@ public class AddMahasiswa extends AppCompatActivity {
         label=findViewById(R.id.label);
         if (getIntent().hasExtra("edit_data"))
         {
-            label.setText("Edit Data");
+            label.setText("Edit Data Mahasiswa");
             getData();
             simpan_data.setText("Update Data");
         }
@@ -91,24 +91,27 @@ public class AddMahasiswa extends AppCompatActivity {
         simpan_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nama.getText().toString().length()==0)
-                {
+                boolean isValid = true;
+
+                if (nama.getText().toString().length() == 0) {
                     nama.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (nim.getText().toString().length()==0)
-                {
+                if (nim.getText().toString().length() == 0) {
                     nim.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (email.getText().toString().length()==0)
-                {
+                if (email.getText().toString().length() == 0) {
                     email.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (penelitian.getText().toString().length()==0)
-                {
+                if (penelitian.getText().toString().length() == 0) {
                     penelitian.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                else
-                {
+
+                if (isValid) {
+
                     progressBar.setVisibility(View.VISIBLE);
                     StringRequest stringRequest=new StringRequest(
                             1, url,
@@ -147,7 +150,7 @@ public class AddMahasiswa extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(AddMahasiswa.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddMahasiswa.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
                         }
                     }
                     ){

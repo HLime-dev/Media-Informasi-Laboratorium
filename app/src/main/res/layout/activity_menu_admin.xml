@@ -47,6 +47,7 @@
 
             <ImageView
                 android:src="@drawable/professor"
+                android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>
             <TextView
@@ -54,7 +55,7 @@
                 android:gravity="center"
                 android:text="Dosen"
                 android:textSize="18sp"
-                android:textColor="#4a4a4a"
+                android:textColor="#26273a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -74,6 +75,7 @@
 
             <ImageView
                 android:src="@drawable/programmer"
+                android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>
             <TextView
@@ -81,7 +83,7 @@
                 android:gravity="center"
                 android:text="Mahasiswa"
                 android:textSize="18sp"
-                android:textColor="#4a4a4a"
+                android:textColor="#26273a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -101,6 +103,7 @@
 
             <ImageView
                 android:src="@drawable/meeting"
+                android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>
             <TextView
@@ -108,7 +111,7 @@
                 android:gravity="center"
                 android:text="Ruangan"
                 android:textSize="18sp"
-                android:textColor="#4a4a4a"
+                android:textColor="#26273a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -128,6 +131,7 @@
 
             <ImageView
                 android:src="@drawable/tool1"
+                android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>
             <TextView
@@ -135,7 +139,7 @@
                 android:gravity="center"
                 android:text="Alat"
                 android:textSize="18sp"
-                android:textColor="#4a4a4a"
+                android:textColor="#26273a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -155,6 +159,7 @@
 
             <ImageView
                 android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>
             <TextView
@@ -162,7 +167,7 @@
                 android:gravity="center"
                 android:text="Event"
                 android:textSize="18sp"
-                android:textColor="#4a4a4a"
+                android:textColor="#26273a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -182,6 +187,7 @@
 
             <ImageView
                 android:src="@drawable/team"
+                android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>
             <TextView
@@ -189,7 +195,7 @@
                 android:gravity="center"
                 android:text="Daftar Pengunjung"
                 android:textSize="18sp"
-                android:textColor="#4a4a4a"
+                android:textColor="#26273a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

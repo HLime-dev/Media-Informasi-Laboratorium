@@ -65,7 +65,7 @@ public class AddRuangan extends AppCompatActivity {
         label=findViewById(R.id.label);
         if (getIntent().hasExtra("edit_data"))
         {
-            label.setText("Edit Data");
+            label.setText("Edit Data Ruangan");
             getData();
             simpan_data.setText("Update Data");
         }
@@ -85,6 +85,7 @@ public class AddRuangan extends AppCompatActivity {
         simpan_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (nama.getText().toString().length()==0)
                 {
                     nama.setError("Tidak boleh kosong");
@@ -129,7 +130,7 @@ public class AddRuangan extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(AddRuangan.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddRuangan.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
                         }
                     }
                     ){

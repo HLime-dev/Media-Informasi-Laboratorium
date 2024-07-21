@@ -21,7 +21,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         dosen = (LinearLayout) findViewById(R.id.dosen);
-        umum = (LinearLayout) findViewById(R.id.umum);
+        //umum = (LinearLayout) findViewById(R.id.umum);
         mahasiswa = (LinearLayout) findViewById(R.id.mahasiswa);
         ruangan = (LinearLayout) findViewById(R.id.ruangan);
         alat = (LinearLayout) findViewById(R.id.alat);
@@ -35,6 +35,7 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        /*
         umum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +46,8 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+         */
 
         dosen.setOnClickListener(new View.OnClickListener() {
             @Override

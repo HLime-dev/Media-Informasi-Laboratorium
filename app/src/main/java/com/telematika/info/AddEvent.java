@@ -69,7 +69,7 @@ public class AddEvent extends AppCompatActivity {
         label=findViewById(R.id.label);
         if (getIntent().hasExtra("edit_data"))
         {
-            label.setText("Edit Data");
+            label.setText("Edit Data Event");
             getData();
             simpan_data.setText("Update Data");
         }
@@ -90,24 +90,27 @@ public class AddEvent extends AppCompatActivity {
         simpan_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nama.getText().toString().length()==0)
-                {
+                boolean isValid = true;
+
+                if (nama.getText().toString().length() == 0) {
                     nama.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (deskripsi.getText().toString().length()==0)
-                {
+                if (deskripsi.getText().toString().length() == 0) {
                     deskripsi.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (lokasi.getText().toString().length()==0)
-                {
+                if (lokasi.getText().toString().length() == 0) {
                     lokasi.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (tanggal.getText().toString().length()==0)
-                {
+                if (tanggal.getText().toString().length() == 0) {
                     tanggal.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                else
-                {
+
+                if (isValid) {
+
                     progressBar.setVisibility(View.VISIBLE);
 
                     StringRequest stringRequest=new StringRequest(
@@ -147,7 +150,7 @@ public class AddEvent extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(AddEvent.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddEvent.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
                         }
                     }
                     ){

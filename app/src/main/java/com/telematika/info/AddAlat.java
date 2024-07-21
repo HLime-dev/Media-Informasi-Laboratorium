@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -68,7 +69,7 @@ public class AddAlat extends AppCompatActivity {
         label=findViewById(R.id.label);
         if (getIntent().hasExtra("edit_data"))
         {
-            label.setText("Edit Data");
+            label.setText("Edit Data Alat");
             getData();
             simpan_data.setText("Update Data");
         }
@@ -98,20 +99,22 @@ public class AddAlat extends AppCompatActivity {
         simpan_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (name.getText().toString().length()==0)
-                {
+                boolean isValid = true;
+
+                if (name.getText().toString().length() == 0) {
                     name.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (kategori.getText().toString().length()==0)
-                {
+                if (kategori.getText().toString().length() == 0) {
                     kategori.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                if (jumlah.getText().toString().length()==0)
-                {
+                if (jumlah.getText().toString().length() == 0) {
                     jumlah.setError("Tidak boleh kosong");
+                    isValid = false;
                 }
-                else
-                {
+
+                if (isValid) {
                     //String url= new Konfigurasi().baseUrl()+"simpan_alat.php";
 
                     progressBar.setVisibility(View.VISIBLE);
@@ -152,7 +155,7 @@ public class AddAlat extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(AddAlat.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddAlat.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
                         }
                     }
                     ){
@@ -164,6 +167,7 @@ public class AddAlat extends AppCompatActivity {
                             form.put("kategori", kategori.getText().toString());
                             form.put("jumlah", jumlah.getText().toString());
                             form.put("image", encodeImage);
+
                             if (getIntent().hasExtra("edit_data"))
                             {
                                 form.put("id", getIntent().getStringExtra("edit_data"));
@@ -228,7 +232,6 @@ public class AddAlat extends AppCompatActivity {
                             String gname=jsonObject.getString("name");
                             String gkategori=jsonObject.getString("kategori");
                             String gjumlah=jsonObject.getString("jumlah");
-
 
                             name.setText(gname);
                             kategori.setText(gkategori);
