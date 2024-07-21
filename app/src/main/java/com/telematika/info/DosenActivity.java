@@ -81,6 +81,7 @@ public class DosenActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 model.clear();
                 try {
+
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
