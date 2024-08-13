@@ -94,7 +94,7 @@ public class DosenActivity extends AppCompatActivity {
                             String email = object.getString("email");
                             String url2 = object.getString("image");
 
-                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
 
                             getData = new GetData(id, name, jabatan, email, urlimage);
                             model.add(getData);

@@ -142,6 +142,7 @@ public class ScanActivity extends AppCompatActivity {
                     byte[] expectedTagId = new byte[]{(byte) 0x53, (byte) 0x38, (byte) 0x77, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
                     byte[] expectedTagId3 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
                     byte[] expectedTagId1 = new byte[]{(byte) 0x53, (byte) 0x0F, (byte) 0x7F, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId2 = new byte[]{(byte) 0x04, (byte) 0x3C, (byte) 0x6E, (byte) 0xCA, (byte) 0x37, (byte) 0x58, (byte) 0x80};
                     //byte[] expectedTagId2 = new byte[]{(byte) 0x04, (byte) 0x3B, (byte) 0x7A, (byte) 0xCA, (byte) 0x2D, (byte) 0x2A, (byte) 0x80};
                     if (Arrays.equals(expectedTagId, id)) {
                         // ID tag sesuai, pindah ke MenuActivity
@@ -152,6 +153,9 @@ public class ScanActivity extends AppCompatActivity {
                         startActivity(newActivityIntent);
                     } else if (Arrays.equals(expectedTagId1, id)) {
                         Intent newActivityIntent = new Intent(ScanActivity.this, LabLain.class);
+                        startActivity(newActivityIntent);
+                    } else if (Arrays.equals(expectedTagId2, id)) {
+                        Intent newActivityIntent = new Intent(ScanActivity.this, MenuActivity.class);
                         startActivity(newActivityIntent);
                     } else {
                         // ID tag berbeda, tampilkan Toast

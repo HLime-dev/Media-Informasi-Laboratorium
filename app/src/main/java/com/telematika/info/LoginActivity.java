@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private TextInputEditText etPassword;
     private String email, password;
-    private String URL = "https://medtele.000webhostapp.com/login.php";
+    private String URL = "http://103.102.48.24/halim/login.php";
     //Button login;
 
 

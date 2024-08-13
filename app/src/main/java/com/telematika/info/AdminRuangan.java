@@ -144,7 +144,7 @@ public class AdminRuangan extends AppCompatActivity {
                             String nama = object.getString("nama");
                             String url2 = object.getString("image");
 
-                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
 
                             getDataRuangan = new GetDataRuangan(id, nama, urlimage);
                             model.add(getDataRuangan);

@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,7 +48,7 @@ public class AddMahasiswa extends AppCompatActivity {
     String encodeImage;
     ProgressBar progressBar;
     ImageView fotoiv;
-    String url="https://medtele.000webhostapp.com/simpan_mhs.php";
+    String url="http://103.102.48.24/halim/simpan_mhs.php";
     Toolbar toolbar;
     TextInputEditText nama, nim, email, penelitian;
     Button simpan_data, pilihfoto;
@@ -151,6 +152,7 @@ public class AddMahasiswa extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error) {
                             progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(AddMahasiswa.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
+                            Log.e("VolleyError", error.toString());
                         }
                     }
                     ){
@@ -207,7 +209,7 @@ public class AddMahasiswa extends AppCompatActivity {
     private void imageStore(Bitmap bitmap) {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
 
         byte[] imagebyte = stream.toByteArray();
         encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);

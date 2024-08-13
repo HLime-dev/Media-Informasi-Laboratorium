@@ -73,7 +73,7 @@ public class DetailDosen extends AppCompatActivity {
                             String gpenelitian=jsonObject.getString("penelitian");
                             String url2=jsonObject.getString("image");
 
-                            String urlimage="https://medtele.000webhostapp.com/images/" + url2;
+                            String urlimage="http://103.102.48.24/halim/images/" + url2;
 
                             nama.setText(gnama);
                             nip.setText(gnip);

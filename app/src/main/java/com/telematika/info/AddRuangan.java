@@ -45,7 +45,7 @@ public class AddRuangan extends AppCompatActivity {
     String encodeImage;
     ProgressBar progressBar;
     ImageView fotoiv;
-    String url="https://medtele.000webhostapp.com/simpan_ruangan.php";
+    String url="http://103.102.48.24/halim/simpan_ruangan.php";
     Toolbar toolbar;
     TextInputEditText nama;
     Button simpan_data, pilihfoto;
@@ -184,7 +184,7 @@ public class AddRuangan extends AppCompatActivity {
     private void imageStore(Bitmap bitmap) {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
 
         byte[] imagebyte = stream.toByteArray();
         encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);

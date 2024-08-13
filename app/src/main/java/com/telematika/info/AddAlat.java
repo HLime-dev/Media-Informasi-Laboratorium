@@ -50,7 +50,7 @@ public class AddAlat extends AppCompatActivity {
     ProgressBar progressBar;
     TextView label;
     ImageView fotoiv;
-    String url="https://medtele.000webhostapp.com/simpan_alat.php";
+    String url="http://103.102.48.24/halim/simpan_alat.php";
 
 
     @Override
@@ -212,7 +212,7 @@ public class AddAlat extends AppCompatActivity {
     private void imageStore(Bitmap bitmap) {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
 
         byte[] imagebyte = stream.toByteArray();
         encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);

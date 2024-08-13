@@ -153,7 +153,7 @@ public class AdminAlat extends AppCompatActivity{
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");
 
-                            String urlimage = "https://medtele.000webhostapp.com/images/" + url2;
+                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
 
                             getDataAlat = new GetDataAlat(id, nama, kategori, jumlah, urlimage);
                             model.add(getDataAlat);
