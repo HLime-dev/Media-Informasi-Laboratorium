@@ -19,7 +19,7 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:text="Daftar Informasi"
+            android:text="Menu Admin"
             android:layout_marginEnd="?android:attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
