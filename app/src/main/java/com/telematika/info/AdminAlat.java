@@ -50,12 +50,12 @@ public class AdminAlat extends AppCompatActivity{
     GetDataAlat getDataAlat;
     FloatingActionButton tambah;
 
+    String urlPlus = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_alat);
-
 
         listView=findViewById(R.id.list);
         model = new ArrayList<>();
@@ -67,6 +67,34 @@ public class AdminAlat extends AppCompatActivity{
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if (getIntent().hasExtra("lab1")) {
+            urlPlus = getIntent().getStringExtra("lab1");
+        } else if (getIntent().hasExtra("lab2")) {
+            urlPlus = getIntent().getStringExtra("lab2");
+        } else if (getIntent().hasExtra("lab3")) {
+            urlPlus = getIntent().getStringExtra("lab3");
+        }else if (getIntent().hasExtra("lab4")) {
+            urlPlus = getIntent().getStringExtra("lab4");
+        }else if (getIntent().hasExtra("lab5")) {
+            urlPlus = getIntent().getStringExtra("lab5");
+        }else if (getIntent().hasExtra("lab6")) {
+            urlPlus = getIntent().getStringExtra("lab6");
+        }else if (getIntent().hasExtra("lab7")) {
+            urlPlus = getIntent().getStringExtra("lab7");
+        }else if (getIntent().hasExtra("lab8")) {
+            urlPlus = getIntent().getStringExtra("lab8");
+        }else if (getIntent().hasExtra("lab9")) {
+            urlPlus = getIntent().getStringExtra("lab9");
+        }else if (getIntent().hasExtra("lab10")) {
+            urlPlus = getIntent().getStringExtra("lab10");
+        }else if (getIntent().hasExtra("lab11")) {
+            urlPlus = getIntent().getStringExtra("lab11");
+        }else if (getIntent().hasExtra("lab12")) {
+            urlPlus = getIntent().getStringExtra("lab12");
+        }else if (getIntent().hasExtra("lab13")) {
+            urlPlus = getIntent().getStringExtra("lab13");
+        }
+
         load_data();
         tambah=findViewById(R.id.tambah);
 
@@ -74,6 +102,33 @@ public class AdminAlat extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddAlat.class);
+                if (getIntent().hasExtra("lab1")) {
+                    intent.putExtra("lab1", "tambah_data_alat1.php");
+                } else if (getIntent().hasExtra("lab2")) {
+                    intent.putExtra("lab2", "tambah_data_alat2.php");
+                } else if (getIntent().hasExtra("lab3")) {
+                    intent.putExtra("lab3", "tambah_data_alat3.php");
+                } else if (getIntent().hasExtra("lab4")) {
+                    intent.putExtra("lab4", "tambah_data_alat4.php");
+                } else if (getIntent().hasExtra("lab3")) {
+                    intent.putExtra("lab5", "tambah_data_alat5.php");
+                } else if (getIntent().hasExtra("lab6")) {
+                    intent.putExtra("lab6", "tambah_data_alat6.php");
+                } else if (getIntent().hasExtra("lab7")) {
+                    intent.putExtra("lab7", "tambah_data_alat7.php");
+                } else if (getIntent().hasExtra("lab8")) {
+                    intent.putExtra("lab8", "tambah_data_alat8.php");
+                } else if (getIntent().hasExtra("lab9")) {
+                    intent.putExtra("lab9", "tambah_data_alat9.php");
+                } else if (getIntent().hasExtra("lab10")) {
+                    intent.putExtra("lab10", "tambah_data_alat10.php");
+                } else if (getIntent().hasExtra("lab11")) {
+                    intent.putExtra("lab11", "tambah_data_alat11.php");
+                } else if (getIntent().hasExtra("lab12")) {
+                    intent.putExtra("lab12", "tambah_data_alat12.php");
+                } else if (getIntent().hasExtra("lab13")) {
+                    intent.putExtra("lab13", "tambah_data_alat13.php");
+                }
                 startActivity(intent);
             }
         });
@@ -133,7 +188,7 @@ public class AdminAlat extends AppCompatActivity{
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_alat.php";
+        String url = new Konfigurasi().baseUrl() + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {

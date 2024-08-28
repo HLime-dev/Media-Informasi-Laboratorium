@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     Log.d("res", response);
                     if (response.equals("success")) {
-                        Intent intent = new Intent(LoginActivity.this, MenuAdmin.class);
+                        Intent intent = new Intent(LoginActivity.this, AdminMenuLab.class);
                         startActivity(intent);
                         finish();
                     } else if (response.equals("failure")) {

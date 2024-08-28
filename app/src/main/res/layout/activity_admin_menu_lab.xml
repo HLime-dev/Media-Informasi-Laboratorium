@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AdminMenuLab">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:text="Menu Admin"
+            android:layout_marginEnd="?android:attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/lab1"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/professor"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab Telmat"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab2"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/programmer"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab2"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab3"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/meeting"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab3"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab4"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/tool1"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab4"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab5"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab5"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab6"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab6"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab7"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="lab7"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab8"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab8"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab9"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab9"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab10"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab10"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab11"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab11"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab12"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab12"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lab13"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/event"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Lab13"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pengunjung"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/team"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Daftar Pengunjung"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
