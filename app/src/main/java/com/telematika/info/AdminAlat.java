@@ -129,7 +129,8 @@ public class AdminAlat extends AppCompatActivity{
                 } else if (getIntent().hasExtra("lab13")) {
                     intent.putExtra("lab13", "tambah_data_alat13.php");
                 }
-                startActivity(intent);
+
+
             }
         });
 
