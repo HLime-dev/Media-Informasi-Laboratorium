@@ -3,6 +3,6 @@ package com.telematika.info;
 public class Konfigurasi {
     public String baseUrl()
     {
-        return "http://103.102.48.24/halim/API/";
+        return "http://192.168.43.116/lab_elektro/API/";
     }
 }

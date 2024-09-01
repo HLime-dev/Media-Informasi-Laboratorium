@@ -43,31 +43,31 @@ public class MenuAdmin extends AppCompatActivity {
                 //dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminDosen.class);
                 if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "tampil_data_dsn1.php");
+                    intent.putExtra("lab1", "dsn1.php");
                 } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "tampil_data_dsn2.php");
+                    intent.putExtra("lab2", "dsn2.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "tampil_data_dsn3.php");
+                    intent.putExtra("lab3", "dsn3.php");
                 } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "tampil_data_dsn4.php");
+                    intent.putExtra("lab4", "dsn4.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "tampil_data_dsn5.php");
+                    intent.putExtra("lab5", "dsn5.php");
                 } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "tampil_data_dsn6.php");
+                    intent.putExtra("lab6", "dsn6.php");
                 } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "tampil_data_dsn7.php");
+                    intent.putExtra("lab7", "dsn7.php");
                 } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "tampil_data_dsn8.php");
+                    intent.putExtra("lab8", "dsn8.php");
                 } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "tampil_data_dsn9.php");
+                    intent.putExtra("lab9", "dsn9.php");
                 } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "tampil_data_dsn10.php");
+                    intent.putExtra("lab10", "dsn10.php");
                 } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "tampil_data_dsn11.php");
+                    intent.putExtra("lab11", "dsn11.php");
                 } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "tampil_data_dsn12.php");
+                    intent.putExtra("lab12", "dsn12.php");
                 } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "tampil_data_dsn13.php");
+                    intent.putExtra("lab13", "dsn13.php");
                 }
                 startActivity(intent);
             }
@@ -79,31 +79,31 @@ public class MenuAdmin extends AppCompatActivity {
               //  mahasiswa.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminMahasiswa.class);
                 if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "tampil_data_mhs1.php");
+                    intent.putExtra("lab1", "mhs1.php");
                 } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "tampil_data_mhs2.php");
+                    intent.putExtra("lab2", "mhs2.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "tampil_data_mhs3.php");
+                    intent.putExtra("lab3", "mhs3.php");
                 } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "tampil_data_mhs4.php");
+                    intent.putExtra("lab4", "mhs4.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "tampil_data_mhs5.php");
+                    intent.putExtra("lab5", "mhs5.php");
                 } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "tampil_data_mhs6.php");
+                    intent.putExtra("lab6", "mhs6.php");
                 } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "tampil_data_mhs7.php");
+                    intent.putExtra("lab7", "mhs7.php");
                 } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "tampil_data_mhs8.php");
+                    intent.putExtra("lab8", "mhs8.php");
                 } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "tampil_data_mhs9.php");
+                    intent.putExtra("lab9", "mhs9.php");
                 } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "tampil_data_mhs10.php");
+                    intent.putExtra("lab10", "mhs10.php");
                 } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "tampil_data_mhs11.php");
+                    intent.putExtra("lab11", "mhs11.php");
                 } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "tampil_data_mhs12.php");
+                    intent.putExtra("lab12", "mhs12.php");
                 } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "tampil_data_mhs13.php");
+                    intent.putExtra("lab13", "mhs13.php");
                 }
                 startActivity(intent);
             }
@@ -115,31 +115,31 @@ public class MenuAdmin extends AppCompatActivity {
                // ruangan.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminRuangan.class);
                 if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "tampil_data_ruang1.php");
+                    intent.putExtra("lab1", "ruang1.php");
                 } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "tampil_data_ruang2.php");
+                    intent.putExtra("lab2", "ruang2.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "tampil_data_ruang3.php");
+                    intent.putExtra("lab3", "ruang3.php");
                 } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "tampil_data_ruang4.php");
+                    intent.putExtra("lab4", "ruang4.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "tampil_data_ruang5.php");
+                    intent.putExtra("lab5", "ruang5.php");
                 } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "tampil_data_ruang6.php");
+                    intent.putExtra("lab6", "ruang6.php");
                 } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "tampil_data_ruang7.php");
+                    intent.putExtra("lab7", "ruang7.php");
                 } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "tampil_data_ruang8.php");
+                    intent.putExtra("lab8", "ruang8.php");
                 } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "tampil_data_ruang9.php");
+                    intent.putExtra("lab9", "ruang9.php");
                 } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "tampil_data_ruang10.php");
+                    intent.putExtra("lab10", "ruang10.php");
                 } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "tampil_data_ruang11.php");
+                    intent.putExtra("lab11", "ruang11.php");
                 } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "tampil_data_ruang12.php");
+                    intent.putExtra("lab12", "ruang12.php");
                 } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "tampil_data_ruang13.php");
+                    intent.putExtra("lab13", "ruang13.php");
                 }
                 startActivity(intent);
             }
@@ -151,31 +151,31 @@ public class MenuAdmin extends AppCompatActivity {
                 //alat.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminAlat.class);
                 if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "tampil_data_alat1.php");
+                    intent.putExtra("lab1", "alat1.php");
                 } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "tampil_data_alat2.php");
+                    intent.putExtra("lab2", "alat2.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "tampil_data_alat3.php");
+                    intent.putExtra("lab3", "alat3.php");
                 } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "tampil_data_alat4.php");
+                    intent.putExtra("lab4", "alat4.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "tampil_data_alat5.php");
+                    intent.putExtra("lab5", "alat5.php");
                 } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "tampil_data_alat6.php");
+                    intent.putExtra("lab6", "alat6.php");
                 } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "tampil_data_alat7.php");
+                    intent.putExtra("lab7", "alat7.php");
                 } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "tampil_data_alat8.php");
+                    intent.putExtra("lab8", "alat8.php");
                 } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "tampil_data_alat9.php");
+                    intent.putExtra("lab9", "alat9.php");
                 } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "tampil_data_alat10.php");
+                    intent.putExtra("lab10", "alat10.php");
                 } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "tampil_data_alat11.php");
+                    intent.putExtra("lab11", "alat11.php");
                 } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "tampil_data_alat12.php");
+                    intent.putExtra("lab12", "alat12.php");
                 } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "tampil_data_alat13.php");
+                    intent.putExtra("lab13", "alat13.php");
                 }
                 startActivity(intent);
             }
@@ -187,31 +187,31 @@ public class MenuAdmin extends AppCompatActivity {
                 //event.setBackground(getDrawable(R.drawable.bg_item_selected));
                 Intent intent = new Intent(MenuAdmin.this, AdminEvent.class);
                 if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "tampil_data_event1.php");
+                    intent.putExtra("lab1", "event1.php");
                 } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "tampil_data_event2.php");
+                    intent.putExtra("lab2", "event2.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "tampil_data_event3.php");
+                    intent.putExtra("lab3", "event3.php");
                 } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "tampil_data_event4.php");
+                    intent.putExtra("lab4", "event4.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "tampil_data_event5.php");
+                    intent.putExtra("lab5", "event5.php");
                 } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "tampil_data_event6.php");
+                    intent.putExtra("lab6", "event6.php");
                 } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "tampil_data_event7.php");
+                    intent.putExtra("lab7", "event7.php");
                 } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "tampil_data_event8.php");
+                    intent.putExtra("lab8", "event8.php");
                 } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "tampil_data_event9.php");
+                    intent.putExtra("lab9", "event9.php");
                 } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "tampil_data_event10.php");
+                    intent.putExtra("lab10", "event10.php");
                 } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "tampil_data_event11.php");
+                    intent.putExtra("lab11", "event11.php");
                 } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "tampil_data_event12.php");
+                    intent.putExtra("lab12", "event12.php");
                 } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "tampil_data_event13.php");
+                    intent.putExtra("lab13", "event13.php");
                 }
                 startActivity(intent);
             }
@@ -221,33 +221,33 @@ public class MenuAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // pengunjung.setBackground(getDrawable(R.drawable.bg_item_selected));
-                Intent intent = new Intent(MenuAdmin.this, AdminPengunjung.class);
+                Intent intent = new Intent(MenuAdmin.this, PraktikumActivity.class);
                 if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "tampil_data_dsn1.php");
+                    intent.putExtra("lab1", "prak1.php");
                 } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "tampil_data_dsn2.php");
+                    intent.putExtra("lab2", "prak2.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "tampil_data_dsn3.php");
+                    intent.putExtra("lab3", "prak3.php");
                 } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "tampil_data_dsn4.php");
+                    intent.putExtra("lab4", "prak4.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "tampil_data_dsn5.php");
+                    intent.putExtra("lab5", "prak5.php");
                 } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "tampil_data_dsn6.php");
+                    intent.putExtra("lab6", "prak6.php");
                 } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "tampil_data_dsn7.php");
+                    intent.putExtra("lab7", "prak7.php");
                 } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "tampil_data_dsn8.php");
+                    intent.putExtra("lab8", "prak8.php");
                 } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "tampil_data_dsn9.php");
+                    intent.putExtra("lab9", "prak9.php");
                 } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "tampil_data_dsn10.php");
+                    intent.putExtra("lab10", "prak10.php");
                 } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "tampil_data_dsn11.php");
+                    intent.putExtra("lab11", "prak11.php");
                 } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "tampil_data_dsn12.php");
+                    intent.putExtra("lab12", "prak12.php");
                 } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "tampil_data_dsn13.php");
+                    intent.putExtra("lab13", "prak13.php");
                 }
                 startActivity(intent);
             }

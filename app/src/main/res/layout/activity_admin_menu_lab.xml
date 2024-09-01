@@ -28,7 +28,6 @@
 
 
     <ScrollView
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <LinearLayout
@@ -40,6 +39,7 @@
         <LinearLayout
             android:id="@+id/lab1"
             android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginBottom="24dp"
@@ -57,7 +57,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab Telmat"
+                android:text="Telematika, Radar dan Satelit"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -85,7 +85,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab2"
+                android:text="Antena dan Propagasi Gelombang"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -113,7 +113,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab3"
+                android:text="Distribusi Sistem Tenaga dan Instalasi Listrik"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -141,7 +141,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab4"
+                android:text="Komputer dan Teknik Jaringan"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -169,7 +169,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab5"
+                android:text="Listrik Dasar"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -197,7 +197,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab6"
+                android:text="Elektronika dan Divais"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -225,7 +225,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="lab7"
+                android:text="Tegangan Tinggi dan Isolasi"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -253,7 +253,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab8"
+                android:text="Telekomunikasi Radio dan Gelombang Pendek"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -281,7 +281,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab9"
+                android:text="Perangkat Lunak Komputer"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -309,7 +309,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab10"
+                android:text="Sistem Kendali dan Instrumentasi"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -337,7 +337,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab11"
+                android:text="Elektronika Daya"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -365,7 +365,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab12"
+                android:text="Mesin-Mesin Listrik"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -393,7 +393,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Lab13"
+                android:text="Relay dan Pengukuran"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"

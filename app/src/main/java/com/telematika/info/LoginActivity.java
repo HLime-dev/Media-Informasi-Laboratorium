@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private TextInputEditText etPassword;
     private String email, password;
-    private String URL = "http://103.102.48.24/halim/login.php";
+    private String URL = "http://192.168.43.116/lab_elektro/login.php";
     //Button login;
 
 

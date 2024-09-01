@@ -45,7 +45,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab1", "tampil_data_lab1.php");
+                intent.putExtra("lab1", "lab1.php");
                 startActivity(intent);
             }
         });
@@ -54,7 +54,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab2", "tampil_data_lab2.php");
+                intent.putExtra("lab2", "lab2.php");
                 startActivity(intent);
             }
         });
@@ -63,7 +63,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab3", "tampil_data_lab3.php");
+                intent.putExtra("lab3", "lab3.php");
                 startActivity(intent);
             }
         });
@@ -72,7 +72,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab4", "tampil_data_lab4.php");
+                intent.putExtra("lab4", "lab4.php");
                 startActivity(intent);
             }
         });
@@ -81,7 +81,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab5", "tampil_data_lab5.php");
+                intent.putExtra("lab5", "lab5.php");
                 startActivity(intent);
             }
         });
@@ -90,7 +90,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab6", "tampil_data_lab6.php");
+                intent.putExtra("lab6", "lab6.php");
                 startActivity(intent);
             }
         });
@@ -99,7 +99,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab7", "tampil_data_lab7.php");
+                intent.putExtra("lab7", "lab7.php");
                 startActivity(intent);
             }
         });
@@ -108,7 +108,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab8", "tampil_data_lab8.php");
+                intent.putExtra("lab8", "lab8.php");
                 startActivity(intent);
             }
         });
@@ -117,7 +117,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab9", "tampil_data_lab9.php");
+                intent.putExtra("lab9", "lab9.php");
                 startActivity(intent);
             }
         });
@@ -126,7 +126,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab10", "tampil_data_lab10.php");
+                intent.putExtra("lab10", "lab10.php");
                 startActivity(intent);
             }
         });
@@ -135,7 +135,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab11", "tampil_data_lab11.php");
+                intent.putExtra("lab11", "lab11.php");
                 startActivity(intent);
             }
         });
@@ -144,7 +144,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab12", "tampil_data_lab12.php");
+                intent.putExtra("lab12", "lab12.php");
                 startActivity(intent);
             }
         });
@@ -153,7 +153,7 @@ public class AdminMenuLab extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
-                intent.putExtra("lab13", "tampil_data_lab13.php");
+                intent.putExtra("lab13", "lab13.php");
                 startActivity(intent);
             }
         });

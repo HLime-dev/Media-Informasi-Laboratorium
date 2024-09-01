@@ -103,93 +103,103 @@ public class AdminAlat extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddAlat.class);
                 if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "tambah_data_alat1.php");
+                    intent.putExtra("lab1", "alat1.php");
                 } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "tambah_data_alat2.php");
+                    intent.putExtra("lab2", "alat2.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "tambah_data_alat3.php");
+                    intent.putExtra("lab3", "alat3.php");
                 } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "tambah_data_alat4.php");
+                    intent.putExtra("lab4", "alat4.php");
                 } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "tambah_data_alat5.php");
+                    intent.putExtra("lab5", "alat5.php");
                 } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "tambah_data_alat6.php");
+                    intent.putExtra("lab6", "alat6.php");
                 } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "tambah_data_alat7.php");
+                    intent.putExtra("lab7", "alat7.php");
                 } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "tambah_data_alat8.php");
+                    intent.putExtra("lab8", "alat8.php");
                 } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "tambah_data_alat9.php");
+                    intent.putExtra("lab9", "alat9.php");
                 } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "tambah_data_alat10.php");
+                    intent.putExtra("lab10", "alat10.php");
                 } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "tambah_data_alat11.php");
+                    intent.putExtra("lab11", "alat11.php");
                 } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "tambah_data_alat12.php");
+                    intent.putExtra("lab12", "alat12.php");
                 } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "tambah_data_alat13.php");
+                    intent.putExtra("lab13", "alat13.php");
                 }
-
-
+                startActivity(intent);
             }
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PopupMenu popupMenu=new PopupMenu(getApplicationContext(), view);
+                PopupMenu popupMenu = new PopupMenu(AdminAlat.this, view);  // Menggunakan Activity sebagai konteks
                 popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
                 popupMenu.show();
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                        popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
-                        popupMenu.show();
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.edit:
+                                Intent intent = new Intent(AdminAlat.this, AddAlat.class);
+                                intent.putExtra("edit_data", model.get(position).getId());
 
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                if (item.getItemId() == R.id.edit) {
-                                    Intent intent = new Intent(getApplicationContext(), AddAlat.class);
-                                    intent.putExtra("edit_data", model.get(position).getId());
-                                    startActivity(intent);
-                                    return true;
-                                } else if (item.getItemId() == R.id.hapus) {
-                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminAlat.this);
-                                    builder.setMessage("Apakah Anda ingin menghapus data ini?");
-                                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            _hapus(model.get(position).getId());
-                                        }
-                                    });
-                                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                                    AlertDialog alertDialog=builder.create();
-                                    alertDialog.show();
-                                    return true;
-                                } else {
-                                    return false;
+                                // Loop through all lab extras
+                                for (int i = 1; i <= 13; i++) {
+                                    String labKey = "lab" + i;
+                                    if (getIntent().hasExtra(labKey)) {
+                                        intent.putExtra("edit_" + labKey, "alat" + i + ".php");
+                                        break;
+                                    }
                                 }
-                            }
-                        });
+
+                                for (int i = 1; i <= 13; i++) {
+                                    String labKey = "lab" + i;
+                                    if (getIntent().hasExtra(labKey)) {
+                                        intent.putExtra(labKey, "alat" + i + ".php");
+                                        break;
+                                    }
+                                }
+
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.hapus:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AdminAlat.this);
+                                builder.setMessage("Apakah Anda ingin menghapus data ini?")
+                                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                _hapus(model.get(position).getId());
+                                            }
+                                        })
+                                        .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                                return true;
+
+                            default:
+                                return false;
+                        }
                     }
                 });
-
-
             }
         });
+
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + urlPlus;
+        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -209,7 +219,7 @@ public class AdminAlat extends AppCompatActivity{
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
+                            String urlimage = "http://192.168.43.116/lab_elektro/images/" + url2;
 
                             getDataAlat = new GetDataAlat(id, nama, kategori, jumlah, urlimage);
                             model.add(getDataAlat);
@@ -234,7 +244,7 @@ public class AdminAlat extends AppCompatActivity{
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+"hapus_alat.php";
+        String url=new Konfigurasi().baseUrl()+"hapus_"+urlPlus;
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {
