@@ -139,24 +139,73 @@ public class ScanActivity extends AppCompatActivity {
                     byte[] id = tag.getId();
 
                     // Periksa apakah ID tag sesuai dengan ID yang diharapkan
-                    byte[] expectedTagId = new byte[]{(byte) 0x53, (byte) 0x38, (byte) 0x77, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId3 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId1 = new byte[]{(byte) 0x53, (byte) 0x0F, (byte) 0x7F, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId2 = new byte[]{(byte) 0x04, (byte) 0x3C, (byte) 0x6E, (byte) 0xCA, (byte) 0x37, (byte) 0x58, (byte) 0x80};
-                    //byte[] expectedTagId2 = new byte[]{(byte) 0x04, (byte) 0x3B, (byte) 0x7A, (byte) 0xCA, (byte) 0x2D, (byte) 0x2A, (byte) 0x80};
-                    if (Arrays.equals(expectedTagId, id)) {
+                    byte[] expectedTagId1 = new byte[]{(byte) 0x53, (byte) 0x38, (byte) 0x77, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId2 = new byte[]{(byte) 0x53, (byte) 0x0F, (byte) 0x7F, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId3 = new byte[]{(byte) 0x04, (byte) 0x3C, (byte) 0x6E, (byte) 0xCA, (byte) 0x37, (byte) 0x58, (byte) 0x80};
+                    byte[] expectedTagId4 = new byte[]{(byte) 0x04, (byte) 0x3C, (byte) 0x6E, (byte) 0xCA, (byte) 0x37, (byte) 0x58, (byte) 0x80};
+                    byte[] expectedTagId5 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId6 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId7 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId8 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId9 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId10 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId11 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId12 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId13 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+
+                    if (Arrays.equals(expectedTagId1, id)) {
                         // ID tag sesuai, pindah ke MenuActivity
-                        Intent newActivityIntent = new Intent(ScanActivity.this, MenuActivity.class);
-                        startActivity(newActivityIntent);
-                    } else if (Arrays.equals(expectedTagId3, id)) {
-                        Intent newActivityIntent = new Intent(ScanActivity.this, MahasiswaActivity.class);
-                        startActivity(newActivityIntent);
-                    } else if (Arrays.equals(expectedTagId1, id)) {
-                        Intent newActivityIntent = new Intent(ScanActivity.this, LabLain.class);
-                        startActivity(newActivityIntent);
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab1", "lab1.php");
+                        startActivity(intent);
                     } else if (Arrays.equals(expectedTagId2, id)) {
-                        Intent newActivityIntent = new Intent(ScanActivity.this, MenuActivity.class);
-                        startActivity(newActivityIntent);
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab2", "lab2.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId3, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab3", "lab3.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId4, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab4", "lab4.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId5, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab5", "lab5.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId6, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab6", "lab6.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId7, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab7", "lab7.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId8, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab8", "lab8.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId9, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab9", "lab9.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId10, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab10", "lab10.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId11, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab11", "lab11.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId12, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab12", "lab12.php");
+                        startActivity(intent);
+                    } else if (Arrays.equals(expectedTagId13, id)) {
+                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        intent.putExtra("lab13", "lab13.php");
+                        startActivity(intent);
                     } else {
                         // ID tag berbeda, tampilkan Toast
                         runOnUiThread(new Runnable() {

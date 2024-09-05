@@ -45,6 +45,7 @@ public class AdminDosen extends AppCompatActivity {
     Adaptor adaptor;
     GetData getData;
     FloatingActionButton tambah;
+    String urlPlus = "";
 
 
     @Override
@@ -63,6 +64,14 @@ public class AdminDosen extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
+        }
+
         load_data();
         tambah=findViewById(R.id.tambah);
 
@@ -70,6 +79,13 @@ public class AdminDosen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddDosen.class);
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "dsn" + i + ".php");
+                        break;
+                    }
+                }
                 startActivity(intent);
             }
         });
@@ -84,7 +100,7 @@ public class AdminDosen extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+                        PopupMenu popupMenu = new PopupMenu(AdminDosen.this, view);
                         popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
                         popupMenu.show();
 
@@ -94,6 +110,22 @@ public class AdminDosen extends AppCompatActivity {
                                 if (item.getItemId() == R.id.edit) {
                                     Intent intent = new Intent(getApplicationContext(), AddDosen.class);
                                     intent.putExtra("edit_data", model.get(position).getId());
+                                    // Loop through all lab extras
+                                    for (int i = 1; i <= 13; i++) {
+                                        String labKey = "lab" + i;
+                                        if (getIntent().hasExtra(labKey)) {
+                                            intent.putExtra("edit_" + labKey, "dsn" + i + ".php");
+                                            break;
+                                        }
+                                    }
+
+                                    for (int i = 1; i <= 13; i++) {
+                                        String labKey = "lab" + i;
+                                        if (getIntent().hasExtra(labKey)) {
+                                            intent.putExtra(labKey, "dsn" + i + ".php");
+                                            break;
+                                        }
+                                    }
                                     startActivity(intent);
                                     return true;
                                 } else if (item.getItemId() == R.id.hapus) {
@@ -129,7 +161,7 @@ public class AdminDosen extends AppCompatActivity {
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -149,7 +181,10 @@ public class AdminDosen extends AppCompatActivity {
                             String email = object.getString("email");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
+                           // String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
+
+                            //lab telkom
+                            String urlimage = "http://10.28.46.108/lab_elektro/images/" + url2;
 
                             getData = new GetData(id, name, jabatan, email, urlimage);
                             model.add(getData);
@@ -174,7 +209,7 @@ public class AdminDosen extends AppCompatActivity {
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+"hapus.php";
+        String url=new Konfigurasi().baseUrl()+ "hapus_" + urlPlus;
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {

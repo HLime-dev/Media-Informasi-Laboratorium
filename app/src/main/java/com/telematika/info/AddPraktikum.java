@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -41,14 +42,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddAlat extends AppCompatActivity {
+public class AddPraktikum extends AppCompatActivity {
 
     Uri selecteduri;
     Bitmap bitmap;
     String encodeImage = null; // Default to null
     String oldImage = null; // To store the old image URL
     Toolbar toolbar;
-    TextInputEditText name, kategori, jumlah;
+    TextInputEditText name, tanggal, tempat, detail;
     Button simpan_data, pilihfoto;
     ProgressBar progressBar;
     TextView label;
@@ -56,15 +57,17 @@ public class AddAlat extends AppCompatActivity {
     String urlPlus = "";
     String urlGet = "";
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_alat);
+        setContentView(R.layout.activity_add_praktikum);
 
         toolbar = findViewById(R.id.toolbar);
         name = findViewById(R.id.nama);
-        kategori = findViewById(R.id.kategori);
-        jumlah = findViewById(R.id.jumlah);
+        tanggal = findViewById(R.id.tanggal);
+        tempat = findViewById(R.id.tempat);
+        detail = findViewById(R.id.detail);
         fotoiv = findViewById(R.id.fotoiv);
         simpan_data = findViewById(R.id.simpan_data);
         pilihfoto = findViewById(R.id.foto);
@@ -73,7 +76,7 @@ public class AddAlat extends AppCompatActivity {
 
         // Check if editing data
         if (getIntent().hasExtra("edit_data")) {
-            label.setText("Edit Data Alat");
+            label.setText("Edit Data Praktikum");
             for (int i = 1; i <= 13; i++) {
                 String labKey = "edit_lab" + i;
                 if (getIntent().hasExtra(labKey)) {
@@ -114,17 +117,21 @@ public class AddAlat extends AppCompatActivity {
                     name.setError("Tidak boleh kosong");
                     isValid = false;
                 }
-                if (kategori.getText().toString().length() == 0) {
-                    kategori.setError("Tidak boleh kosong");
+                if (tanggal.getText().toString().length() == 0) {
+                    tanggal.setError("Tidak boleh kosong");
                     isValid = false;
                 }
-                if (jumlah.getText().toString().length() == 0) {
-                    jumlah.setError("Tidak boleh kosong");
+                if (tempat.getText().toString().length() == 0) {
+                    tempat.setError("Tidak boleh kosong");
+                    isValid = false;
+                }
+                if (detail.getText().toString().length() == 0) {
+                    detail.setError("Tidak boleh kosong");
                     isValid = false;
                 }
 
                 if (isValid) {
-                    String url = "http://192.168.123.139/lab_elektro/" + "simpan_" + urlPlus;
+                    String url = "http://192.168.42.124/lab_elektro/" + "simpan_" + urlPlus;
 
                     progressBar.setVisibility(View.VISIBLE);
                     StringRequest stringRequest = new StringRequest(
@@ -138,7 +145,7 @@ public class AddAlat extends AppCompatActivity {
                                         String status = jsonObject.getString("status");
                                         if (status.equals("data tersimpan")) {
                                             Boolean cekintent = getIntent().hasExtra("edit_data");
-                                            AlertDialog.Builder builder = new AlertDialog.Builder(AddAlat.this);
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(AddPraktikum.this);
                                             builder.setTitle("Sukses");
                                             builder.setMessage(cekintent ? "Data berhasil diupdate" : "Data berhasil disimpan");
                                             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -160,7 +167,7 @@ public class AddAlat extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     progressBar.setVisibility(View.INVISIBLE);
-                                    Toast.makeText(AddAlat.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddPraktikum.this, "Pilih Foto", Toast.LENGTH_SHORT).show();
                                 }
                             }
                     ) {
@@ -168,8 +175,9 @@ public class AddAlat extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             HashMap<String, String> form = new HashMap<>();
                             form.put("name", name.getText().toString());
-                            form.put("kategori", kategori.getText().toString());
-                            form.put("jumlah", jumlah.getText().toString());
+                            form.put("tanggal", tanggal.getText().toString());
+                            form.put("tempat", tempat.getText().toString());
+                            form.put("detail", detail.getText().toString());
 
                             // Use the full URL for the old image when encoding it
                             if (encodeImage != null) {
@@ -192,7 +200,7 @@ public class AddAlat extends AppCompatActivity {
 
 
                     };
-                    RequestQueue requestQueue = Volley.newRequestQueue(AddAlat.this);
+                    RequestQueue requestQueue = Volley.newRequestQueue(AddPraktikum.this);
                     requestQueue.add(stringRequest);
                 }
             }
@@ -260,18 +268,20 @@ public class AddAlat extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response).getJSONObject("data");
                             String gname = jsonObject.getString("name");
-                            String gkategori = jsonObject.getString("kategori");
-                            String gjumlah = jsonObject.getString("jumlah");
+                            String gtanggal = jsonObject.getString("tanggal");
+                            String gtempat = jsonObject.getString("tempat");
+                            String gdetail = jsonObject.getString("detail");
                             oldImage = jsonObject.getString("image"); // Save the old image URL
 
                             String urlimage = "http://192.168.123.139/lab_elektro/images/" + oldImage;
 
                             name.setText(gname);
-                            kategori.setText(gkategori);
-                            jumlah.setText(gjumlah);
+                            tanggal.setText(gtanggal);
+                            tempat.setText(gtempat);
+                            detail.setText(gdetail);
 
                             // Load the old image into the ImageView
-                            Glide.with(AddAlat.this).load(urlimage).into(fotoiv);
+                            Glide.with(AddPraktikum.this).load(urlimage).into(fotoiv);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

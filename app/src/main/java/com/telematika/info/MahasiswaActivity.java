@@ -33,6 +33,7 @@ public class MahasiswaActivity extends AppCompatActivity {
     ArrayList<GetDataMahasiswa> model;
     GetDataMahasiswa getDataMahasiswa;
     MahasiswaAdaptor mahasiswaAdaptor;
+    String urlPlus = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,14 @@ public class MahasiswaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
+        }
+
         load_data();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,13 +65,20 @@ public class MahasiswaActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), DetailMahasiswa.class);
                 intent.putExtra("detail_data", model.get(position).getId());
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "mhs" + i + ".php");
+                        break;
+                    }
+                }
                 startActivity(intent);
             }
         });
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_mhs.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -81,7 +97,7 @@ public class MahasiswaActivity extends AppCompatActivity {
                             String email = object.getString("email");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
 
                             getDataMahasiswa = new GetDataMahasiswa(id, nama, nim, email, urlimage);
                             model.add(getDataMahasiswa);
@@ -109,10 +125,13 @@ public class MahasiswaActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         super.onBackPressed();
+        /*
         Intent intent = new Intent(this, MenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Menghapus stack aktivitas sebelumnya
         startActivity(intent);
         finish(); // Menutup aktivitas saat ini
+
+         */
     }
 
     @Override

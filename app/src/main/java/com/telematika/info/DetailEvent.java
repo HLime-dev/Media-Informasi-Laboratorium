@@ -31,6 +31,7 @@ public class DetailEvent extends AppCompatActivity {
     Toolbar toolbar;
     TextView nama, tanggal, lokasi, deskripsi;
     ImageView foto;
+    String urlGet = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +50,20 @@ public class DetailEvent extends AppCompatActivity {
 
         if (getIntent().hasExtra("detail_data"))
         {
+            for (int i = 1; i <= 13; i++) {
+                String labKey = "lab" + i;
+                if (getIntent().hasExtra(labKey)) {
+                    urlGet = getIntent().getStringExtra(labKey);
+                    break;
+                }
+            }
             getData();
         }
     }
 
     void getData()
     {
-        String url=new Konfigurasi().baseUrl()+"get_data_event.php";
+        String url=new Konfigurasi().baseUrl()+"get_data_" + urlGet;
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -70,7 +78,7 @@ public class DetailEvent extends AppCompatActivity {
                             String gdeskripsi=jsonObject.getString("deskripsi");
                             String url2=jsonObject.getString("foto");
 
-                            String urlimage="http://103.102.48.24/halim/images/" + url2;
+                            String urlimage="http://192.168.123.139/lab_elektro/images/" + url2;
 
                             nama.setText(gnama);
                             tanggal.setText(gtanggal);

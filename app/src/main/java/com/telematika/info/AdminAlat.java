@@ -67,32 +67,12 @@ public class AdminAlat extends AppCompatActivity{
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (getIntent().hasExtra("lab1")) {
-            urlPlus = getIntent().getStringExtra("lab1");
-        } else if (getIntent().hasExtra("lab2")) {
-            urlPlus = getIntent().getStringExtra("lab2");
-        } else if (getIntent().hasExtra("lab3")) {
-            urlPlus = getIntent().getStringExtra("lab3");
-        }else if (getIntent().hasExtra("lab4")) {
-            urlPlus = getIntent().getStringExtra("lab4");
-        }else if (getIntent().hasExtra("lab5")) {
-            urlPlus = getIntent().getStringExtra("lab5");
-        }else if (getIntent().hasExtra("lab6")) {
-            urlPlus = getIntent().getStringExtra("lab6");
-        }else if (getIntent().hasExtra("lab7")) {
-            urlPlus = getIntent().getStringExtra("lab7");
-        }else if (getIntent().hasExtra("lab8")) {
-            urlPlus = getIntent().getStringExtra("lab8");
-        }else if (getIntent().hasExtra("lab9")) {
-            urlPlus = getIntent().getStringExtra("lab9");
-        }else if (getIntent().hasExtra("lab10")) {
-            urlPlus = getIntent().getStringExtra("lab10");
-        }else if (getIntent().hasExtra("lab11")) {
-            urlPlus = getIntent().getStringExtra("lab11");
-        }else if (getIntent().hasExtra("lab12")) {
-            urlPlus = getIntent().getStringExtra("lab12");
-        }else if (getIntent().hasExtra("lab13")) {
-            urlPlus = getIntent().getStringExtra("lab13");
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
         }
 
         load_data();
@@ -102,32 +82,12 @@ public class AdminAlat extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddAlat.class);
-                if (getIntent().hasExtra("lab1")) {
-                    intent.putExtra("lab1", "alat1.php");
-                } else if (getIntent().hasExtra("lab2")) {
-                    intent.putExtra("lab2", "alat2.php");
-                } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab3", "alat3.php");
-                } else if (getIntent().hasExtra("lab4")) {
-                    intent.putExtra("lab4", "alat4.php");
-                } else if (getIntent().hasExtra("lab3")) {
-                    intent.putExtra("lab5", "alat5.php");
-                } else if (getIntent().hasExtra("lab6")) {
-                    intent.putExtra("lab6", "alat6.php");
-                } else if (getIntent().hasExtra("lab7")) {
-                    intent.putExtra("lab7", "alat7.php");
-                } else if (getIntent().hasExtra("lab8")) {
-                    intent.putExtra("lab8", "alat8.php");
-                } else if (getIntent().hasExtra("lab9")) {
-                    intent.putExtra("lab9", "alat9.php");
-                } else if (getIntent().hasExtra("lab10")) {
-                    intent.putExtra("lab10", "alat10.php");
-                } else if (getIntent().hasExtra("lab11")) {
-                    intent.putExtra("lab11", "alat11.php");
-                } else if (getIntent().hasExtra("lab12")) {
-                    intent.putExtra("lab12", "alat12.php");
-                } else if (getIntent().hasExtra("lab13")) {
-                    intent.putExtra("lab13", "alat13.php");
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "alat" + i + ".php");
+                        break;
+                    }
                 }
                 startActivity(intent);
             }
@@ -219,7 +179,7 @@ public class AdminAlat extends AppCompatActivity{
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://192.168.43.116/lab_elektro/images/" + url2;
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
 
                             getDataAlat = new GetDataAlat(id, nama, kategori, jumlah, urlimage);
                             model.add(getDataAlat);

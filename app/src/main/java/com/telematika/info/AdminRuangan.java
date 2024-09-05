@@ -43,6 +43,8 @@ public class AdminRuangan extends AppCompatActivity {
     RuanganAdaptor ruanganAdaptor;
     FloatingActionButton tambah;
 
+    String urlPlus = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,13 @@ public class AdminRuangan extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
+        }
 
         load_data();
 
@@ -67,6 +76,13 @@ public class AdminRuangan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddRuangan.class);
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "ruang" + i + ".php");
+                        break;
+                    }
+                }
                 startActivity(intent);
             }
         });
@@ -91,6 +107,22 @@ public class AdminRuangan extends AppCompatActivity {
                                 if (item.getItemId() == R.id.edit) {
                                     Intent intent = new Intent(getApplicationContext(), AddRuangan.class);
                                     intent.putExtra("edit_data", model.get(position).getId());
+                                    // Loop through all lab extras
+                                    for (int i = 1; i <= 13; i++) {
+                                        String labKey = "lab" + i;
+                                        if (getIntent().hasExtra(labKey)) {
+                                            intent.putExtra("edit_" + labKey, "alat" + i + ".php");
+                                            break;
+                                        }
+                                    }
+
+                                    for (int i = 1; i <= 13; i++) {
+                                        String labKey = "lab" + i;
+                                        if (getIntent().hasExtra(labKey)) {
+                                            intent.putExtra(labKey, "alat" + i + ".php");
+                                            break;
+                                        }
+                                    }
                                     startActivity(intent);
                                     return true;
                                 } else if (item.getItemId() == R.id.hapus) {
@@ -126,7 +158,7 @@ public class AdminRuangan extends AppCompatActivity {
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_ruangan.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -144,7 +176,7 @@ public class AdminRuangan extends AppCompatActivity {
                             String nama = object.getString("nama");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
 
                             getDataRuangan = new GetDataRuangan(id, nama, urlimage);
                             model.add(getDataRuangan);
@@ -169,7 +201,7 @@ public class AdminRuangan extends AppCompatActivity {
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+"hapus_ruangan.php";
+        String url=new Konfigurasi().baseUrl()+"hapus_"+urlPlus;
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {

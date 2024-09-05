@@ -45,6 +45,8 @@ public class DosenActivity extends AppCompatActivity {
     Adaptor adaptor;
     GetData getData;
 
+    String urlPlus = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,14 @@ public class DosenActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
+        }
+
         load_data();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,13 +77,20 @@ public class DosenActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), DetailDosen.class);
                 intent.putExtra("detail_data", model.get(position).getId());
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "dsn" + i + ".php");
+                        break;
+                    }
+                }
                 startActivity(intent);
             }
         });
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -94,7 +111,7 @@ public class DosenActivity extends AppCompatActivity {
                             String email = object.getString("email");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
 
                             getData = new GetData(id, name, jabatan, email, urlimage);
                             model.add(getData);

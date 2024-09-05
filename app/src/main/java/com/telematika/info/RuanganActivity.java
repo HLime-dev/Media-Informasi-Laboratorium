@@ -30,6 +30,7 @@ public class RuanganActivity extends AppCompatActivity {
     ArrayList<GetDataRuangan> model;
     GetDataRuangan getDataRuangan;
     RuanganAdaptor ruanganAdaptor;
+    String urlPlus = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +47,19 @@ public class RuanganActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
+        }
+
         load_data();
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_ruangan.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -68,7 +77,7 @@ public class RuanganActivity extends AppCompatActivity {
                             String nama = object.getString("nama");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
 
                             getDataRuangan = new GetDataRuangan(id, nama, urlimage);
                             model.add(getDataRuangan);

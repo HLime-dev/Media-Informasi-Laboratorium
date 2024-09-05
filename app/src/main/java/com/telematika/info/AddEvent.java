@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -34,7 +35,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,10 +45,12 @@ public class AddEvent extends AppCompatActivity {
 
     Uri selecteduri;
     Bitmap bitmap;
-    String encodeImage;
+    String encodeImage = null; // Default to null
+    String oldImage = null; // To store the old image URL
     ProgressBar progressBar;
     ImageView fotoiv;
-    String url="http://103.102.48.24/halim/simpan_event.php";
+    String urlPlus = "";
+    String urlGet = "";
     Toolbar toolbar;
     TextInputEditText nama, deskripsi, lokasi, tanggal;
     Button simpan_data, pilihfoto;
@@ -70,8 +75,23 @@ public class AddEvent extends AppCompatActivity {
         if (getIntent().hasExtra("edit_data"))
         {
             label.setText("Edit Data Event");
+            for (int i = 1; i <= 13; i++) {
+                String labKey = "edit_lab" + i;
+                if (getIntent().hasExtra(labKey)) {
+                    urlGet = getIntent().getStringExtra(labKey);
+                    break;
+                }
+            }
             getData();
             simpan_data.setText("Update Data");
+        }
+
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
         }
 
         setSupportActionBar(toolbar);
@@ -110,7 +130,7 @@ public class AddEvent extends AppCompatActivity {
                 }
 
                 if (isValid) {
-
+                    String url = "http://192.168.123.139/lab_elektro/" + "simpan_" + urlPlus;
                     progressBar.setVisibility(View.VISIBLE);
 
                     StringRequest stringRequest=new StringRequest(
@@ -162,7 +182,17 @@ public class AddEvent extends AppCompatActivity {
                             form.put("deskripsi", deskripsi.getText().toString());
                             form.put("lokasi", lokasi.getText().toString());
                             form.put("tanggal", tanggal.getText().toString());
-                            form.put("image", encodeImage);
+                            // Use the full URL for the old image when encoding it
+                            if (encodeImage != null) {
+                                form.put("image", encodeImage);
+                            } else if (oldImage != null) {
+                                // Full URL for oldImage
+                                String oldImageUrl = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+                                String encodedOldImage = encodeImageFromUrl(oldImageUrl);
+                                if (encodedOldImage != null) {
+                                    form.put("image", encodedOldImage);
+                                }
+                            }
                             if (getIntent().hasExtra("edit_data"))
                             {
                                 form.put("id", getIntent().getStringExtra("edit_data"));
@@ -213,9 +243,23 @@ public class AddEvent extends AppCompatActivity {
         encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);
     }
 
+    private String encodeImageFromUrl(String imageUrl) {
+        try {
+            InputStream inputStream = new URL(imageUrl).openStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     void getData()
     {
-        String url=new Konfigurasi().baseUrl()+"get_data_event.php";
+        String url=new Konfigurasi().baseUrl()+"get_data_" + urlGet;
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -229,10 +273,18 @@ public class AddEvent extends AppCompatActivity {
                             String gtanggal=jsonObject.getString("tanggal");
                             String gdeskripsi=jsonObject.getString("deskripsi");
 
+                            oldImage = jsonObject.getString("image"); // Save the old image URL
+
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+
                             nama.setText(gnama);
                             lokasi.setText(glokasi);
                             tanggal.setText(gtanggal);
                             deskripsi.setText(gdeskripsi);
+
+                            // Load the old image into the ImageView
+                            Glide.with(AddEvent.this).load(urlimage).into(fotoiv);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

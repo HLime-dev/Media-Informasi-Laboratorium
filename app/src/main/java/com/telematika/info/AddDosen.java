@@ -39,7 +39,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,14 +50,17 @@ public class AddDosen extends AppCompatActivity {
 
     Uri selecteduri;
     Bitmap bitmap;
-    String encodeImage;
+    //String encodeImage;
     Toolbar toolbar;
     TextInputEditText name, nip, jabatan, email, penelitian;
     Button simpan_data, pilihfoto;
     ProgressBar progressBar;
     TextView label;
     ImageView fotoiv;
-    String url="http://103.102.48.24/halim/simpan_dosen.php";
+    String urlPlus= "";
+    String urlGet = "";
+    String encodeImage = null; // Default to null
+    String oldImage = null; // To store the old image URL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +83,23 @@ public class AddDosen extends AppCompatActivity {
         if (getIntent().hasExtra("edit_data"))
         {
             label.setText("Edit Data Dosen");
+            for (int i = 1; i <= 13; i++) {
+                String labKey = "edit_lab" + i;
+                if (getIntent().hasExtra(labKey)) {
+                    urlGet = getIntent().getStringExtra(labKey);
+                    break;
+                }
+            }
             getData();
             simpan_data.setText("Update Data");
+        }
+
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
         }
 
         setSupportActionBar(toolbar);
@@ -132,7 +152,7 @@ public class AddDosen extends AppCompatActivity {
                 }
 
                 if (isValid) {
-                    //String url= new Konfigurasi().baseUrl()+"simpan.php";
+                    String url= "http://192.168.123.139/lab_elektro/" + "simpan_" + urlPlus;
                     progressBar.setVisibility(View.VISIBLE);
 
                     StringRequest stringRequest=new StringRequest(
@@ -189,7 +209,18 @@ public class AddDosen extends AppCompatActivity {
                             form.put("jabatan", jabatan.getText().toString());
                             form.put("email", email.getText().toString());
                             form.put("penelitian", penelitian.getText().toString());
-                            form.put("image", encodeImage);
+
+                            if (encodeImage != null) {
+                                form.put("image", encodeImage);
+                            } else if (oldImage != null) {
+                                // Full URL for oldImage
+                                String oldImageUrl = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+                                String encodedOldImage = encodeImageFromUrl(oldImageUrl);
+                                if (encodedOldImage != null) {
+                                    form.put("image", encodedOldImage);
+                                }
+                            }
+
                             if (getIntent().hasExtra("edit_data"))
                             {
                                 form.put("id", getIntent().getStringExtra("edit_data"));
@@ -240,9 +271,23 @@ public class AddDosen extends AppCompatActivity {
         encodeImage = android.util.Base64.encodeToString(imagebyte, Base64.DEFAULT);
     }
 
+    private String encodeImageFromUrl(String imageUrl) {
+        try {
+            InputStream inputStream = new URL(imageUrl).openStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     void getData()
     {
-        String url=new Konfigurasi().baseUrl()+"get_data.php";
+        String url=new Konfigurasi().baseUrl()+"get_data_" + urlGet;
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -257,11 +302,19 @@ public class AddDosen extends AppCompatActivity {
                             String gemail=jsonObject.getString("email");
                             String gpenelitian=jsonObject.getString("penelitian");
 
+                            oldImage = jsonObject.getString("image"); // Save the old image URL
+
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+
                             name.setText(gnama);
                             nip.setText(gnip);
                             jabatan.setText(gjabatan);
                             email.setText(gemail);
                             penelitian.setText(gpenelitian);
+
+                            // Load the old image into the ImageView
+                            Glide.with(AddDosen.this).load(urlimage).into(fotoiv);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

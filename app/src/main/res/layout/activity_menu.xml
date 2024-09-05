@@ -88,7 +88,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Mahasiswa"
+                android:text="Mahasiswa/Aslab"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
@@ -176,6 +176,33 @@
                 android:layout_height="match_parent"/>
 
         </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/praktikum"
+                android:orientation="horizontal"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_item"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/event"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:text="Praktikum"
+                    android:textSize="18sp"
+                    android:textColor="#26273a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
     </LinearLayout>
 
 

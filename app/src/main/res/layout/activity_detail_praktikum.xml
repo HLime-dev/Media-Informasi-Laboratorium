@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailMahasiswa">
+    tools:context=".DetailPraktikum">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="?android:attr/actionBarSize"
-            android:text="Profil Mahasiswa"
+            android:text="Info Praktikum"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textStyle="bold"
@@ -60,26 +60,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nama Mahasiswa" />
+            android:text="Info" />
         <TextView
             android:textSize="14sp"
             android:layout_gravity="center"
-            android:id="@+id/nim"
+            android:id="@+id/tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="NIM" />
+            android:text="Tanggal" />
         <TextView
             android:textSize="14sp"
             android:layout_gravity="center"
-            android:id="@+id/email"
-            android:autoLink="email"
+            android:id="@+id/tempat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Email" />
-
-
+            android:text="Tempat" />
 
         <RelativeLayout
             android:layout_marginTop="20dp"
@@ -99,15 +96,15 @@
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:gravity="center"
-                android:text="Penelitian"
+                android:text="Detail Praktikum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <me.biubiubiu.justifytext.library.JustifyTextView
-                android:id="@+id/penelitian"
+                android:id="@+id/detail"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="Penelitian"
+                android:text="Detail"
                 android:autoLink="web"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

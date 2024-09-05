@@ -33,6 +33,7 @@ public class EventActivity extends AppCompatActivity {
     ArrayList<GetDataEvent> model;
     GetDataEvent getDataEvent;
     EventAdaptor eventAdaptor;
+    String urlPlus = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,14 @@ public class EventActivity extends AppCompatActivity {
         eventAdaptor = new EventAdaptor(getApplicationContext(), model);
         listView.setAdapter(eventAdaptor);
 
+        for (int i = 1; i <= 13; i++) {
+            String labKey = "lab" + i;
+            if (getIntent().hasExtra(labKey)) {
+                urlPlus = getIntent().getStringExtra(labKey);
+                break;
+            }
+        }
+
         load_data();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,13 +66,20 @@ public class EventActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), DetailEvent.class);
                 intent.putExtra("detail_data", model.get(position).getId());
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "event" + i + ".php");
+                        break;
+                    }
+                }
                 startActivity(intent);
             }
         });
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_event.php";
+        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -82,7 +98,7 @@ public class EventActivity extends AppCompatActivity {
                             String tanggal = object.getString("tanggal");
                             String url2 = object.getString("foto");
 
-                            String urlimage = "http://103.102.48.24/halim/images/" + url2;
+                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
 
                             getDataEvent = new GetDataEvent(id, name, lokasi, tanggal, urlimage);
                             model.add(getDataEvent);

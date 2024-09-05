@@ -27,7 +27,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.telematika.info.Adapter.Adaptor;
 import com.telematika.info.Adapter.GetData;
 import com.telematika.info.Adapter.GetDataMahasiswa;
+import com.telematika.info.Adapter.GetDataPraktikum;
 import com.telematika.info.Adapter.MahasiswaAdaptor;
+import com.telematika.info.Adapter.PraktikumAdaptor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,26 +39,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminMahasiswa extends AppCompatActivity {
+public class AdminPraktikum extends AppCompatActivity {
 
     Toolbar toolbar;
     ListView listView;
-    ArrayList<GetDataMahasiswa> model;
-    MahasiswaAdaptor mahasiswaAdaptor;
-    GetDataMahasiswa getDataMahasiswa;
+    ArrayList<GetDataPraktikum> model;
+    PraktikumAdaptor praktikumAdaptor;
+    GetDataPraktikum getDataPraktikum;
     FloatingActionButton tambah;
     String urlPlus = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_mahasiswa);
+        setContentView(R.layout.activity_admin_praktikum);
 
 
         listView=findViewById(R.id.list);
         model = new ArrayList<>();
-        mahasiswaAdaptor = new MahasiswaAdaptor(getApplicationContext(), model);
-        listView.setAdapter(mahasiswaAdaptor);
+        praktikumAdaptor = new PraktikumAdaptor(getApplicationContext(), model);
+        listView.setAdapter(praktikumAdaptor);
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -77,11 +80,11 @@ public class AdminMahasiswa extends AppCompatActivity {
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddMahasiswa.class);
+                Intent intent = new Intent(getApplicationContext(), AddPraktikum.class);
                 for (int i = 1; i <= 13; i++) {
                     String labKey = "lab" + i;
                     if (getIntent().hasExtra(labKey)) {
-                        intent.putExtra(labKey, "mhs" + i + ".php");
+                        intent.putExtra(labKey, "prak" + i + ".php");
                         break;
                     }
                 }
@@ -92,14 +95,14 @@ public class AdminMahasiswa extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PopupMenu popupMenu=new PopupMenu(AdminMahasiswa.this, view);
+                PopupMenu popupMenu=new PopupMenu(getApplicationContext(), view);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
                 popupMenu.show();
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+                        PopupMenu popupMenu = new PopupMenu(AdminPraktikum.this, view);
                         popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
                         popupMenu.show();
 
@@ -107,13 +110,13 @@ public class AdminMahasiswa extends AppCompatActivity {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 if (item.getItemId() == R.id.edit) {
-                                    Intent intent = new Intent(getApplicationContext(), AddMahasiswa.class);
+                                    Intent intent = new Intent(getApplicationContext(), AddPraktikum.class);
                                     intent.putExtra("edit_data", model.get(position).getId());
                                     // Loop through all lab extras
                                     for (int i = 1; i <= 13; i++) {
                                         String labKey = "lab" + i;
                                         if (getIntent().hasExtra(labKey)) {
-                                            intent.putExtra("edit_" + labKey, "mhs" + i + ".php");
+                                            intent.putExtra("edit_" + labKey, "prak" + i + ".php");
                                             break;
                                         }
                                     }
@@ -121,14 +124,14 @@ public class AdminMahasiswa extends AppCompatActivity {
                                     for (int i = 1; i <= 13; i++) {
                                         String labKey = "lab" + i;
                                         if (getIntent().hasExtra(labKey)) {
-                                            intent.putExtra(labKey, "mhs" + i + ".php");
+                                            intent.putExtra(labKey, "prak" + i + ".php");
                                             break;
                                         }
                                     }
                                     startActivity(intent);
                                     return true;
                                 } else if (item.getItemId() == R.id.hapus) {
-                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminMahasiswa.this);
+                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminPraktikum.this);
                                     builder.setMessage("Apakah Anda ingin menghapus data ini?");
                                     builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                         @Override
@@ -175,16 +178,16 @@ public class AdminMahasiswa extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
                             String id = object.getString("id");
-                            String nama = object.getString("nama");
-                            String nim = object.getString("nim");
-                            String email = object.getString("email");
+                            String name = object.getString("name");
+                            String tanggal = object.getString("tanggal");
+                            String tempat = object.getString("tempat");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
+                            String urlimage = "http://192.168.42.124/lab_elektro/images/" + url2;
 
-                            getDataMahasiswa = new GetDataMahasiswa(id, nama, nim, email, urlimage);
-                            model.add(getDataMahasiswa);
-                            mahasiswaAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                            getDataPraktikum = new GetDataPraktikum(id, name, tanggal, tempat, urlimage);
+                            model.add(getDataPraktikum);
+                            praktikumAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                         }
                     }
                 } catch (JSONException e) {
@@ -205,7 +208,7 @@ public class AdminMahasiswa extends AppCompatActivity {
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+"hapus_"+urlPlus;
+        String url=new Konfigurasi().baseUrl()+ "hapus_" + urlPlus;
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -216,7 +219,7 @@ public class AdminMahasiswa extends AppCompatActivity {
                             String status=jsonObject.getString("status");
                             if (status.equals("data_berhasil_dihapus"))
                             {
-                                Toast.makeText(AdminMahasiswa.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminPraktikum.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
                                 load_data();
                             }
                         } catch (JSONException e) {
