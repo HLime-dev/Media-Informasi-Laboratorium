@@ -78,7 +78,7 @@ public class AlatActivity extends AppCompatActivity{
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
+        String url = new Konfigurasi().baseUrlTampilAlat() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -98,7 +98,7 @@ public class AlatActivity extends AppCompatActivity{
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
+                            String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
                             getDataAlat = new GetDataAlat(id, nama, kategori, jumlah, urlimage);
                             model.add(getDataAlat);

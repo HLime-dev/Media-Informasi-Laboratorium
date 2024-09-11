@@ -97,71 +97,53 @@ public class AdminDosen extends AppCompatActivity {
                 popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
                 popupMenu.show();
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PopupMenu popupMenu = new PopupMenu(AdminDosen.this, view);
-                        popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
-                        popupMenu.show();
-
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                if (item.getItemId() == R.id.edit) {
-                                    Intent intent = new Intent(getApplicationContext(), AddDosen.class);
-                                    intent.putExtra("edit_data", model.get(position).getId());
-                                    // Loop through all lab extras
-                                    for (int i = 1; i <= 13; i++) {
-                                        String labKey = "lab" + i;
-                                        if (getIntent().hasExtra(labKey)) {
-                                            intent.putExtra("edit_" + labKey, "dsn" + i + ".php");
-                                            break;
-                                        }
-                                    }
-
-                                    for (int i = 1; i <= 13; i++) {
-                                        String labKey = "lab" + i;
-                                        if (getIntent().hasExtra(labKey)) {
-                                            intent.putExtra(labKey, "dsn" + i + ".php");
-                                            break;
-                                        }
-                                    }
-                                    startActivity(intent);
-                                    return true;
-                                } else if (item.getItemId() == R.id.hapus) {
-                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminDosen.this);
-                                    builder.setMessage("Apakah Anda ingin menghapus data ini?");
-                                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            _hapus(model.get(position).getId());
-                                        }
-                                    });
-                                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                                    AlertDialog alertDialog=builder.create();
-                                    alertDialog.show();
-                                    return true;
-                                } else {
-                                    return false;
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.edit) {
+                            Intent intent = new Intent(getApplicationContext(), AddDosen.class);
+                            intent.putExtra("edit_data", model.get(position).getId());
+                            // Loop through all lab extras
+                            for (int i = 1; i <= 13; i++) {
+                                String labKey = "lab" + i;
+                                if (getIntent().hasExtra(labKey)) {
+                                    intent.putExtra("edit_" + labKey, "dsn" + i + ".php");
+                                    break;
                                 }
                             }
-                        });
+                            startActivity(intent);
+                            return true;
+                        } else if (item.getItemId() == R.id.hapus) {
+                            AlertDialog.Builder builder=new AlertDialog.Builder(AdminDosen.this);
+                            builder.setMessage("Apakah Anda ingin menghapus data ini?");
+                            builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    _hapus(model.get(position).getId());
+                                }
+                            });
+                            builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                            AlertDialog alertDialog=builder.create();
+                            alertDialog.show();
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 });
-
-
             }
         });
+
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
+        String url = new Konfigurasi().baseUrlTampilDosen() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -184,7 +166,7 @@ public class AdminDosen extends AppCompatActivity {
                            // String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
 
                             //lab telkom
-                            String urlimage = "http://10.28.46.108/lab_elektro/images/" + url2;
+                            String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
                             getData = new GetData(id, name, jabatan, email, urlimage);
                             model.add(getData);
@@ -209,7 +191,7 @@ public class AdminDosen extends AppCompatActivity {
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+ "hapus_" + urlPlus;
+        String url=new Konfigurasi().baseUrlHapusDosen()+ "hapus_" + urlPlus;
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {

@@ -95,75 +95,70 @@ public class AdminEvent extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PopupMenu popupMenu=new PopupMenu(AdminEvent.this, view);
+                PopupMenu popupMenu = new PopupMenu(AdminEvent.this, view); // Menggunakan Activity sebagai konteks
                 popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
                 popupMenu.show();
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                        popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
-                        popupMenu.show();
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.edit:
+                                Intent intent = new Intent(AdminEvent.this, AddEvent.class);
+                                intent.putExtra("edit_data", model.get(position).getId());
 
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                if (item.getItemId() == R.id.edit) {
-                                    Intent intent = new Intent(getApplicationContext(), AddEvent.class);
-                                    intent.putExtra("edit_data", model.get(position).getId());
-                                    // Loop through all lab extras
-                                    for (int i = 1; i <= 13; i++) {
-                                        String labKey = "lab" + i;
-                                        if (getIntent().hasExtra(labKey)) {
-                                            intent.putExtra("edit_" + labKey, "event" + i + ".php");
-                                            break;
-                                        }
+                                // Loop through all lab extras
+                                for (int i = 1; i <= 13; i++) {
+                                    String labKey = "lab" + i;
+                                    if (getIntent().hasExtra(labKey)) {
+                                        intent.putExtra("edit_" + labKey, "event" + i + ".php");
+                                        break;
                                     }
-
-                                    for (int i = 1; i <= 13; i++) {
-                                        String labKey = "lab" + i;
-                                        if (getIntent().hasExtra(labKey)) {
-                                            intent.putExtra(labKey, "event" + i + ".php");
-                                            break;
-                                        }
-                                    }
-                                    startActivity(intent);
-                                    return true;
-                                } else if (item.getItemId() == R.id.hapus) {
-                                    AlertDialog.Builder builder=new AlertDialog.Builder(AdminEvent.this);
-                                    builder.setMessage("Apakah Anda ingin menghapus data ini?");
-                                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            _hapus(model.get(position).getId());
-                                        }
-                                    });
-                                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                                    AlertDialog alertDialog=builder.create();
-                                    alertDialog.show();
-                                    return true;
-                                } else {
-                                    return false;
                                 }
-                            }
-                        });
+
+                                for (int i = 1; i <= 13; i++) {
+                                    String labKey = "lab" + i;
+                                    if (getIntent().hasExtra(labKey)) {
+                                        intent.putExtra(labKey, "event" + i + ".php");
+                                        break;
+                                    }
+                                }
+
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.hapus:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AdminEvent.this);
+                                builder.setMessage("Apakah Anda ingin menghapus data ini?")
+                                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                _hapus(model.get(position).getId());
+                                            }
+                                        })
+                                        .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                                return true;
+
+                            default:
+                                return false;
+                        }
                     }
                 });
-
-
             }
         });
+
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
+        String url = new Konfigurasi().baseUrlTampilEvent() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -183,7 +178,7 @@ public class AdminEvent extends AppCompatActivity {
                             String tanggal = object.getString("tanggal");
                             String url2 = object.getString("foto");
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
+                            String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
                             getDataEvent = new GetDataEvent(id, name, lokasi, tanggal, urlimage);
                             model.add(getDataEvent);
@@ -208,7 +203,7 @@ public class AdminEvent extends AppCompatActivity {
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+"hapus_"+urlPlus;
+        String url=new Konfigurasi().baseUrlHapusEvent() + "hapus_" + urlPlus;
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {

@@ -61,7 +61,7 @@ public class DetailPraktikum extends AppCompatActivity {
     }
 
     void getData() {
-        String url = new Konfigurasi().baseUrl() + "get_data_" + urlGet;
+        String url = new Konfigurasi().baseUrlGetPrak() + "get_data_" + urlGet;
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -76,7 +76,7 @@ public class DetailPraktikum extends AppCompatActivity {
                             String gdetail = jsonObject.getString("detail");
                             String url2 = jsonObject.getString("image");
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
+                            String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
                             nama.setText(gnama);
                             tanggal.setText(gtanggal);

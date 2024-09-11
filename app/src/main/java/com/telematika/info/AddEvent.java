@@ -130,7 +130,7 @@ public class AddEvent extends AppCompatActivity {
                 }
 
                 if (isValid) {
-                    String url = "http://192.168.123.139/lab_elektro/" + "simpan_" + urlPlus;
+                    String url = new Konfigurasi().baseUrlSimpanEvent() + "simpan_" + urlPlus;
                     progressBar.setVisibility(View.VISIBLE);
 
                     StringRequest stringRequest=new StringRequest(
@@ -187,7 +187,7 @@ public class AddEvent extends AppCompatActivity {
                                 form.put("image", encodeImage);
                             } else if (oldImage != null) {
                                 // Full URL for oldImage
-                                String oldImageUrl = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+                                String oldImageUrl = new Konfigurasi().baseUrlImages() + oldImage;
                                 String encodedOldImage = encodeImageFromUrl(oldImageUrl);
                                 if (encodedOldImage != null) {
                                     form.put("image", encodedOldImage);
@@ -259,7 +259,7 @@ public class AddEvent extends AppCompatActivity {
 
     void getData()
     {
-        String url=new Konfigurasi().baseUrl()+"get_data_" + urlGet;
+        String url=new Konfigurasi().baseUrlGetEvent()+"get_data_" + urlGet;
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -275,7 +275,7 @@ public class AddEvent extends AppCompatActivity {
 
                             oldImage = jsonObject.getString("image"); // Save the old image URL
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+                            String urlimage = new Konfigurasi().baseUrlImages() + oldImage;
 
                             nama.setText(gnama);
                             lokasi.setText(glokasi);

@@ -190,7 +190,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/event"
+                    android:src="@drawable/circuit"
                     android:layout_width="60dp"
                     android:layout_height="60dp"/>
                 <TextView

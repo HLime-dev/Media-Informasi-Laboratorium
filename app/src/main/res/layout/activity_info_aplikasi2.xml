@@ -1,52 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_page"
+    android:padding="10dp"
+    android:orientation="vertical"
     tools:context=".InfoAplikasi">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:text="Info Lab Elektro FTUH"
+        android:textColor="@color/white"
         android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
-
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="Deskripsi:"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/white"
-            android:text="Tugas Akhir" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:textSize="20sp"
+        <me.biubiubiu.justifytext.library.JustifyTextView
+            android:text="Info Lab Elektro FTUH adalah aplikasi yang dirancang untuk membantu dosen, mahasiswa, dan asisten laboratorium dalam mengakses informasi penting terkait kegiatan laboratorium. Untuk mengakses informasi laboratorium, pengguna harus menekan tombol pengunjung pada halaman utama, kemudian mengisi informasi pengunjung dan mengaktifkan fitur NFC pada perangkat serta mendekatkan ke tag NFC yang telah terpasang pada pintu masing-masing laboratorium."
+            android:textSize="16sp"
+            android:layout_marginTop="3dp"
             android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Muhammad Halim" />
-
-        <TextView
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D041181013" />
-
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="©2024"
-        android:textColor="@color/white"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Fitur Utama:"
+            android:textSize="18sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <me.biubiubiu.justifytext.library.JustifyTextView
+            android:text="Profil Dosen: Menyediakan informasi lengkap tentang dosen yang terkait dengan laboratorium
+Profil Mahasiswa/Asisten Lab: Menyajikan profil mahasiswa dan asisten laboratorium.
+Ruangan: Nama dan foto ruangan.
+Alat: Daftar lengkap alat laboratorium dengan deskripsi, jumlah, dan kategori.
+Event: Menampilkan event penting yang terkait dengan laboratorium, seperti seminar, workshop, atau kegiatan lain yang diselenggarakan di lab.
+Praktikum: Informasi mengenai praktikum."
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:text="-------------------------------------------------------------"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Tugas Akhir"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Muhammad Halim"
+        android:textColor="@color/white"
+        android:layout_marginTop="3dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="D041181013"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Dosen Pembimbing:"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Dr. Ir. Zulfajri Basri Hasanuddin, M.Eng."
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="Ir. Samuel Panggalo, M.T."
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Dosen Penguji:"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="Prof. Dr. Ir. Syafruddin Syarif, M.T."
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Dr. Merna Baharuddin, ST.M.Tel.Eng"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="labelektroftuh@gmail.com"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:autoLink="email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

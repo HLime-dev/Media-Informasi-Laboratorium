@@ -186,7 +186,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:src="@drawable/team"
+                android:src="@drawable/circuit"
                 android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>

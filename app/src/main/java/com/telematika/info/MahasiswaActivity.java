@@ -78,7 +78,7 @@ public class MahasiswaActivity extends AppCompatActivity {
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
+        String url = new Konfigurasi().baseUrlTampilMhs() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -97,7 +97,7 @@ public class MahasiswaActivity extends AppCompatActivity {
                             String email = object.getString("email");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
+                            String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
                             getDataMahasiswa = new GetDataMahasiswa(id, nama, nim, email, urlimage);
                             model.add(getDataMahasiswa);

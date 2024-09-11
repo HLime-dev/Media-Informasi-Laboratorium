@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.InfoTelmat" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.InfoTelmat" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#01539D</item>
         <item name="colorPrimaryVariant">#0173C5</item>
@@ -15,7 +15,7 @@
     </style>
 
 
-    <style name="FullScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="FullScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:fitsSystemWindows">true</item>

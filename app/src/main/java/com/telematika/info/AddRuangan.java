@@ -113,7 +113,7 @@ public class AddRuangan extends AppCompatActivity {
                 }
                 else
                 {
-                    String url = "http://192.168.123.139/lab_elektro/" + "simpan_" + urlPlus;
+                    String url = new Konfigurasi().baseUrlSimpanRuang() + "simpan_" + urlPlus;
                     progressBar.setVisibility(View.VISIBLE);
                     StringRequest stringRequest=new StringRequest(
                             1, url,
@@ -163,13 +163,13 @@ public class AddRuangan extends AppCompatActivity {
                             form.put("nama", nama.getText().toString());
                             // Use the full URL for the old image when encoding it
                             if (encodeImage != null) {
-                                form.put("image", encodeImage);
+                                form.put("foto", encodeImage);
                             } else if (oldImage != null) {
                                 // Full URL for oldImage
-                                String oldImageUrl = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+                                String oldImageUrl = new Konfigurasi().baseUrlImages() + oldImage;
                                 String encodedOldImage = encodeImageFromUrl(oldImageUrl);
                                 if (encodedOldImage != null) {
-                                    form.put("image", encodedOldImage);
+                                    form.put("foto", encodedOldImage);
                                 }
                             }
                             if (getIntent().hasExtra("edit_data"))
@@ -238,7 +238,7 @@ public class AddRuangan extends AppCompatActivity {
 
     void getData()
     {
-        String url=new Konfigurasi().baseUrl()+"get_data_" + urlGet;
+        String url=new Konfigurasi().baseUrlGetRuang() + "get_data_" + urlGet;
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -248,9 +248,9 @@ public class AddRuangan extends AppCompatActivity {
                         try {
                             JSONObject jsonObject= new JSONObject(response).getJSONObject("data");
                             String gnama=jsonObject.getString("nama");
-                            oldImage = jsonObject.getString("image"); // Save the old image URL
+                            oldImage = jsonObject.getString("foto"); // Save the old image URL
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + oldImage;
+                            String urlimage = new Konfigurasi().baseUrlImages() + oldImage;
 
 
                             nama.setText(gnama);

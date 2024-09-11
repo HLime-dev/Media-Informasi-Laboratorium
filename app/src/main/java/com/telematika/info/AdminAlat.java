@@ -96,7 +96,7 @@ public class AdminAlat extends AppCompatActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PopupMenu popupMenu = new PopupMenu(AdminAlat.this, view);  // Menggunakan Activity sebagai konteks
+                PopupMenu popupMenu = new PopupMenu(AdminAlat.this, view); // Menggunakan Activity sebagai konteks
                 popupMenu.getMenuInflater().inflate(R.menu.menu_opsi, popupMenu.getMenu());
                 popupMenu.show();
 
@@ -156,10 +156,11 @@ public class AdminAlat extends AppCompatActivity{
             }
         });
 
+
     }
 
     void load_data() {
-        String url = new Konfigurasi().baseUrl() + "tampil_data_" + urlPlus;
+        String url = new Konfigurasi().baseUrlTampilAlat() + "tampil_data_" + urlPlus;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
@@ -179,7 +180,7 @@ public class AdminAlat extends AppCompatActivity{
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");
 
-                            String urlimage = "http://192.168.123.139/lab_elektro/images/" + url2;
+                            String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
                             getDataAlat = new GetDataAlat(id, nama, kategori, jumlah, urlimage);
                             model.add(getDataAlat);
@@ -204,7 +205,7 @@ public class AdminAlat extends AppCompatActivity{
 
     void _hapus(String id)
     {
-        String url=new Konfigurasi().baseUrl()+"hapus_"+urlPlus;
+        String url=new Konfigurasi().baseUrlHapusAlat()+"hapus_"+urlPlus;
         StringRequest request=new StringRequest(
                 Request.Method.POST, url,
                 new Response.Listener<String>() {
