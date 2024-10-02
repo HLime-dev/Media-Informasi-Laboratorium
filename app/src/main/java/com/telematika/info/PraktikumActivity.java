@@ -42,6 +42,7 @@ public class PraktikumActivity extends AppCompatActivity {
         listView=findViewById(R.id.list);
         model=new ArrayList<>();
         praktikumAdaptor= new PraktikumAdaptor(getApplicationContext(), model);
+        listView.setAdapter(praktikumAdaptor);
         toolbar=findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -82,6 +83,7 @@ public class PraktikumActivity extends AppCompatActivity {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                model.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
@@ -102,7 +104,6 @@ public class PraktikumActivity extends AppCompatActivity {
                             praktikumAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                         }
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

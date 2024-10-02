@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"/>
 
         <me.biubiubiu.justifytext.library.JustifyTextView
-            android:text="Info Lab Elektro FTUH adalah aplikasi yang dirancang untuk membantu dosen, mahasiswa, dan asisten laboratorium dalam mengakses informasi penting terkait kegiatan laboratorium. Untuk mengakses informasi laboratorium, pengguna harus menekan tombol pengunjung pada halaman utama, kemudian mengisi informasi pengunjung dan mengaktifkan fitur NFC pada perangkat serta mendekatkan ke tag NFC yang telah terpasang pada pintu masing-masing laboratorium."
+            android:text="Info Lab Elektro FTUH adalah aplikasi yang dirancang untuk membantu dosen, mahasiswa, dan asisten laboratorium dalam mengakses informasi penting terkait kegiatan laboratorium. Untuk mengakses informasi laboratorium, pengguna harus menekan tombol pengunjung pada halaman utama, kemudian mengisi informasi pengunjung dan mengaktifkan fitur NFC pada perangkat serta mendekatkan ke tag NFC yang telah terpasang pada pintu masing-masing laboratorium. Admin juga dapat melakukan pembaruan informasi melalui aplikasi ini."
             android:textSize="16sp"
             android:layout_marginTop="3dp"
             android:textColor="@color/white"

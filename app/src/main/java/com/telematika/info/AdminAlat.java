@@ -175,14 +175,14 @@ public class AdminAlat extends AppCompatActivity{
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
                             String id = object.getString("id");
-                            String nama = object.getString("nama");
+                            String name = object.getString("name");
                             String kategori = object.getString("kategori");
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");
 
                             String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
-                            getDataAlat = new GetDataAlat(id, nama, kategori, jumlah, urlimage);
+                            getDataAlat = new GetDataAlat(id, name, kategori, jumlah, urlimage);
                             model.add(getDataAlat);
                             alatAdaptor.notifyDataSetChanged(); // Notify the adapter that the data has changed
                         }

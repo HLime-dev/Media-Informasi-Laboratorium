@@ -93,7 +93,7 @@ public class AlatActivity extends AppCompatActivity{
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
                             String id = object.getString("id");
-                            String nama = object.getString("nama");
+                            String nama = object.getString("name");
                             String kategori = object.getString("kategori");
                             String jumlah = object.getString("jumlah");
                             String url2 = object.getString("image");

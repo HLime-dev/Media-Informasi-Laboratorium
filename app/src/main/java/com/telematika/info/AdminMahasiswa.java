@@ -173,7 +173,7 @@ public class AdminMahasiswa extends AppCompatActivity {
                             String nama = object.getString("nama");
                             String nim = object.getString("nim");
                             String email = object.getString("email");
-                            String url2 = object.getString("image");
+                            String url2 = object.getString("foto");
 
                             String urlimage = new Konfigurasi().baseUrlImages() + url2;
 

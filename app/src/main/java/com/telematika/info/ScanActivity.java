@@ -140,18 +140,18 @@ public class ScanActivity extends AppCompatActivity {
 
                     // Periksa apakah ID tag sesuai dengan ID yang diharapkan
                     byte[] expectedTagId1 = new byte[]{(byte) 0x53, (byte) 0x38, (byte) 0x77, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId2 = new byte[]{(byte) 0x53, (byte) 0x0F, (byte) 0x7F, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId3 = new byte[]{(byte) 0x04, (byte) 0x3C, (byte) 0x6E, (byte) 0xCA, (byte) 0x37, (byte) 0x58, (byte) 0x80};
-                    byte[] expectedTagId4 = new byte[]{(byte) 0x04, (byte) 0x3C, (byte) 0x6E, (byte) 0xCA, (byte) 0x37, (byte) 0x58, (byte) 0x80};
-                    byte[] expectedTagId5 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId6 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId7 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId8 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId9 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId10 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId11 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId12 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
-                    byte[] expectedTagId13 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId2 = new byte[]{(byte) 0x53, (byte) 0x35, (byte) 0x73, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId3 = new byte[]{(byte) 0x53, (byte) 0x0F, (byte) 0x7F, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId4 = new byte[]{(byte) 0x53, (byte) 0x30, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId5 = new byte[]{(byte) 0x53, (byte) 0x34, (byte) 0x7B, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId6 = new byte[]{(byte) 0x53, (byte) 0xD1, (byte) 0x96, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId7 = new byte[]{(byte) 0x53, (byte) 0xE1, (byte) 0x93, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId8 = new byte[]{(byte) 0x53, (byte) 0xB7, (byte) 0x90, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId9 = new byte[]{(byte) 0x53, (byte) 0x6B, (byte) 0x8D, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId10 = new byte[]{(byte) 0x53, (byte) 0x7D, (byte) 0x86, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId11 = new byte[]{(byte) 0x53, (byte) 0xD9, (byte) 0x82, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId12 = new byte[]{(byte) 0x53, (byte) 0x00, (byte) 0x8A, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
+                    byte[] expectedTagId13 = new byte[]{(byte) 0x53, (byte) 0x15, (byte) 0x7F, (byte) 0xA1, (byte) 0x00, (byte) 0x00, (byte) 0x01};
 
                     if (Arrays.equals(expectedTagId1, id)) {
                         // ID tag sesuai, pindah ke MenuActivity

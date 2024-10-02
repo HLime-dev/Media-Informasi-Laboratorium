@@ -184,13 +184,13 @@ public class AddEvent extends AppCompatActivity {
                             form.put("tanggal", tanggal.getText().toString());
                             // Use the full URL for the old image when encoding it
                             if (encodeImage != null) {
-                                form.put("image", encodeImage);
+                                form.put("foto", encodeImage);
                             } else if (oldImage != null) {
                                 // Full URL for oldImage
                                 String oldImageUrl = new Konfigurasi().baseUrlImages() + oldImage;
                                 String encodedOldImage = encodeImageFromUrl(oldImageUrl);
                                 if (encodedOldImage != null) {
-                                    form.put("image", encodedOldImage);
+                                    form.put("foto", encodedOldImage);
                                 }
                             }
                             if (getIntent().hasExtra("edit_data"))
@@ -273,7 +273,7 @@ public class AddEvent extends AppCompatActivity {
                             String gtanggal=jsonObject.getString("tanggal");
                             String gdeskripsi=jsonObject.getString("deskripsi");
 
-                            oldImage = jsonObject.getString("image"); // Save the old image URL
+                            oldImage = jsonObject.getString("foto"); // Save the old image URL
 
                             String urlimage = new Konfigurasi().baseUrlImages() + oldImage;
 

@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:paddingRight="15dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
@@ -46,7 +47,7 @@
             android:id="@+id/jabatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jabatan"
+            android:text="Jabatansjhahdgjhadhjajhgdhjsahgsjhgsahdgsdhdsjdhs"
             android:textColor="#26273a"
             android:textSize="12sp"
             android:layout_marginStart="8dp"

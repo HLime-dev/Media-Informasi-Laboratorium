@@ -111,6 +111,14 @@ public class AdminDosen extends AppCompatActivity {
                                     break;
                                 }
                             }
+
+                            for (int i = 1; i <= 13; i++) {
+                                String labKey = "lab" + i;
+                                if (getIntent().hasExtra(labKey)) {
+                                    intent.putExtra(labKey, "dsn" + i + ".php");
+                                    break;
+                                }
+                            }
                             startActivity(intent);
                             return true;
                         } else if (item.getItemId() == R.id.hapus) {

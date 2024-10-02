@@ -75,7 +75,7 @@ public class RuanganActivity extends AppCompatActivity {
                             JSONObject object = jsonArray.getJSONObject(i);
                             String id = object.getString("id");
                             String nama = object.getString("nama");
-                            String url2 = object.getString("image");
+                            String url2 = object.getString("foto");
 
                             String urlimage = new Konfigurasi().baseUrlImages() + url2;
 
