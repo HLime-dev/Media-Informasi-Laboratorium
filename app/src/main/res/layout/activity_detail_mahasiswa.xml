@@ -103,7 +103,7 @@
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:gravity="center"
-                    android:text="Penelitian"
+                    android:text="Penelitian/Info Tambahan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <me.biubiubiu.justifytext.library.JustifyTextView
@@ -111,7 +111,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:text="Penelitian"
+                    android:text="Penelitian/Info Tambahan"
                     android:autoLink="web"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

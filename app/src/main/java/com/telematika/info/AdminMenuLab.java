@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 
 public class AdminMenuLab extends AppCompatActivity {
 
-    LinearLayout lab1, lab2, lab3, lab4, lab5, lab6, lab7, lab8, lab9, lab10, lab11, lab12, lab13, pengunjung;
+    LinearLayout lab1, lab2, lab3, lab4, lab5, lab6, lab7, lab8, lab9, lab10, lab11, lab12, lab13, scan, pengunjung;
     Toolbar toolbar;
 
     @Override
@@ -32,6 +32,7 @@ public class AdminMenuLab extends AppCompatActivity {
         lab11 = findViewById(R.id.lab11);
         lab12 = findViewById(R.id.lab12);
         lab13 = findViewById(R.id.lab13);
+        scan = findViewById(R.id.scan);
         pengunjung = findViewById(R.id.pengunjung);
         toolbar = findViewById(R.id.toolbar);
 
@@ -154,6 +155,14 @@ public class AdminMenuLab extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMenuLab.this, MenuAdmin.class);
                 intent.putExtra("lab13", "lab13.php");
+                startActivity(intent);
+            }
+        });
+
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMenuLab.this, ScanActivity.class);
                 startActivity(intent);
             }
         });

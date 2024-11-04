@@ -27,9 +27,11 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
-        android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,141 +43,166 @@
             android:layout_height="match_parent">
 
 
-
-        <LinearLayout
-            android:id="@+id/dosen"
-            android:orientation="horizontal"
-            android:layout_marginRight="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginBottom="24dp"
-            android:elevation="10dp"
-            android:background="@drawable/bg_item"
-            android:padding="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:src="@drawable/professor"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
-            <TextView
-                android:layout_marginLeft="12dp"
-                android:gravity="center"
-                android:text="Dosen"
-                android:textSize="18sp"
-                android:textColor="#26273a"
+            <LinearLayout
+                android:id="@+id/umum"
+                android:orientation="horizontal"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_item"
+                android:padding="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <ImageView
+                    android:src="@drawable/hijautele"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:text="Info Umum"
+                    android:textSize="18sp"
+                    android:textColor="#26273a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:id="@+id/mahasiswa"
-            android:orientation="horizontal"
-            android:layout_marginRight="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginBottom="24dp"
-            android:elevation="10dp"
-            android:background="@drawable/bg_item"
-            android:padding="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:src="@drawable/programmer"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
-            <TextView
-                android:layout_marginLeft="12dp"
-                android:gravity="center"
-                android:text="Mahasiswa/Aslab"
-                android:textSize="18sp"
-                android:textColor="#26273a"
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/dosen"
+                android:orientation="horizontal"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_item"
+                android:padding="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <ImageView
+                    android:src="@drawable/professor"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:text="Dosen"
+                    android:textSize="18sp"
+                    android:textColor="#26273a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:id="@+id/ruangan"
-            android:orientation="horizontal"
-            android:layout_marginRight="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginBottom="24dp"
-            android:elevation="10dp"
-            android:background="@drawable/bg_item"
-            android:padding="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </LinearLayout>
 
-            <ImageView
-                android:src="@drawable/meeting"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
-            <TextView
-                android:layout_marginLeft="12dp"
-                android:gravity="center"
-                android:text="Ruangan"
-                android:textSize="18sp"
-                android:textColor="#26273a"
+            <LinearLayout
+                android:id="@+id/mahasiswa"
+                android:orientation="horizontal"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_item"
+                android:padding="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <ImageView
+                    android:src="@drawable/programmer"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:text="Mahasiswa/Aslab"
+                    android:textSize="18sp"
+                    android:textColor="#26273a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:id="@+id/alat"
-            android:orientation="horizontal"
-            android:layout_marginRight="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginBottom="24dp"
-            android:elevation="10dp"
-            android:background="@drawable/bg_item"
-            android:padding="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </LinearLayout>
 
-            <ImageView
-                android:src="@drawable/tool1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
-            <TextView
-                android:layout_marginLeft="12dp"
-                android:gravity="center"
-                android:text="Alat"
-                android:textSize="18sp"
-                android:textColor="#26273a"
+            <LinearLayout
+                android:id="@+id/ruangan"
+                android:orientation="horizontal"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_item"
+                android:padding="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <ImageView
+                    android:src="@drawable/meeting"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:text="Ruangan"
+                    android:textSize="18sp"
+                    android:textColor="#26273a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:id="@+id/event"
-            android:orientation="horizontal"
-            android:layout_marginRight="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginBottom="24dp"
-            android:elevation="10dp"
-            android:background="@drawable/bg_item"
-            android:padding="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </LinearLayout>
 
-            <ImageView
-                android:src="@drawable/event"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
-            <TextView
-                android:layout_marginLeft="12dp"
-                android:gravity="center"
-                android:text="Event"
-                android:textSize="18sp"
-                android:textColor="#26273a"
+            <LinearLayout
+                android:id="@+id/alat"
+                android:orientation="horizontal"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_item"
+                android:padding="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <ImageView
+                    android:src="@drawable/tool1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:text="Alat"
+                    android:textSize="18sp"
+                    android:textColor="#26273a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/event"
+                android:orientation="horizontal"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="10dp"
+                android:background="@drawable/bg_item"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/event"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:text="Event"
+                    android:textSize="18sp"
+                    android:textColor="#26273a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/praktikum"
@@ -203,8 +230,10 @@
                     android:layout_height="match_parent"/>
 
             </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
+</ScrollView>
+
 </LinearLayout>

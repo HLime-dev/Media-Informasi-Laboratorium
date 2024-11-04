@@ -401,7 +401,33 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/scan"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_item"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:src="@drawable/nfc6"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="Scan NFC"
+                android:textSize="18sp"
+                android:textColor="#26273a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/pengunjung"

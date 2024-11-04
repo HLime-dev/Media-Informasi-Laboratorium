@@ -81,7 +81,7 @@
             <TextView
                 android:layout_marginLeft="12dp"
                 android:gravity="center"
-                android:text="Mahasiswa"
+                android:text="Mahasiswa/Aslab"
                 android:textSize="18sp"
                 android:textColor="#26273a"
                 android:layout_width="match_parent"
