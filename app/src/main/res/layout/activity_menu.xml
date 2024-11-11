@@ -31,12 +31,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -45,6 +45,7 @@
 
             <LinearLayout
                 android:id="@+id/umum"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_marginRight="32dp"
                 android:layout_marginLeft="32dp"
@@ -230,6 +231,7 @@
                     android:layout_height="match_parent"/>
 
             </LinearLayout>
+
         </LinearLayout>
 
 

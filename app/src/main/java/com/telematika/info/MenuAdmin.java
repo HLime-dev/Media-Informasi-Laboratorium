@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 public class MenuAdmin extends AppCompatActivity {
 
-    LinearLayout dosen, mahasiswa, ruangan, alat, event, praktikum;
+    LinearLayout umum, dosen, mahasiswa, ruangan, alat, event, praktikum;
     Toolbar toolbar;
     private LinearLayout selectedLinearLayout;
     @Override
@@ -20,6 +20,7 @@ public class MenuAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_admin);
 
+        umum = findViewById(R.id.umum);
         dosen = findViewById(R.id.dosen);
         mahasiswa = findViewById(R.id.mahasiswa);
         ruangan = findViewById(R.id.ruangan);
@@ -34,6 +35,24 @@ public class MenuAdmin extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        umum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Set latar belakang LinearLayout yang baru dipilih
+                //dosen.setBackground(getDrawable(R.drawable.bg_item_selected));
+                Intent intent = new Intent(MenuAdmin.this, AdminUmum.class);
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "lab" + i + ".php");
+                        break;
+                    }
+                }
+                startActivity(intent);
+            }
+        });
 
         dosen.setOnClickListener(new View.OnClickListener() {
             @Override

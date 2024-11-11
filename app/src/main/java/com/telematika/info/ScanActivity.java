@@ -155,15 +155,15 @@ public class ScanActivity extends AppCompatActivity {
 
                     if (Arrays.equals(expectedTagId1, id)) {
                         // ID tag sesuai, pindah ke MenuActivity
-                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        Intent intent = new Intent(ScanActivity.this, InfoUmum.class);
                         intent.putExtra("lab1", "lab1.php");
                         startActivity(intent);
                     } else if (Arrays.equals(expectedTagId2, id)) {
-                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        Intent intent = new Intent(ScanActivity.this, InfoUmum.class);
                         intent.putExtra("lab2", "lab2.php");
                         startActivity(intent);
                     } else if (Arrays.equals(expectedTagId3, id)) {
-                        Intent intent = new Intent(ScanActivity.this, MenuActivity.class);
+                        Intent intent = new Intent(ScanActivity.this, InfoUmum.class);
                         intent.putExtra("lab3", "lab3.php");
                         startActivity(intent);
                     } else if (Arrays.equals(expectedTagId4, id)) {

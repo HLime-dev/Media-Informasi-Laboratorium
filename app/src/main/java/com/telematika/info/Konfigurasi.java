@@ -15,6 +15,12 @@ public class Konfigurasi {
 
     public String baseUrl() { return "https://palegoldenrod-coyote-807855.hostingersite.com/"; }
 
+    //Umum
+    public String baseUrlSimpanUmum() { return "https://palegoldenrod-coyote-807855.hostingersite.com/info_umum/"; }
+    public String baseUrlHapusUmum() { return "https://palegoldenrod-coyote-807855.hostingersite.com/info_umum/"; }
+    public String baseUrlGetUmum() { return "https://palegoldenrod-coyote-807855.hostingersite.com/info_umum/"; }
+    public String baseUrlUmum() { return "https://palegoldenrod-coyote-807855.hostingersite.com/info_umum/"; }
+
     //Dosen
     public String baseUrlSimpanDosen() { return "https://palegoldenrod-coyote-807855.hostingersite.com/simpan_dsn/"; }
     public String baseUrlHapusDosen() { return "https://palegoldenrod-coyote-807855.hostingersite.com/hapus_dsn/"; }

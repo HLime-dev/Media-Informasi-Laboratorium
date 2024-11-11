@@ -23,7 +23,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         dosen = (LinearLayout) findViewById(R.id.dosen);
-        //umum = (LinearLayout) findViewById(R.id.umum);
+        umum = (LinearLayout) findViewById(R.id.umum);
         mahasiswa = (LinearLayout) findViewById(R.id.mahasiswa);
         ruangan = (LinearLayout) findViewById(R.id.ruangan);
         alat = (LinearLayout) findViewById(R.id.alat);
@@ -38,19 +38,26 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*
+
         umum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // umum.setBackground(getDrawable(R.drawable.bg_item_selected));
                 // Buat Intent untuk activity tujuan
                 Intent intent = new Intent(MenuActivity.this, InfoUmum.class);
+                for (int i = 1; i <= 13; i++) {
+                    String labKey = "lab" + i;
+                    if (getIntent().hasExtra(labKey)) {
+                        intent.putExtra(labKey, "lab" + i + ".php");
+                        break;
+                    }
+                }
                 // Mulai activity tujuan
                 startActivity(intent);
             }
         });
 
-         */
+
 
         dosen.setOnClickListener(new View.OnClickListener() {
             @Override

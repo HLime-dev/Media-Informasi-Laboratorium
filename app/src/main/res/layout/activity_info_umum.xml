@@ -31,58 +31,18 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView
+    <RelativeLayout
+        android:background="#DFDFDFDF"
+        android:elevation="4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:gravity="center"
-            android:background="@drawable/card_background"
-            android:orientation="vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="1dp">
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/nama"
-                android:text="Laboratorium Telematika, Radar dan Satelit"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <ImageView
-                android:id="@+id/foto"
-                android:src="@drawable/putihtele4"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="25dp"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-
-            <TextView
-                android:id="@+id/info1"
-                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/info2"
-                android:layout_marginTop="3dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis, nisl ut gravida auctor, ligula nibh porttitor magna, sit amet convallis arcu tortor a elit. Phasellus in ex est. Vivamus finibus egestas lectus, eget porttitor felis cursus vel. Nam non luctus dolor. Vivamus vel pellentesque metus. Sed hendrerit non metus vel tempus. Maecenas et porta purus. Sed rutrum sit amet erat id feugiat. Phasellus egestas semper diam ac tristique. Morbi urna dui, finibus ut vehicula at, semper ut purus. Quisque sit amet facilisis eros, et varius sem. Vestibulum consectetur ultricies justo sit amet pretium. Ut aliquam sollicitudin nunc, congue viverra. "
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/info3"
-                android:layout_marginTop="3dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus a odio porttitor rhoncus. Curabitur sed lacus non tellus sollicitudin posuere. In arcu velit, luctus feugiat semper in, congue in turpis. In hac habitasse platea dictumst. Nulla semper egestas luctus. Sed sit amet nunc quis mi ullamcorper tristique. Proin rhoncus. "
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-        </LinearLayout>
-    </ScrollView>
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"/>
 
 </LinearLayout>
